@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 // load controllers
 const repairController = require('../controllers/repairController');
+const technicianController = require('../controllers/technicianController');
+const authController = require('../controllers/authController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
 // Do work here
@@ -21,6 +23,17 @@ router.post(
 );
 
 router.get('/repairs', catchErrors(repairController.getAllRepairs));
+router.get('/repairs/page/:page', catchErrors(repairController.getAllRepairs));
+router.get('/repair/:slug', catchErrors(repairController.getRepairBySlug));
+
+/* Register new User */
+router.get('/register', technicianController.registerForm);
+router.post(
+  '/register',
+  technicianController.validateRegister,
+  technicianController.registerTechnician,
+  authController.login
+);
 
 /* API Endpoints */
 /* 

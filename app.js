@@ -58,6 +58,7 @@ app.use((req, res, next) => {
   res.locals.h = helpers;
   res.locals.flashes = req.flash();
   res.locals.user = req.user || null; // passport passes user to our locals
+  res.locals.technician = req.technician || null; // passport passes user to our locals
   res.locals.currentPath = req.path;
   next();
 });

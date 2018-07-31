@@ -41,12 +41,12 @@ const technicianSchema = new Schema({
 });
 
 // gets the user's gravatar based in his email address
-userSchema.virtual('gravatar').get(function() {
+technicianSchema.virtual('gravatar').get(function() {
   const hash = md5(this.email);
   return `https://gravatar.com/avatar/${hash}?s=200`;
 });
 
-userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
-userSchema.plugin(mongodbErrorHandler);
+technicianSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
+technicianSchema.plugin(mongodbErrorHandler);
 
-module.exports = mongoose.model('User', technicianSchema);
+module.exports = mongoose.model('Technician', technicianSchema);

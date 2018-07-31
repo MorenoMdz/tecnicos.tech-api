@@ -53,7 +53,43 @@ exports.createRepair = async (req, res) => {
 };
 
 exports.getAllRepairs = async (req, res) => {
-  const repairs = await Repair.find();
+  const page = req.params.page || 1;
+  const limit = 9;
+  const skip = page * limit - limit;
+  // query db for a list of all repairs
+  const repairPromise = Repair.find()
+    .skip(skip)
+    .limit(limit);
+  const countPromise = Repair.count();
+  // will await until both promises return
+  const [repairs, count] = await Promise.all([repairPromise, countPromise]);
+  const pages = Math.ceil(count / limit); // rounded
+  if (!repairs.length && skip) {
+    req.flash(
+      'info',
+      `You asked for page ${page} that does not exists. Redirecting to the page ${pages}!`
+    );
+    /* res.redirect(`/stores/page/${pages}`); */
+    return;
+  }
+  res.render('repairs', {
+    title: 'repairs',
+    repairs: repairs,
+    page,
+    pages,
+    count,
+  });
+  /*   const repairs = await Repair.find();
 
-  res.json(repairs);
+  res.json(repairs); */
+};
+
+exports.getRepairBySlug = async (req, res) => {
+  const repair = await Repair.findOne({
+    slug: req.params.slug,
+  }); /* .populate(
+    'author reviews'
+  ); */
+  if (!repair) return next(); // it kicks in the 404 error handler
+  res.render('repair', { repair, title: repair.hardware });
 };
