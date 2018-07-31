@@ -49,5 +49,11 @@ exports.createRepair = async (req, res) => {
     `Successfully Created ${repair.name}. Care to leave a review?`
   );
   // res.redirect(`/store/${store.slug}`);
-  res.redirect('/');
+  res.redirect('/addForm');
+};
+
+exports.getAllRepairs = async (req, res) => {
+  const repairs = await Repair.find();
+
+  res.json(repairs);
 };

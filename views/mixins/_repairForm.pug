@@ -1,33 +1,22 @@
 
 mixin repairForm(repair = {}) 
-  form(action=`/add/${repair._id || ''}` method="POST"  class="card" enctype="multipart/form-data")
+  form(action=`/addRepair` method="POST"  class="card" enctype="multipart/form-data")
     
-    label(for="name") Name
-    input(type="text" name="name" placeholder="repair name" value=repair.name)
+    label(for="hardware") Aparelho
+    input(type="text" name="hardware" placeholder="repair name" value=repair.hardware)
+    
     label(for="description")
-    textarea(name="description" placeholder="Description")= repair.description
-    //- Image Upload
+    textarea(name="description" placeholder="Descrição do reparo")= repair.description
+
     label(for="photo") Photo
       input(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
       if repair.photo
         img(src=`/uploads/${repair.photo}`, alt=repair.name width=200)
-
-    //- address, Long and Lat
-    label(for="address") Address
-    input(type="text" id="address" name="location[address]" value=(repair.location && repair.location.address))
-    label(for="lng") Address Lng
-    input(type="text" id="lng" name="location[coordinates][0]" value=(repair.location && repair.location.coordinates[0]) required)
-    label(for="lat") Address Lat
-    input(type="text" id="lat" name="location[coordinates][1]" value=(repair.location && repair.location.coordinates[1]) required)
-
-    - const choices = ['Wifi', 'Open Late', 'Family Friendly', 'Vegetarian', 'Licensed']
-    - const tags = repair.tags || []
-    ul.tags 
-      each choice in choices
-        .tag.tag__choice
-          input(type="checkbox" id=choice value=choice name="tags" checked=(tags.includes(choice)))
-          label(for=choice) #{choice}
-    input(type="submit" value="Save!" class="button")
+    
+    label(for="video") Link para o video (Use Youtube/streamable)
+    input(type="text" name="video" placeholder="link para o video" value=repair.hardware)
+    // break line
+    input(type="submit" value="Salvar" class="button")
 
 
 

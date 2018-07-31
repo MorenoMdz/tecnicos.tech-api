@@ -14,11 +14,13 @@ router.get(
   /* authController.isLoggedIn,*/ repairController.addRepairForm
 );
 router.post(
-  '/add',
+  '/addRepair',
   repairController.upload,
   catchErrors(repairController.resize),
   catchErrors(repairController.createRepair)
 );
+
+router.get('/repairs', catchErrors(repairController.getAllRepairs));
 
 /* API Endpoints */
 /* 

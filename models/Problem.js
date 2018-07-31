@@ -8,7 +8,7 @@ const repairSchema = new mongoose.Schema({
     ref: 'Technician',
   },
   hardware: {
-    type: /* mongoose.Schema.ObjectId */ String,
+    type: mongoose.Schema.ObjectId,
     ref: 'Hardware',
   },
   problem: {
@@ -16,7 +16,7 @@ const repairSchema = new mongoose.Schema({
     ref: 'Problem',
   },
   slug: String,
-  description: {
+  repair_description: {
     type: String,
     trim: true,
     required: 'You must describe the repair!',
