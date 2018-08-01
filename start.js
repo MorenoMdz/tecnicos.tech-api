@@ -22,6 +22,7 @@ mongoose.connection.on('error', err => {
 // Import all of our models
 require('./models/Repair');
 require('./models/Technician');
+require('./models/Hardware.js');
 /*require('./models/Review'); */
 
 // Start our app!

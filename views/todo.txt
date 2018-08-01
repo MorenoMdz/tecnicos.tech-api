@@ -1,6 +1,6 @@
 1) Aparelhos Schema   
   a - Listar todos Aparelhos em layout provisório
-  b - Layout com Form para manejar Aparelhos
+  b - Layout com Form para manejar Aparelhos * WIP
   c - Listar aparelhos na form de seleção de defeitos
 
 2) defeitos
@@ -21,7 +21,7 @@
 
   Lembrando que o flow seria:
   * Add defeito
-    1 - Seleciona qual aparelhos
+    1 - Seleciona qual aparelho
     2 - Titulo do defeito, resumido
     3 - Reporta defeitos similares ao usuário para ver se o defeito já existe no bd
     4 - Mostra form com campos

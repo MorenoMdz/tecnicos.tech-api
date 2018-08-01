@@ -23,6 +23,10 @@ const hardwareSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
+  description: {
+    type: String,
+    trim: true,
+  },
   serial_number: String,
   slug: String, // access link
   description: {
@@ -96,4 +100,4 @@ hardwareSchema.index({
 hardwareSchema.pre('find', autopopulate);
 hardwareSchema.pre('findOne', autopopulate); */
 
-module.exports = mongoose.model('Repair', hardwareSchema);
+module.exports = mongoose.model('Hardware', hardwareSchema);

@@ -3,6 +3,7 @@ const router = express.Router();
 // load controllers
 const repairController = require('../controllers/repairController');
 const technicianController = require('../controllers/technicianController');
+const hwController = require('../controllers/hwController');
 const authController = require('../controllers/authController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
@@ -10,6 +11,16 @@ const { catchErrors } = require('../handlers/errorHandlers');
 router.get('/', (req, res) => {
   res.render('layout');
 }); // will go and run the homePage method
+
+/* Hardware Route | Perms: Adm/Mod */
+router.get('/config', authController.isLoggedIn, hwController.getAllHw);
+router.post(
+  '/addHw',
+  authController.isLoggedIn,
+  hwController.upload,
+  catchErrors(hwController.resize),
+  catchErrors(hwController.addNewHw)
+);
 
 router.get(
   '/addForm',

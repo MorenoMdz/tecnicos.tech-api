@@ -1,0 +1,30 @@
+
+mixin hwForm(hw = {}) 
+  form(action=`/addHw` method="POST"  class="card" enctype="multipart/form-data")
+    
+    label(for="name") Nome do Aparelho 
+    input(type="text" name="name" placeholder="aparelho" value=hw.name)
+    
+    label(for="model") Modelo do Aparelho 
+    input(type="text" name="model" placeholder="modelo" value=hw.model)
+
+    label(for="brand") Marca
+    input(type="text" name="brand" placeholder="marca" value=hw.brand)
+
+    label(for="serial_number") Número de Série 
+    input(type="text" name="serial_number" placeholder="num de série (opcional)" value=hw.serial_number)
+
+    label(for="description") Observações
+    textarea(name="description" placeholder="")= hw.description
+
+    label(for="photo") Photo
+      input(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
+      if hw.photo
+        img(src=`/uploads/${hw.photo}`, alt=hw.name width=200)
+    
+    // break line
+    input(type="submit" value="Salvar" class="button")
+
+
+
+    

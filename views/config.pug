@@ -1,0 +1,13 @@
+extends layout
+
+include mixins/_hwForm.pug
+
+block content
+  .inner  
+    p 
+    strong Gerenciar Aparelhos Cadastrados
+    form(action="/config" method="post")
+
+      input.button(type="submit", value="verificar aparelhos")
+  
+  +hwForm

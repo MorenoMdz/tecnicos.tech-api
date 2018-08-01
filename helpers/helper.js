@@ -26,7 +26,7 @@ exports.siteName = `Técnicos Tech`;
 exports.menu = [
   { slug: '/repairs', title: 'Reparos', icon: 'store' },
   { slug: '/addForm', title: 'Adicionar Reparo', icon: 'add' },
-  /*   { slug: '/tags', title: 'Tags', icon: 'tag' },
-  { slug: '/top', title: 'Top', icon: 'top' },
+  { slug: '/config', title: 'Config', icon: 'config' },
+  /*   { slug: '/top', title: 'Top', icon: 'top' },
   { slug: '/map', title: 'Map', icon: 'map' }, */
 ];
