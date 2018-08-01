@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  // pre= h.dump(store.reviews)
+  .single
+    .single__hero
+      img.single__image(src=`/uploads/${repair.photo || 'store.png'}`)
+      h2.title.title--single
+        a(href=`/repair/${repair.slug}`) #{repair.hardware}
+
+  .single__details.inner
+
+    p todo data
+    p.single__location= repair.description
+
+    
+    if repair.comentarios
+      ul.tags
+        each comentario in repair.comentarios
+          li.tag
+            a.tag__link(href=`/tags/${comentario}`)
+              span.tag__text ##{comentario}
+
+    if user
+      //+reviewForm(store)
+
+    if repair.comentarios 
+      .reviews
+        each comentario in repair.comentarios 
+          .review
+            //+review(comentario)

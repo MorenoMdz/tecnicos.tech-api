@@ -1,0 +1,9 @@
+mixin repairCard(repair = {})
+  .store 
+    .store__hero
+      .store__actions
+      img(src=`/uploads/${repair.photo || 'store.png'}`)
+      h2.title
+        a(href=`/repair/${repair.slug}`) #{repair.hardware}
+    .store__details 
+      p= repair.description.split(' ').slice(0, 25).join(' ')

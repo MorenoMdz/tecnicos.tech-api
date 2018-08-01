@@ -1,0 +1,14 @@
+extends layout
+
+include mixins/_repairCard
+include mixins/_pagination
+
+block content
+  .inner
+    //h2= title
+    h2 Reparos Econtrados:
+    .stores
+      each repair in repairs
+        +repairCard(repair)
+        
+    +pagination(page, pages, count)
