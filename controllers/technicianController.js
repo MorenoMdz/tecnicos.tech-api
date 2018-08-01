@@ -13,19 +13,22 @@ exports.registerForm = (req, res) => {
 // validation middleware
 exports.validateRegister = (req, res, next) => {
   req.sanitizeBody('name');
-  req.checkBody('name', 'You must supply a name!').notEmpty();
-  req.checkBody('email', 'Email not valid!').isEmail();
+  req.checkBody('name', 'Você precisa adicionar um nome!').notEmpty();
+  req.checkBody('email', 'Email inválido!').isEmail();
   req.sanitizeBody('email').normalizeEmail({
     remove_dots: false,
     remove_extension: false,
     gmail_remove_subaddress: false,
   });
-  req.checkBody('password', 'Password Cannot be Blank!').notEmpty();
+  req.checkBody('password', 'O campo Senha não pode ser vazio!!').notEmpty();
   req
-    .checkBody('password-confirm', 'Confirmed password cannot be blank!')
+    .checkBody(
+      'password-confirm',
+      'O campo de confirmação não pode ser vazio!!'
+    )
     .notEmpty();
   req
-    .checkBody('password-confirm', 'Passwords do not match!')
+    .checkBody('password-confirm', 'Senhas não conferem!')
     .equals(req.body.password);
 
   const errors = req.validationErrors();
@@ -59,11 +62,11 @@ exports.updateAccount = async (req, res) => {
     email: req.body.email,
   };
 
-  const Technician = await Technician.findOneAndUpdate(
+  const technician = await Technician.findOneAndUpdate(
     { _id: req.user._id },
     { $set: updates },
     { new: true, runValidators: true, context: 'query' }
   );
-  req.flash('success', 'Updated the profile!');
-  res.redirect('/account');
+  req.flash('success', 'Perfil atualizado.');
+  res.redirect('/login');
 };

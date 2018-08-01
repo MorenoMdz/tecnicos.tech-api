@@ -13,18 +13,32 @@ router.get('/', (req, res) => {
 
 router.get(
   '/addForm',
-  /* authController.isLoggedIn,*/ repairController.addRepairForm
+  authController.isLoggedIn,
+  repairController.addRepairForm
 );
 router.post(
   '/addRepair',
+  authController.isLoggedIn,
   repairController.upload,
   catchErrors(repairController.resize),
   catchErrors(repairController.createRepair)
 );
 
-router.get('/repairs', catchErrors(repairController.getAllRepairs));
-router.get('/repairs/page/:page', catchErrors(repairController.getAllRepairs));
-router.get('/repair/:slug', catchErrors(repairController.getRepairBySlug));
+router.get(
+  '/repairs',
+  authController.isLoggedIn,
+  catchErrors(repairController.getAllRepairs)
+);
+router.get(
+  '/repairs/page/:page',
+  authController.isLoggedIn,
+  catchErrors(repairController.getAllRepairs)
+);
+router.get(
+  '/repair/:slug',
+  authController.isLoggedIn,
+  catchErrors(repairController.getRepairBySlug)
+);
 
 /* User routes */
 router.get('/register', technicianController.registerForm);
@@ -37,6 +51,17 @@ router.post(
 router.get('/login', technicianController.loginForm);
 router.get('/logout', authController.logout);
 router.post('/login', authController.login);
+
+router.post('/account/forgot', catchErrors(authController.forgot));
+router.get('/account/reset/:token', catchErrors(authController.reset));
+router.post(
+  '/account/reset/:token',
+  authController.confirmedPasswords,
+  catchErrors(authController.update)
+);
+
+router.get('/account', authController.isLoggedIn, technicianController.account);
+router.post('/account', catchErrors(technicianController.updateAccount));
 
 /* API Endpoints */
 /* 

@@ -7,14 +7,14 @@ const mail = require('../handlers/mail');
 
 exports.login = passport.authenticate('local', {
   failureRedirect: '/login',
-  failureFlash: 'Failed Login!',
+  failureFlash: 'Login falhou!',
   successRedirect: '/',
-  successFlash: 'You are now logged in!',
+  successFlash: 'Você está logado!',
 });
 
 exports.logout = (req, res) => {
   req.logout();
-  req.flash('success', 'Logged out!');
+  req.flash('success', 'Desconectou!');
   res.redirect('/');
 };
 
@@ -25,7 +25,7 @@ exports.isLoggedIn = (req, res, next) => {
     return;
   }
 
-  req.flash('error', 'Not auth!');
+  req.flash('error', 'Não autorizado.');
   res.redirect('/login');
 };
 
@@ -33,7 +33,7 @@ exports.forgot = async (req, res) => {
   // 1. See if the user exists
   const user = await Technician.findOne({ email: req.body.email });
   if (!user) {
-    req.flash('error', 'Account not found!');
+    req.flash('error', 'Conta não encontrada.');
     return res.redirect('/login');
   }
 
