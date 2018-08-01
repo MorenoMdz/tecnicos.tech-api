@@ -3,6 +3,22 @@
   b - Layout com Form para manejar Aparelhos
   c - Listar aparelhos na form de seleção de defeitos
 
+2) defeitos
+  a - Listar todos os defeitos
+  b - Filtrar por
+    Aparelho
+      Ordenado por Modelo
+    Resolvido
+      Ordenado por data
+    Pontuação
+      Ordenado por Pontuação
+  c - Layout do defeito 
+      mostrando uma lista de reparos
+      comentários, aqui também?
+  d - Layout do reparo 
+      mostrando uma lista de comentários
+  e - ?
+
   Lembrando que o flow seria:
   * Add defeito
     1 - Seleciona qual aparelhos
@@ -16,4 +32,4 @@
       Campo de videos, array com a opção de adicionar mais 1
     5 - Envia o defeito. 
       É validado e sanitizado os dados inseridos
-      
+
