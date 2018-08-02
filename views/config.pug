@@ -1,13 +1,42 @@
 extends layout
 
 include mixins/_hwForm.pug
+include mixins/_hwList.pug
 
 block content
   .inner  
-    p 
-    strong Gerenciar Aparelhos Cadastrados
+    p: strong Gerenciar Aparelhos Cadastrados
     form(action="/config" method="post")
 
       input.button(type="submit", value="verificar aparelhos")
-  
-  +hwForm
+  .tabBtns
+    button.tablink.flex-item.btnOrange(onclick="openCity(event,'hwList')") Lista
+    
+    button.tablink.flex-item(onclick="openCity(event,'hwForm')") Form
+    
+    button.tablink.flex-item(onclick="openCity(event,'hwMisc')") Misc
+    
+  .tabs
+    #hwList.city(style="display:block")
+      
+      +hwList
+    #hwForm.city(style="display:none")
+      
+      +hwForm
+    #hwMisc.city(style="display:none")
+      //+hwForm
+    
+    script.
+      function openCity(evt, cityName) {
+        var i, x, tablinks;
+        x = document.getElementsByClassName("city");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < x.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" btnOrange", " ");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " btnOrange";
+      }

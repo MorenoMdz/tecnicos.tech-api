@@ -1249,3 +1249,33 @@ pre.error {
   white-space: pre-line;
 }
 /* # sourceMappingURL=style.css.map */
+
+.tabBtns{
+  background-color: #333;
+  opacity: 0.7;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-flow: row;
+  justify-content: center;
+}
+
+.tabBtns button {
+  flex-basis: 300px;
+  height: 40px;
+  background-color: #000;
+  color: #fff;
+  border-color: #000
+}
+
+.tabBtns .btnOrange {
+  background-color: #ffc40e;
+}
+
+#hwList{
+  background-color: #333;
+  color: #fff;
+  width: 70%;
+  margin-left: 15%;
+}
+
+#hwList ul, li {list-style-type: none !important; margin: 15px;}

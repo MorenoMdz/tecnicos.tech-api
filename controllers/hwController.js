@@ -38,11 +38,6 @@ exports.resize = async (req, res, next) => {
 };
 
 /* Hardware Management Methods */
-/* exports.addNewHw = async (req, res) => {
-  // res.send('add repair');
-  res.render('addNewHwForm');
-};
- */
 exports.addNewHw = async (req, res) => {
   // req.body.author = req.user._id;
   const hardware = await new Hardware(req.body).save(); // it wont move to the next line until the save returns something

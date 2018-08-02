@@ -27,7 +27,10 @@ const hardwareSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
-  serial_number: String,
+  board_model: {
+    type: String,
+    trim: true,
+  },
   slug: String, // access link
   description: {
     type: String,
@@ -51,22 +54,20 @@ hardwareSchema.index({
 });
 
 // slug 'middleware alike' setup
-/* hardwareSchema.pre('save', async function(next) {
+hardwareSchema.pre('save', async function(next) {
   if (!this.isModified('name')) {
     next(); // skip it
     return; // stop this function from running (leave this middleware)
   }
   this.slug = slug(this.name); // if name was modified then run this
-  // find stores that have the same store name via regex
-  // change the name of the same stores name to +1 based on the length of how many were found
   const slugRegex = new RegExp(`^(${this.slug})((-[0-9]*$)?)$`, 'i');
-  const storesWithSlug = await this.constructor.find({ slug: slugRegex });
-  if (storesWithSlug.length) {
-    this.slug = `${this.slug}-${storesWithSlug.length + 1}`;
+  const hardwaresWithSlug = await this.constructor.find({ slug: slugRegex });
+  if (hardwaresWithSlug.length) {
+    this.slug = `${this.slug}-${hardwaresWithSlug.length + 1}`;
   }
   next();
   // TODO make more resiliant slugs
-}); */
+});
 
 /* hardwareSchema.statics.getProblemsList = function() {
   return this.aggregate([

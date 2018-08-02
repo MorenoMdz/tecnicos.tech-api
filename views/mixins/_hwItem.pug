@@ -1,0 +1,7 @@
+mixin hwItem(hardware)
+  li 
+    h2 Console: #{hardware.name} 
+      //a(href=`/hardwares/${hardware.slug}`) #{store.name}
+      p #{hardware.slug}
+    p Modelos: #{hardware.model}
+    hr

@@ -42,7 +42,6 @@ repairSchema.pre('save', async function(next) {
     return; // stop this function from running (leave this middleware)
   }
   this.slug = slug(this.hardware); // if name was modified then run this
-  // find stores that have the same store name via regex
   const slugRegex = new RegExp(`^(${this.slug})((-[0-9]*$)?)$`, 'i');
   const repairsWithSlug = await this.constructor.find({ slug: slugRegex });
   if (repairsWithSlug.length) {
