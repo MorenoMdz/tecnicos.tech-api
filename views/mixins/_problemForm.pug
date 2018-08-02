@@ -1,0 +1,36 @@
+
+mixin problemForm(problem={}) 
+  form(action=`/addProblem` method="POST"  class="card" enctype="multipart/form-data")
+    
+    label(for="titulo") Título do Defeito
+    input(type="text" name="title" placeholder="Digite um título para o defeito" value=problem.title)
+    
+    label(for="hardware") Escolha qual aparelho
+    input(type="text" name="hardware" placeholder="hardware" value=problem.hardware)
+
+    label(for="model") Qual modelo de aparelho
+    input(type="text" name="model" placeholder="marca" value=problem.brand)
+
+    label(for="board_model") Qual Modelo de Placa
+    // separado por vírgula
+    input(type="text" name="board_model" placeholder="placa" value=problem.board_model)
+
+    label(for="description") Descrição detalhada do problema
+    textarea(name="description" placeholder="descrição")= problem.description
+
+    label(for="photo") Photo
+      input(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
+      if problem.photo
+        img(src=`/uploads/${problem.photo}`, alt=problem.name width=200)
+    label(for="video") Video Placeholder
+      input(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
+      if problem.photo
+        img(src=`/uploads/${problem.photo}`, alt=problem.name width=200)
+      
+    
+    // break line
+    input(type="submit" value="Salvar" class="button")
+
+
+
+    

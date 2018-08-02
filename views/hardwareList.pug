@@ -1,0 +1,11 @@
+extends layout
+
+include mixins/_hwForm.pug
+include mixins/_hwList.pug
+
+block content
+  .inner  
+    p: strong Aparelhos cadastrados no sistema:
+    p orderar por: #[strong TODO] 
+      #hwList.city(style="display:block")
+        +hwList

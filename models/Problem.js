@@ -2,24 +2,32 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const slug = require('slugs');
 
-const repairSchema = new mongoose.Schema({
+const problemSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    trim: true,
+    required: 'Precisa adicionar um título ao defeito!',
+  },
   author: {
     type: mongoose.Schema.ObjectId,
     ref: 'Technician',
+    required: 'You must supply an author!',
   },
   hardware: {
-    type: mongoose.Schema.ObjectId,
+    type: /* mongoose.Schema.ObjectId */ String,
     ref: 'Hardware',
   },
-  problem: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Problem',
-  },
+  repairs: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Repair',
+    },
+  ],
   slug: String,
-  repair_description: {
+  description: {
     type: String,
     trim: true,
-    required: 'You must describe the repair!',
+    required: 'Precisa descrever o defeito!',
   },
   created: {
     type: Date,
@@ -30,48 +38,50 @@ const repairSchema = new mongoose.Schema({
 });
 
 // Define our indexes
-repairSchema.index({
+/* problemSchema.index({
   name: 'text',
   description: 'text',
-});
+}); */
 
 // slug 'middleware alike' setup
-/* repairSchema.pre('save', async function(next) {
-  if (!this.isModified('name')) {
+problemSchema.pre('save', async function(next) {
+  if (!this.isModified('title')) {
     next(); // skip it
     return; // stop this function from running (leave this middleware)
   }
-  this.slug = slug(this.name); // if name was modified then run this
+  this.slug = slug(this.title); // if name was modified then run this
   // find stores that have the same store name via regex
   const slugRegex = new RegExp(`^(${this.slug})((-[0-9]*$)?)$`, 'i');
-  const storesWithSlug = await this.constructor.find({ slug: slugRegex });
-  if (storesWithSlug.length) {
-    this.slug = `${this.slug}-${storesWithSlug.length + 1}`;
+  const problemsWithSlugWithSlug = await this.constructor.find({
+    slug: slugRegex,
+  });
+  if (problemsWithSlugWithSlug.length) {
+    this.slug = `${this.slug}-${problemsWithSlugWithSlug.length + 1}`;
   }
   next();
   // TODO make more resiliant slugs
-}); */
+});
 
 // find reviews where the stores _id property === reviews store property
-/* repairSchema.virtual(
-  'reviews',
+problemSchema.virtual(
+  'repairsVirtual',
   {
-    ref: 'Review', // what model to link?
-    localField: '_id', // which field on the sotre?
-    foreignField: 'store',
+    ref: 'Repair', // what model to link?
+    localField: '_id', // which field on the store?
+    foreignField: 'problem',
   },
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
   }
-); */
+);
 
 /* function autopopulate(next) {
   this.populate('reviews');
   next();
 }
 
-repairSchema.pre('find', autopopulate);
-repairSchema.pre('findOne', autopopulate); */
+problemSchema.pre('find', autopopulate);
+problemSchema.pre('findOne', autopopulate); */
 
-module.exports = mongoose.model('Repair', repairSchema);
+module.exports = mongoose.model('Problem', problemSchema);

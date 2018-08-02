@@ -1,7 +1,13 @@
+A) Vincular um user a um defeito * OK!
+B) Vincular um defeito a um console
+C) Vincular um reparo a um defeito
+
 1) Aparelhos Schema   
-  a - Listar todos Aparelhos em layout provisório
+  a - Listar todos Aparelhos em layout provisório * WIP
   b - Layout com Form para manejar Aparelhos * WIP
-  c - Listar aparelhos na form de seleção de defeitos
+  c - Listar aparelhos na form de seleção de defeitos 
+  d - Layout do aparelho listando todos defeitos relacionados * WIP
+    * Ordenar por Modelo
 
 2) defeitos
   a - Listar todos os defeitos
@@ -17,7 +23,7 @@
       comentários, aqui também?
   d - Layout do reparo 
       mostrando uma lista de comentários
-  e - ?
+  e - Total de reparos cadastrados em Nav
 
   Lembrando que o flow seria:
   * Add defeito

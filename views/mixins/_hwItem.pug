@@ -1,7 +1,8 @@
 mixin hwItem(hardware)
+  
   li 
-    h2 Console: #{hardware.name} 
-      //a(href=`/hardwares/${hardware.slug}`) #{store.name}
-      p #{hardware.slug}
-    p Modelos: #{hardware.model}
-    hr
+    #hwItem
+      p: a(href=`/hardware/${hardware.slug}`) #{hardware.name} 
+        img(src=`/uploads/${hardware.photo || 'default.jpg'}`)
+        p Modelos: #{hardware.model}
+      hr

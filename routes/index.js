@@ -4,6 +4,7 @@ const router = express.Router();
 const repairController = require('../controllers/repairController');
 const technicianController = require('../controllers/technicianController');
 const hwController = require('../controllers/hwController');
+const problemController = require('../controllers/problemController');
 const authController = require('../controllers/authController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
@@ -27,14 +28,35 @@ router.get(
   authController.isLoggedIn,
   repairController.addRepairForm
 );
-router.post(
-  '/addRepair',
+
+/* Hardware routes */
+router.get(
+  '/hardware/:slug',
   authController.isLoggedIn,
-  repairController.upload,
-  catchErrors(repairController.resize),
-  catchErrors(repairController.createRepair)
+  catchErrors(hwController.getHwBySlug)
 );
 
+router.get(
+  '/hardwares',
+  authController.isLoggedIn,
+  catchErrors(hwController.getHwList)
+);
+
+/* Problem routes */
+router.get(
+  '/problems',
+  authController.isLoggedIn,
+  catchErrors(problemController.getProblemList)
+);
+router.post(
+  '/addProblem',
+  authController.isLoggedIn,
+  hwController.upload,
+  catchErrors(problemController.resize),
+  catchErrors(problemController.addNewProblem)
+);
+
+/* Repair routes */
 router.get(
   '/repairs',
   authController.isLoggedIn,
@@ -49,6 +71,13 @@ router.get(
   '/repair/:slug',
   authController.isLoggedIn,
   catchErrors(repairController.getRepairBySlug)
+);
+router.post(
+  '/addRepair',
+  authController.isLoggedIn,
+  repairController.upload,
+  catchErrors(repairController.resize),
+  catchErrors(repairController.createRepair)
 );
 
 /* User routes */

@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-/* const Store = mongoose.model('Store'); // loads the exported store into the variable Store*/
-const Hardware = mongoose.model('Hardware');
+const Problem = mongoose.model('Problem');
 const multer = require('multer');
 const jimp = require('jimp');
 const uuid = require('uuid');
@@ -37,29 +36,35 @@ exports.resize = async (req, res, next) => {
   next();
 };
 
-/* Hardware Management Methods */
-exports.addNewHw = async (req, res) => {
-  // req.body.author = req.user._id;
-  const hardware = await new Hardware(req.body).save(); // it wont move to the next line until the save returns something
+/* Problem Management Methods */
+exports.addNewProblem = async (req, res) => {
+  req.body.author = req.user.id;
+  const problem = await new Problem(req.body).save(); // it wont move to the next line until the save returns something
 
-  req.flash('success', `Adicionado ${hardware.name} com sucesso.`);
+  req.flash(
+    'success',
+    `Adicionado defeito ${problem.title} do aparelho {
+      problem.hardware
+    } com sucesso.`
+  );
   // res.redirect(`/store/${store.slug}`);
-  res.redirect('/config');
+  res.redirect('/problems');
 };
 
-exports.getAllHw = async (req, res) => {
+exports.getProblemList = async (req, res) => {
   const page = req.params.page || 1;
   const limit = 9;
   const skip = page * limit - limit;
   // query db for a list of all repairs
-  const hwPromise = Hardware.find()
+  const problemPromise = Problem.find()
+    .populate('author')
     .skip(skip)
     .limit(limit);
-  const countPromise = Hardware.count();
+  const countPromise = Problem.count();
   // will await until both promises return
-  const [hardwares, count] = await Promise.all([hwPromise, countPromise]);
+  const [problems, count] = await Promise.all([problemPromise, countPromise]);
   const pages = Math.ceil(count / limit); // rounded
-  if (!hardwares.length && skip) {
+  if (!problems.length && skip) {
     req.flash(
       'info',
       `You asked for page ${page} that does not exists. Redirecting to the page ${pages}!`
@@ -67,9 +72,9 @@ exports.getAllHw = async (req, res) => {
     /* res.redirect(`/stores/page/${pages}`); */
     return;
   }
-  res.render('config', {
-    title: 'Hardware Config',
-    hardwares: hardwares,
+  res.render('problems', {
+    title: 'Defeitos',
+    problems: problems,
     page,
     pages,
     count,
@@ -77,28 +82,28 @@ exports.getAllHw = async (req, res) => {
 };
 
 /* Method for the lower rank user */
-exports.getHwList = async (req, res) => {
+exports.getproblemList = async (req, res) => {
   const page = req.params.page || 1;
   const limit = 9;
   const skip = page * limit - limit;
   // query db for a list of all repairs
-  const hwPromise = Hardware.find()
+  const problemPromise = Problem.find()
     .skip(skip)
     .limit(limit);
-  const countPromise = Hardware.count();
+  const countPromise = Problem.count();
   // will await until both promises return
-  const [hardwares, count] = await Promise.all([hwPromise, countPromise]);
+  const [problems, count] = await Promise.all([problemPromise, countPromise]);
   const pages = Math.ceil(count / limit); // rounded
-  if (!hardwares.length && skip) {
+  if (!problems.length && skip) {
     req.flash(
       'info',
       `You asked for page ${page} that does not exists. Redirecting to the page ${pages}!`
     );
     return;
   }
-  res.render('hardwareList', {
-    title: 'Hardware Config',
-    hardwares: hardwares,
+  res.render('problemsList', {
+    title: 'Problems List',
+    problems: problems,
     page,
     pages,
     count,

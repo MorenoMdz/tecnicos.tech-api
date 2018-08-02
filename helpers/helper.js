@@ -24,9 +24,10 @@ exports.icon = name => fs.readFileSync(`./public/images/icons/${name}.svg`);
 exports.siteName = `Técnicos Tech`;
 
 exports.menu = [
+  { slug: '/hardwares', title: 'Aparelhos', icon: 'top' },
   { slug: '/repairs', title: 'Reparos', icon: 'store' },
   { slug: '/addForm', title: 'Adicionar Reparo', icon: 'add' },
+  { slug: '/problems', title: 'Adicionar Defeito', icon: 'top' },
   { slug: '/config', title: 'Config', icon: 'config' },
-  /*   { slug: '/top', title: 'Top', icon: 'top' },
-  { slug: '/map', title: 'Map', icon: 'map' }, */
+  /*   { slug: '/map', title: 'Map', icon: 'map' }, */
 ];

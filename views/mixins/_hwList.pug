@@ -6,10 +6,6 @@ mixin hwList(hws = [{name: "xbox", marca: "ms"}, {name: "playstation", marca: "s
     div
     ul
     each hardware in hardwares
-      //- li 
-        p Console: #{hardware.name} 
-        p Modelos: #{hardware.model}
-        hr
       +hwItem(hardware)
 
   

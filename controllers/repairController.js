@@ -42,7 +42,8 @@ exports.addRepairForm = async (req, res) => {
 };
 
 exports.createRepair = async (req, res) => {
-  // req.body.author = req.user._id;
+  req.body.author = req.user._id;
+  req.body.problem = req.problem._id;
   const repair = await new Repair(req.body).save(); // it wont move to the next line until the save returns something
   req.flash(
     'success',

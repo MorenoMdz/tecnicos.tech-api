@@ -1,0 +1,12 @@
+extends layout
+
+include mixins/_problemsList.pug
+include mixins/_problemForm.pug
+
+block content
+  .inner  
+    p: strong Defeitos do aparelho: 
+    p orderar por: #[strong TODO] 
+      #hwList.city(style="display:block")
+        +problemsList(problems)
+        +problemForm

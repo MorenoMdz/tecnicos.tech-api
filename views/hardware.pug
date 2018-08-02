@@ -1,0 +1,46 @@
+extends layout
+
+include mixins/_problemForm.pug
+
+block content
+  //pre= h.dump(hardware)
+  .single
+    .single__hero
+      img.single__image(src=`/uploads/${hardware.photo || 'default.jpg'}`)
+      h2.title.title--single
+        a(href=`/hardware/${hardware.slug}`) #{hardware.hardware}
+
+  .single__details.inner
+
+    h1= hardware.name
+      p: strong Descrição: #{hardware.description} description bla bla
+      hr
+      h2: strong Modelos:
+      each model in hardware.model
+        strong= ` ${model}, `
+
+      // p= hardware.model.split(',').join(', ')
+      //- const model = typeOf(hardware.model)
+      hr
+    strong Todo: Listar defeitos
+    ul
+      li Defeito 1
+      hr
+      li Defeito 2
+      hr
+      li Defeito 3
+      hr
+      li Defeito 4
+      hr
+      li Defeito 5
+      hr
+    
+    +problemForm
+    
+    if hardware.comentarios
+      ul.tags
+        each comentario in hardware.comentarios
+          li.tag
+            a.tag__link(href=`/tags/${comentario}`)
+              span.tag__text ##{comentario}
+
