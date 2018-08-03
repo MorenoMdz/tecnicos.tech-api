@@ -39,6 +39,7 @@ exports.resize = async (req, res, next) => {
 /* Problem Management Methods */
 exports.addNewProblem = async (req, res) => {
   req.body.author = req.user.id;
+  // req.body.hardware = choose from dropdown list with hw ID
   const problem = await new Problem(req.body).save(); // it wont move to the next line until the save returns something
 
   req.flash(
@@ -57,7 +58,7 @@ exports.getProblemList = async (req, res) => {
   const skip = page * limit - limit;
   // query db for a list of all repairs
   const problemPromise = Problem.find()
-    .populate('author')
+    .populate('author hardware repairs repairsV')
     .skip(skip)
     .limit(limit);
   const countPromise = Problem.count();
@@ -72,9 +73,14 @@ exports.getProblemList = async (req, res) => {
     /* res.redirect(`/stores/page/${pages}`); */
     return;
   }
+
+  const hwController = require('./hwController');
+  const hardwares = await hwController.hardwaresList();
+
   res.render('problems', {
     title: 'Defeitos',
     problems: problems,
+    hardwares: hardwares,
     page,
     pages,
     count,
@@ -113,9 +119,7 @@ exports.getproblemList = async (req, res) => {
 exports.getHwBySlug = async (req, res) => {
   const hardware = await Hardware.findOne({
     slug: req.params.slug,
-  }); /* .populate(
-    'author reviews'
-  ); */
+  }).populate('author hardware repairs repairsV');
   if (!hardware) return next(); // it kicks in the 404 error handler
   res.render('hardware', { hardware: hardware, title: hardware.name });
 };

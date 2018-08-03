@@ -47,10 +47,19 @@ exports.addNewHw = async (req, res) => {
   res.redirect('/config');
 };
 
+async function hwList(req, res, next) {
+  // query db for a list of all repairs
+  const hardwares = await Hardware.find();
+  const totalHwCount = await Hardware.count();
+
+  /* console.log(hardwares); */
+
+  return hardwares;
+}
+
+exports.hardwaresList = hwList;
+
 exports.getAllHw = async (req, res) => {
-  const page = req.params.page || 1;
-  const limit = 9;
-  const skip = page * limit - limit;
   // query db for a list of all repairs
   const hwPromise = Hardware.find()
     .skip(skip)
@@ -108,9 +117,7 @@ exports.getHwList = async (req, res) => {
 exports.getHwBySlug = async (req, res) => {
   const hardware = await Hardware.findOne({
     slug: req.params.slug,
-  }); /* .populate(
-    'author reviews'
-  ); */
+  }).populate('author problems');
   if (!hardware) return next(); // it kicks in the 404 error handler
   res.render('hardware', { hardware: hardware, title: hardware.name });
 };

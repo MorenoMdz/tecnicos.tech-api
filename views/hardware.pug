@@ -3,7 +3,7 @@ extends layout
 include mixins/_problemForm.pug
 
 block content
-  //pre= h.dump(hardware)
+  // pre= h.dump(hardware)
   .single
     .single__hero
       img.single__image(src=`/uploads/${hardware.photo || 'default.jpg'}`)
@@ -18,12 +18,17 @@ block content
       h2: strong Modelos:
       each model in hardware.model
         strong= ` ${model}, `
-
-      // p= hardware.model.split(',').join(', ')
-      //- const model = typeOf(hardware.model)
       hr
     strong Todo: Listar defeitos
-    ul
+    if hardware.problems
+      .problemsList
+        // todo problem mixin
+        each problem in hardware.problems
+          p= problem.title
+          p= problem.description
+          hr
+        hr
+    //-ul
       li Defeito 1
       hr
       li Defeito 2

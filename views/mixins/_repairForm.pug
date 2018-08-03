@@ -4,6 +4,9 @@ mixin repairForm(repair = {})
     
     label(for="hardware") Aparelho
     input(type="text" name="hardware" placeholder="Qual aparelho?" value=repair.hardware)
+
+    label(for="problem") Defeito
+    input(type="text" name="problem" placeholder="problema" value=repair.problem)
     
     label(for="description") Descrição do reparo
     textarea(name="description" placeholder="Descrição do reparo")= repair.description

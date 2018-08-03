@@ -1,5 +1,7 @@
 A) Vincular um user a um defeito * OK!
-B) Vincular um defeito a um console
+B) Vincular um defeito a um console * WIP
+  !Important Adicionar ao array reparos de problema um novo reparo
+    Adicionar ao array de problemas em hardware um novo problema
 C) Vincular um reparo a um defeito
 
 1) Aparelhos Schema   
