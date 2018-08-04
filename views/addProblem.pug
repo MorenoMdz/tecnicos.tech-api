@@ -1,0 +1,11 @@
+extends layout
+
+include mixins/_problemsList.pug
+include mixins/_problemFormHwSelect.pug
+
+block content
+  // pre= h.dump(hardwares)
+  .inner  
+    p: strong Defeitos do aparelho: 
+      //+problemsList(problems)
+      +problemFormHwSelect(hardwares)

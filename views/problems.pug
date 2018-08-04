@@ -4,10 +4,10 @@ include mixins/_problemsList.pug
 include mixins/_problemForm.pug
 
 block content
-  // pre= h.dump(hardwares)
+  //pre= h.dump(problems)
   .inner  
     p: strong Defeitos do aparelho: 
     p orderar por: #[strong TODO] 
       #hwListP(style="display:block")
         +problemsList(problems)
-        +problemForm(hardwares)
+        //+problemForm(hardwares)

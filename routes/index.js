@@ -48,12 +48,34 @@ router.get(
   authController.isLoggedIn,
   catchErrors(problemController.getProblemList)
 );
-router.post(
+
+router.get(
   '/addProblem',
+  authController.isLoggedIn,
+  catchErrors(problemController.addProblem)
+);
+
+router.post(
+  '/findModels',
+  authController.isLoggedIn,
+  hwController.upload,
+  catchErrors(problemController.resize),
+  catchErrors(problemController.findModels)
+);
+
+router.post(
+  '/addNewProblem',
   authController.isLoggedIn,
   hwController.upload,
   catchErrors(problemController.resize),
   catchErrors(problemController.addNewProblem)
+);
+router.get(
+  '/problem/:slug',
+  authController.isLoggedIn,
+  hwController.upload,
+  catchErrors(problemController.resize),
+  catchErrors(problemController.getProblemBySlug)
 );
 
 /* Repair routes */

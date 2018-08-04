@@ -28,10 +28,6 @@ const hardwareSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-    board_model: {
-      type: String,
-      trim: true,
-    },
     slug: String, // access link
     description: {
       type: String,

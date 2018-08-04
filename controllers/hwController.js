@@ -118,9 +118,22 @@ exports.getHwList = async (req, res) => {
 };
 
 exports.getHwBySlug = async (req, res) => {
+  const hardwares = await hwList();
   const hardware = await Hardware.findOne({
     slug: req.params.slug,
   }).populate('author problems');
   if (!hardware) return next(); // it kicks in the 404 error handler
-  res.render('hardware', { hardware: hardware, title: hardware.name });
+  res.render('hardware', {
+    hardware: hardware,
+    hardwares: hardwares,
+    title: hardware.name,
+  });
+};
+
+exports.getHwById = async id => {
+  const hardware = await Hardware.findOne({
+    _id: id,
+  });
+
+  return hardware;
 };

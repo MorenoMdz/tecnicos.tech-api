@@ -1,0 +1,51 @@
+
+mixin problemFormHwSelect(problem={}) 
+  //-for hw in hardwares 
+  // pre= h.dump(hw_models)
+  if !step
+    form(action=`/findModels` method="POST"  class="card" enctype="multipart/form-data" id="problemForm1")
+      label(for="hardware") Selecione qual aparelho deseja adicionar um defeito
+      select(name='hardware' form="problemForm1" required)
+        option(value='' selected=!hardwares) (Selecione um console)
+        for hardware in hardwares
+          option(value=hardware._id selected=(hardware._id === problem.hardware)) #{hardware.name} 
+      hr
+      p test line
+      p test line
+      p test line
+    input(type="submit" value="Continuar" class="button")
+
+  else if step == 'selectModel'
+    form(action=`/addNewProblem` method="POST"  class="card" enctype="multipart/form-data" id="problemForm2")
+
+      label(for="hardware") Aparelho selecionado: 
+      select(name='hardware' form="problemForm2" disabled)
+        option(value='' selected=!hardwares) #{hw_name}
+        for hardware in hardwares
+          option(value=hardware._id selected=(hardware._id === problem.hardware)) #{hardware.name}
+
+      label(for="model") Selecione o Modelo do aparelho:
+      select(name='model' form="problemForm2")
+        option(value='' selected=!model) (selecione)
+        for model in hw_models
+          option(value=model selected=(model === problem.model)) #{model}
+      
+      label(for="titulo") Título do Defeito
+      input(type="text" name="title" placeholder="Digite um título para o defeito" value=problem.title)
+      
+      label(for="description") Descrição detalhada do problema
+      textarea(name="description" placeholder="descrição")= problem.description
+
+      label(for="photo") Photo
+        input(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
+        if problem.photo
+          img(src=`/uploads/${problem.photo}`, alt=problem.name width=200)
+      label(for="video") Video Placeholder
+        input(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
+        if problem.photo
+          img(src=`/uploads/${problem.photo}`, alt=problem.name width=200)
+    input(type="submit" value="Salvar" class="button")
+
+
+
+    

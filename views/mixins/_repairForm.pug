@@ -1,12 +1,16 @@
 
 mixin repairForm(repair = {}) 
   form(action=`/addRepair` method="POST"  class="card" enctype="multipart/form-data")
-    
-    label(for="hardware") Aparelho
-    input(type="text" name="hardware" placeholder="Qual aparelho?" value=repair.hardware)
+    p Adicionar um Reparo a esse defeito
 
-    label(for="problem") Defeito
-    input(type="text" name="problem" placeholder="problema" value=repair.problem)
+    label(for="problem") Id do Defeito #{problem.title}
+    input(type="text" name="problem" value=problem._id disabled) 
+
+    label(for="hardware") Id do hardware #{problem.hardware.name}
+    input(type="text" name="hardware" value=problem.hardware._id disabled)    
+    
+    //-label(for="hardware") Aparelho
+      input(type="text" name="hardware" placeholder="Qual aparelho?" value=repair.hardware)
     
     label(for="description") Descrição do reparo
     textarea(name="description" placeholder="Descrição do reparo")= repair.description

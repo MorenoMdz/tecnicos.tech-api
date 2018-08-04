@@ -1,0 +1,23 @@
+extends layout
+
+include mixins/_repairForm.pug
+
+block content
+  
+  //pre= h.dump(problem)
+  .inner
+    h2 Detalhes do defeito #{problem.title}
+    //p Aparelho: #{problem.hardware.name}
+    p Modelo: #{problem.model}
+    p Placa: #{problem.board}
+    p Descrição: #{problem.description}
+    img(src=`/uploads/${problem.photo || 'default.jpg'}`, alt="Foto do Defeito")
+    
+    
+    //+repairForm
+
+    
+    
+    
+
+

@@ -28,24 +28,8 @@ block content
           p= problem.description
           hr
         hr
-    //-ul
-      li Defeito 1
-      hr
-      li Defeito 2
-      hr
-      li Defeito 3
-      hr
-      li Defeito 4
-      hr
-      li Defeito 5
-      hr
-    
-    +problemForm
-    
-    if hardware.comentarios
-      ul.tags
-        each comentario in hardware.comentarios
-          li.tag
-            a.tag__link(href=`/tags/${comentario}`)
-              span.tag__text ##{comentario}
 
+    
+    // Não mostrar form para adicionar por aparelho?
+    // +problemForm(hardwares)
+    

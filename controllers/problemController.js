@@ -39,8 +39,9 @@ exports.resize = async (req, res, next) => {
 /* Problem Management Methods */
 exports.addNewProblem = async (req, res) => {
   req.body.author = req.user.id;
-  // req.body.hardware = choose from dropdown list with hw ID
-  const problem = await new Problem(req.body).save(); // it wont move to the next line until the save returns something
+  const problem = await new Problem(req.body)
+    .save()
+    .catch(err => console.log(err)); // it wont move to the next line until the save returns something
 
   req.flash(
     'success',
@@ -49,6 +50,34 @@ exports.addNewProblem = async (req, res) => {
     } com sucesso.`
   );
   res.redirect('/problems');
+};
+
+exports.findModels = async (req, res) => {
+  const hwController = require('./hwController');
+  const hardwares = await hwController.hardwaresList();
+  /* find a single hardware based in the ids */
+  hw_id = req.body.hardware;
+  hw = await hwController.getHwById(hw_id);
+  hw_name = hw.name;
+  hw_models = hw.model;
+  res.render('addProblem', {
+    hardwares,
+    hw_id,
+    hw_name,
+    hw_models,
+    step: 'selectModel',
+  });
+};
+
+exports.addProblem = async (req, res) => {
+  const hwController = require('./hwController');
+  const hardwares = await hwController.hardwaresList();
+
+  res.render('addProblem', {
+    title: 'Adicionar Defeito',
+    step: '',
+    hardwares: hardwares,
+  });
 };
 
 exports.getProblemList = async (req, res) => {
@@ -87,7 +116,7 @@ exports.getProblemList = async (req, res) => {
 };
 
 /* Method for the lower rank user */
-exports.getproblemList = async (req, res) => {
+/* exports.getproblemList = async (req, res) => {
   const page = req.params.page || 1;
   const limit = 9;
   const skip = page * limit - limit;
@@ -113,12 +142,18 @@ exports.getproblemList = async (req, res) => {
     pages,
     count,
   });
-};
+}; */
 
-exports.getHwBySlug = async (req, res) => {
-  const hardware = await Hardware.findOne({
+exports.getProblemBySlug = async (req, res) => {
+  const hwController = require('./hwController');
+  const hardwares = await hwController.hardwaresList();
+  const problem = await Problem.findOne({
     slug: req.params.slug,
   }).populate('author hardware repairs repairsV');
-  if (!hardware) return next(); // it kicks in the 404 error handler
-  res.render('hardware', { hardware: hardware, title: hardware.name });
+  if (!problem) return next(); // it kicks in the 404 error handler
+  res.render('problem', {
+    problem: problem,
+    hardwares: hardwares,
+    title: problem.title,
+  });
 };

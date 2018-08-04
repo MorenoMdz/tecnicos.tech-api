@@ -24,7 +24,6 @@ require('./models/Repair');
 require('./models/Technician');
 require('./models/Hardware.js');
 require('./models/Problem.js');
-/*require('./models/Review'); */
 
 // Start our app!
 const app = require('./app');
