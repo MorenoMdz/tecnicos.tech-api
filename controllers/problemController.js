@@ -48,7 +48,6 @@ exports.addNewProblem = async (req, res) => {
       problem.hardware
     } com sucesso.`
   );
-  // res.redirect(`/store/${store.slug}`);
   res.redirect('/problems');
 };
 

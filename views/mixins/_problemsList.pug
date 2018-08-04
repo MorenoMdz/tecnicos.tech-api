@@ -1,7 +1,7 @@
 include _problemItem.pug
 
 mixin problemsList()
-  pre= h.dump(problems)
+  //pre= h.dump(problems)
   ul
   each problem in problems
     +problemItem(problem)
