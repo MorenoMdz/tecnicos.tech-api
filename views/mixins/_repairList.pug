@@ -1,0 +1,15 @@
+include _repairItem.pug
+
+mixin repairList()
+  .repairList
+  if repairs
+    div
+    ul
+    each repair in repairs
+      +repairItem(repair)
+
+  
+
+
+
+    

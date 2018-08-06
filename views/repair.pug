@@ -1,31 +1,36 @@
 extends layout
 
+include mixins/_commentForm.pug
+
 block content
-  // pre= h.dump(store.reviews)
+  //pre= h.dump(repair)
   .single
     .single__hero
       img.single__image(src=`/uploads/${repair.photo || 'store.png'}`)
       h2.title.title--single
-        a(href=`/repair/${repair.slug}`) #{repair.hardware}
+        a(href=`/repair/${repair.slug}`) #{repair.title}
 
   .single__details.inner
 
     p todo data
     p.single__location= repair.description
+    hr
 
-    
-    if repair.comentarios
-      ul.tags
-        each comentario in repair.comentarios
-          li.tag
-            a.tag__link(href=`/tags/${comentario}`)
-              span.tag__text ##{comentario}
+    if repair.comments
+      ul
+        each comment in repair.comments
+          li
+            //a.tag__link(href=`/tags/${comment}`)
+            span.tag__text ##{comment.text}
+            span.tag__text ##{comment.author.name}
+            img.avatar(src=comment.author.gravatar, alt="gravatar")
+            hr
 
     if user
-      //+reviewForm(store)
+      +commentForm(repair)
 
-    if repair.comentarios 
+    if repair.comments 
       .reviews
-        each comentario in repair.comentarios 
+        each comment in repair.comments 
           .review
             //+review(comentario)

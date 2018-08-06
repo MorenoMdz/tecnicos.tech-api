@@ -37,25 +37,31 @@ exports.resize = async (req, res, next) => {
 };
 
 /* Problem Management Methods */
+exports.addProblem = async (req, res) => {
+  const hwController = require('./hwController');
+  const hardwares = await hwController.hardwares;
+
+  res.render('addProblem', {
+    title: 'Adicionar Defeito',
+    step: '',
+    hardwares: hardwares,
+  });
+};
+
 exports.addNewProblem = async (req, res) => {
   req.body.author = req.user.id;
   const problem = await new Problem(req.body)
     .save()
-    .catch(err => console.log(err)); // it wont move to the next line until the save returns something
+    .catch(err => console.log(err)); // it wont move to the next line until the save returns something */
 
-  req.flash(
-    'success',
-    `Adicionado defeito ${problem.title} do aparelho {
-      problem.hardware
-    } com sucesso.`
-  );
+  req.flash('success', `Adicionado defeito ${problem.title} com sucesso.`);
   res.redirect('/problems');
 };
 
-exports.findModels = async (req, res) => {
+/* exports.findModels = async (req, res) => {
   const hwController = require('./hwController');
   const hardwares = await hwController.hardwaresList();
-  /* find a single hardware based in the ids */
+  // find a single hardware based in the ids
   hw_id = req.body.hardware;
   hw = await hwController.getHwById(hw_id);
   hw_name = hw.name;
@@ -67,18 +73,7 @@ exports.findModels = async (req, res) => {
     hw_models,
     step: 'selectModel',
   });
-};
-
-exports.addProblem = async (req, res) => {
-  const hwController = require('./hwController');
-  const hardwares = await hwController.hardwaresList();
-
-  res.render('addProblem', {
-    title: 'Adicionar Defeito',
-    step: '',
-    hardwares: hardwares,
-  });
-};
+}; */
 
 exports.getProblemList = async (req, res) => {
   const page = req.params.page || 1;
@@ -103,7 +98,7 @@ exports.getProblemList = async (req, res) => {
   }
 
   const hwController = require('./hwController');
-  const hardwares = await hwController.hardwaresList();
+  const hardwares = await hwController.hardwares;
 
   res.render('problems', {
     title: 'Defeitos',
@@ -115,45 +110,26 @@ exports.getProblemList = async (req, res) => {
   });
 };
 
-/* Method for the lower rank user */
-/* exports.getproblemList = async (req, res) => {
-  const page = req.params.page || 1;
-  const limit = 9;
-  const skip = page * limit - limit;
-  // query db for a list of all repairs
-  const problemPromise = Problem.find()
-    .skip(skip)
-    .limit(limit);
-  const countPromise = Problem.count();
-  // will await until both promises return
-  const [problems, count] = await Promise.all([problemPromise, countPromise]);
-  const pages = Math.ceil(count / limit); // rounded
-  if (!problems.length && skip) {
-    req.flash(
-      'info',
-      `You asked for page ${page} that does not exists. Redirecting to the page ${pages}!`
-    );
-    return;
-  }
-  res.render('problemsList', {
-    title: 'Problems List',
-    problems: problems,
-    page,
-    pages,
-    count,
-  });
-}; */
-
 exports.getProblemBySlug = async (req, res) => {
+  // finds related hardware
   const hwController = require('./hwController');
-  const hardwares = await hwController.hardwaresList();
+  const hardwares = await hwController.hardwares;
+
+  // finds the Problem requested
   const problem = await Problem.findOne({
     slug: req.params.slug,
   }).populate('author hardware repairs repairsV');
   if (!problem) return next(); // it kicks in the 404 error handler
+
+  // finds the related repairs
+  const repairController = require('./repairController');
+  console.log(problem._id);
+  const repairs = await repairController.repairsPerProblem(problem._id);
+
   res.render('problem', {
     problem: problem,
     hardwares: hardwares,
+    repairs: repairs,
     title: problem.title,
   });
 };

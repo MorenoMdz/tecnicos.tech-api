@@ -18,13 +18,10 @@ const problemSchema = new mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: 'Hardware',
     },
-    /*     repairs: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: 'Repair',
-      },
-    ], */
-    slug: String,
+    board_model: {
+      type: String,
+      trim: true,
+    },
     description: {
       type: String,
       trim: true,
@@ -36,6 +33,7 @@ const problemSchema = new mongoose.Schema(
     },
     photo: [String],
     video: [String],
+    slug: String,
   },
   {
     toJSON: { virtuals: true },
@@ -74,7 +72,12 @@ problemSchema.virtual('repairsV', {
   localField: '_id', // which field on the store?
   foreignField: 'problem',
 });
-
+/* problemSchema.virtual('hardware', {
+  ref: 'Hardware',
+  localField: '_id',
+  foreignField: '_id',
+});
+ */
 function autopopulate(next) {
   this.populate('repairsV');
   next();

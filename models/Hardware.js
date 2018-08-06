@@ -9,12 +9,11 @@ const hardwareSchema = new mongoose.Schema(
       trim: true,
       required: 'Please enter the hardware name',
     },
-    model: [
-      {
-        type: String,
-        trim: true,
-      },
-    ],
+    model: {
+      type: String,
+      trim: true,
+      required: 'Please enter the hardware model',
+    },
     brand: {
       type: String,
       trim: true,
@@ -28,23 +27,10 @@ const hardwareSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-    slug: String, // access link
     description: {
       type: String,
       trim: true,
     },
-    /* problem: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: 'Problem',
-      },
-    ],
-    repair: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: 'Repair',
-      },
-    ], */
     author: {
       type: mongoose.Schema.ObjectId,
       ref: 'Technician',
@@ -54,7 +40,11 @@ const hardwareSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
-    photo: String,
+    photo: {
+      type: String,
+      required: 'Please enter the hardware name',
+    },
+    slug: String, // access link
   },
   {
     toJSON: { virtuals: true },

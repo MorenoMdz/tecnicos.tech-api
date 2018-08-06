@@ -1,10 +1,3 @@
-A) Vincular um user a um defeito * OK!
-B) Vincular um defeito a um console * OK! Através do dropdown !important set name field @options
-  ??Important Adicionar ao array reparos de problema um novo reparo
-  ??Adicionar ao array de problemas em hardware um novo problema
-C) Vincular um reparo a um defeito
-D) !Important em problemItem corrigir o display do nome do hardware no defeito
-
 1) Aparelhos Schema   
   a - Listar todos Aparelhos em layout provisório * WIP
   b - Layout com Form para manejar Aparelhos * WIP
@@ -12,6 +5,17 @@ D) !Important em problemItem corrigir o display do nome do hardware no defeito
   d - Layout do aparelho listando todos defeitos relacionados * WIP
     * Ordenar por Modelo
 
+
+2) TODO (?) Add reply em um comentários
+
+* OK! A) Vincular um user a um defeito 
+* OK! B) Vincular um defeito a um console || Através do dropdown 
+      !important set name field @options
+        ??Important Adicionar ao array reparos de problema um novo reparo
+        ??Adicionar ao array de problemas em hardware um novo problema
+* OK! C) Vincular um reparo a um defeito
+* OK! D) !Important em problemItem corrigir o display do nome do hardware no defeito
+* OK! E) Add comentarios aos reparos
 2) defeitos
   a - Listar todos os defeitos
   b - Filtrar por

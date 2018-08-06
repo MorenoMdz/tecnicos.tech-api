@@ -1,20 +1,27 @@
 extends layout
 
 include mixins/_repairForm.pug
+include mixins/_repairList.pug
 
 block content
-  
   //pre= h.dump(problem)
   .inner
     h2 Detalhes do defeito #{problem.title}
-    //p Aparelho: #{problem.hardware.name}
-    p Modelo: #{problem.model}
-    p Placa: #{problem.board}
-    p Descrição: #{problem.description}
-    img(src=`/uploads/${problem.photo || 'default.jpg'}`, alt="Foto do Defeito")
+      p Aparelho: #{problem.hardware.name}
+      p Modelo: #{problem.hardware.model}
+      p Placa: #{problem.board}
+      p Descrição: #{problem.description}
+      //img(src=`/uploads/${problem.photo || 'default.jpg'}`, alt="Foto do Defeito")
+    hr    
+    // button(type="submit") Adicionar reparo
+
+    p Reparos para esse Defeito:
+    +repairList(repairs)
+  
+    +repairForm 
+
+    hr 
     
-    
-    //+repairForm
 
     
     

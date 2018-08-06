@@ -1,0 +1,5 @@
+mixin commentForm(repair)
+  form.reviewer(action=`/comment/${repair._id}` method="POST")
+    textarea(name="text" placeholder="Seu comentário aqui")
+    .reviewer__meta
+      input.button(type="submit" value="Submit Review")

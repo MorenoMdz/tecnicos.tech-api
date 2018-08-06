@@ -1,7 +1,6 @@
 extends layout
 
 include mixins/_problemsList.pug
-include mixins/_problemForm.pug
 
 block content
   //pre= h.dump(problems)
@@ -10,4 +9,4 @@ block content
     p orderar por: #[strong TODO] 
       #hwListP(style="display:block")
         +problemsList(problems)
-        //+problemForm(hardwares)
+        

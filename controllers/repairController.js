@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-/* const Store = mongoose.model('Store'); // loads the exported store into the variable Store*/
 const Repair = mongoose.model('Repair');
 const multer = require('multer');
 const jimp = require('jimp');
@@ -37,21 +36,30 @@ exports.resize = async (req, res, next) => {
 };
 
 exports.addRepairForm = async (req, res) => {
-  // res.send('add repair');
   res.render('addRepairForm');
 };
 
 exports.createRepair = async (req, res) => {
   req.body.author = req.user._id;
-  /* req.body.problem = req.problem._id; */
-  const repair = await new Repair(req.body).save(); // it wont move to the next line until the save returns something
+  const repair = await new Repair(req.body).save();
+  console.log(req.body);
   req.flash(
     'success',
-    `Successfully Created ${repair.name}. Care to leave a review?`
+    `Reparo ao defeito ${req.body.title} adicionado com sucesso!`
   );
-  // res.redirect(`/store/${store.slug}`);
-  res.redirect('/addForm');
+
+  res.redirect('back');
 };
+
+async function repairListPerProblem(problemId) {
+  const repairs = await Repair.find({
+    problem: problemId,
+  });
+  const totalRepairCount = await Repair.count();
+  return repairs;
+}
+
+exports.repairsPerProblem = repairListPerProblem;
 
 exports.getAllRepairs = async (req, res) => {
   const page = req.params.page || 1;
@@ -70,7 +78,6 @@ exports.getAllRepairs = async (req, res) => {
       'info',
       `You asked for page ${page} that does not exists. Redirecting to the page ${pages}!`
     );
-    /* res.redirect(`/stores/page/${pages}`); */
     return;
   }
   res.render('repairs', {
@@ -80,17 +87,12 @@ exports.getAllRepairs = async (req, res) => {
     pages,
     count,
   });
-  /*   const repairs = await Repair.find();
-
-  res.json(repairs); */
 };
 
 exports.getRepairBySlug = async (req, res) => {
   const repair = await Repair.findOne({
     slug: req.params.slug,
-  }); /* .populate(
-    'author reviews'
-  ); */
-  if (!repair) return next(); // it kicks in the 404 error handler
+  });
+  if (!repair) return next(); // 404 error handler
   res.render('repair', { repair, title: repair.hardware });
 };

@@ -3,7 +3,7 @@ mixin problemItem(problem)
     #hwItem
       //pre=h.dump(problem)
       p: a(href=`/problem/${problem.slug}`) #{problem.title} 
-        // p || Console: #{problem.hardware.name}
+        p || Console: #{problem.hardware.name}
         // img(src=`/uploads/${problem.photo || 'default.jpg'}`)
         p:strong= `  || Author: ${problem.author.name}`
         p Reparos: #{problem.repairs}

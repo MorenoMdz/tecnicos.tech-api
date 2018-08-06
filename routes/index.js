@@ -6,6 +6,7 @@ const technicianController = require('../controllers/technicianController');
 const hwController = require('../controllers/hwController');
 const problemController = require('../controllers/problemController');
 const authController = require('../controllers/authController');
+const commentController = require('../controllers/commentController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
 // Do work here
@@ -55,13 +56,13 @@ router.get(
   catchErrors(problemController.addProblem)
 );
 
-router.post(
+/* router.post(
   '/findModels',
   authController.isLoggedIn,
   hwController.upload,
   catchErrors(problemController.resize),
   catchErrors(problemController.findModels)
-);
+); */
 
 router.post(
   '/addNewProblem',
@@ -100,6 +101,13 @@ router.post(
   repairController.upload,
   catchErrors(repairController.resize),
   catchErrors(repairController.createRepair)
+);
+
+/* Comment routes */
+router.post(
+  '/comment/:id',
+  authController.isLoggedIn,
+  catchErrors(commentController.addComment)
 );
 
 /* User routes */

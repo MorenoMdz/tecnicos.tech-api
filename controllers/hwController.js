@@ -40,10 +40,9 @@ exports.resize = async (req, res, next) => {
 /* Hardware Management Methods */
 exports.addNewHw = async (req, res) => {
   req.body.author = req.user._id;
-  const hardware = await new Hardware(req.body).save(); // it wont move to the next line until the save returns something
+  const hardware = await new Hardware(req.body).save();
 
   req.flash('success', `Adicionado ${hardware.name} com sucesso.`);
-  // res.redirect(`/store/${store.slug}`);
   res.redirect('/config');
 };
 
@@ -57,7 +56,7 @@ async function hwList(req, res, next) {
   return hardwares;
 }
 
-exports.hardwaresList = hwList;
+exports.hardwares = hwList();
 
 exports.getAllHw = async (req, res) => {
   const page = req.params.page || 1;

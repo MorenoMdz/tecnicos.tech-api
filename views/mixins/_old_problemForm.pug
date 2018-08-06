@@ -11,7 +11,7 @@ mixin problemForm(problem={})
     select(name='hardware' form="problemForm")
       option(value='' selected=!hardwares) (Selecione um console)
       for hardware in hardwares
-        option(value=hardware._id selected=(hardware._id === problem.hardware) onClick='()=> {console.log(#{hardware.name})}') #{hardware.name} #{hardware._id}
+        option(value=hardware._id selected=(hardware._id === problem.hardware)) #{hardware.name} #{hardware._id}
 
       
     label(for="model") Qual modelo de aparelho

@@ -1,0 +1,7 @@
+mixin repairItem(repair)
+  
+  li 
+    p: a(href=`/repair/${repair.slug}`) #{repair.title} 
+      // img(src=`/uploads/${hardware.photo || 'default.jpg'}`)
+      p Descrição: #{repair.description}
+      hr

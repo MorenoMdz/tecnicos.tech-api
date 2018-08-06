@@ -2,32 +2,43 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const slug = require('slugs');
 
-const repairSchema = new mongoose.Schema({
-  author: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Technician',
+const repairSchema = new mongoose.Schema(
+  {
+    author: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Technician',
+    },
+    hardware: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Hardware',
+    },
+    problem: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Problem',
+    },
+    title: {
+      type: String,
+      trim: true,
+      required: 'You must describe the repair title!',
+    },
+    description: {
+      type: String,
+      trim: true,
+      required: 'You must describe the repair!',
+    },
+    created: {
+      type: Date,
+      default: Date.now,
+    },
+    photo: [String],
+    video: [String],
+    slug: String,
   },
-  hardware: {
-    type: /* mongoose.Schema.ObjectId */ String,
-    ref: 'Hardware',
-  },
-  problem: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Problem',
-  },
-  slug: String,
-  description: {
-    type: String,
-    trim: true,
-    required: 'You must describe the repair!',
-  },
-  created: {
-    type: Date,
-    default: Date.now,
-  },
-  photo: [String],
-  video: [String],
-});
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
+);
 
 // Define our indexes
 /* repairSchema.index({
@@ -37,11 +48,11 @@ const repairSchema = new mongoose.Schema({
 
 // slug 'middleware alike' setup
 repairSchema.pre('save', async function(next) {
-  if (!this.isModified('hardware')) {
+  if (!this.isModified('title')) {
     next(); // skip it
     return; // stop this function from running (leave this middleware)
   }
-  this.slug = slug(this.hardware); // if name was modified then run this
+  this.slug = slug(this.title); // if name was modified then run this
   const slugRegex = new RegExp(`^(${this.slug})((-[0-9]*$)?)$`, 'i');
   const repairsWithSlug = await this.constructor.find({ slug: slugRegex });
   if (repairsWithSlug.length) {
@@ -51,26 +62,19 @@ repairSchema.pre('save', async function(next) {
   // TODO make more resiliant slugs
 });
 
-// find reviews where the stores _id property === reviews store property
-/* repairSchema.virtual(
-  'reviews',
-  {
-    ref: 'Review', // what model to link?
-    localField: '_id', // which field on the sotre?
-    foreignField: 'store',
-  },
-  {
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
-  }
-); */
+repairSchema.virtual('comments', {
+  ref: 'Comment',
+  localField: '_id',
+  foreignField: 'repair',
+});
 
-/* function autopopulate(next) {
-  this.populate('reviews');
+function autopopulate(next) {
+  /* this.populate('author'); */
+  this.populate('comments');
   next();
 }
 
 repairSchema.pre('find', autopopulate);
-repairSchema.pre('findOne', autopopulate); */
+repairSchema.pre('findOne', autopopulate);
 
 module.exports = mongoose.model('Repair', repairSchema);

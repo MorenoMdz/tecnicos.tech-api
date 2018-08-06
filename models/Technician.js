@@ -38,11 +38,6 @@ const technicianSchema = new Schema({
   resetPasswordToken: String,
   resetPasswordExpires: Date,
   reputationScore: [{ type: mongoose.Schema.ObjectId, ref: 'Store' }],
-  /*   problemsAdded: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Problem',
-    required: 'You must supply the problem ID!',
-  }, */
 });
 
 // gets the user's gravatar based in his email address
