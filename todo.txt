@@ -6,7 +6,18 @@
     * Ordenar por Modelo
 
 
-2) TODO (?) Add reply em um comentários
+2) TODO 
+  (?) Add reply em um comentários
+  Configurar user sessions
+  Configurar edit forms para 
+    Defeitos
+  Configurar permissões
+
+  Configurar HOME PAGE com info:
+    Quantos reparos ativos
+    Quantos aparelhos ativos
+    Em breve dados de termal
+    Em breve encontre um técnico perto de você
 
 * OK! A) Vincular um user a um defeito 
 * OK! B) Vincular um defeito a um console || Através do dropdown 
