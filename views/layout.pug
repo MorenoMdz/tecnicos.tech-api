@@ -8,6 +8,7 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1")
   body
     block header
+      
       // pre= h.dump(user)
       header.top
         nav.nav
@@ -34,7 +35,10 @@ html
                 != h.icon('logout')
                 span Desconectar
               li.nav__item: a.nav__link(href="/account", class=(currentPath.startsWith('/account') ? 'nav__link--active' : ''))
-                img.avatar(src=user.gravatar + '&d=retro') 
+                if user.gravatar
+                  img.avatar(src=user.gravatar + '&d=retro')
+                else
+                  img.avatar(src=user.image + '&d=retro')
             else
           
               li.nav__item: a.nav__link(href="/register", class=(currentPath.startsWith('/register') ? 'nav__link--active' : '')) Registrar
@@ -53,6 +57,11 @@ html
                   button.flash__remove(onClick="this.parentElement.remove()") &times;
     .content
       block content
+        pre= h.dump(user)
+        if user 
+          p: a(href="/auth/logout") Logout google
+        else
+          p: a(href="/auth/google") Sign In with Google
       // pre= h.dump(locals)
 
     block scripts

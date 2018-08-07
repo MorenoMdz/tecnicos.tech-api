@@ -1,8 +1,17 @@
 const passport = require('passport');
 const mongoose = require('mongoose');
-const User = mongoose.model('Technician');
+const Tech = mongoose.model('Technician');
+const User = mongoose.model('users');
 
-passport.use(User.createStrategy());
+/* passport.serializeUser((user, done) => {
+  console.log(user);
+  done(null, user.id);
+});
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.deserializeUser((id, done) => {
+  User.findById(id).then(user => done(null, user));
+  //console.log(id);
+}); */
+passport.use(Tech.createStrategy());
+passport.serializeUser(Tech.serializeUser());
+passport.deserializeUser(Tech.deserializeUser());

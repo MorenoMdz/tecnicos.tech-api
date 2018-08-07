@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 // load controllers
+const passport = require('passport');
 const repairController = require('../controllers/repairController');
 const technicianController = require('../controllers/technicianController');
 const hwController = require('../controllers/hwController');
@@ -131,7 +132,35 @@ router.post(
 );
 
 router.get('/account', authController.isLoggedIn, technicianController.account);
-router.post('/account', catchErrors(technicianController.updateAccount));
+router.post(
+  '/account',
+  authController.isLoggedIn,
+  catchErrors(technicianController.updateAccount)
+);
+
+/* Google OAuth */
+router.get(
+  '/auth/google',
+  passport.authenticate('google', {
+    /* The perms it asks the user to share */
+    scope: ['https://www.googleapis.com/auth/plus.login', 'profile', 'email'],
+  })
+);
+
+router.get(
+  '/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+    console.log('login');
+  }
+);
+
+router.get('/auth/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
+  console.log('logout');
+});
 
 /* API Endpoints */
 /* 
