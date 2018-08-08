@@ -20,7 +20,6 @@ mongoose.connection.on('error', err => {
 });
 
 // Import all of our models
-require('./models/User.js');
 require('./models/Technician');
 require('./models/Repair');
 require('./models/Hardware.js');

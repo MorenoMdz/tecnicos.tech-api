@@ -2,51 +2,12 @@ const passport = require('passport');
 const crypto = require('crypto');
 const mongoose = require('mongoose');
 const Technician = mongoose.model('Technician');
-const User = mongoose.model('users');
 const promisify = require('es6-promisify');
 const mail = require('../handlers/mail');
 
-/* Google */
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CONSUMER_SECRET,
-      callbackURL: '/auth/google/callback',
-      proxy: true,
-    },
-    function(accessToken, refreshToken, profile, done) {
-      const image = profile.photos[0].value.substring(
-        0,
-        profile.photos[0].value.indexOf('?')
-      );
-      const newUser = {
-        googleID: profile.id,
-        firstName: profile.name.givenName,
-        lastName: profile.name.familyName,
-        email: profile.emails[0].value,
-        image: image,
-      };
-
-      User.findOne({
-        googleID: profile.id,
-      }).then(user => {
-        if (user) {
-          done(null, user);
-          console.log('Logged with user: \n', user.googleID);
-        } else {
-          new User(newUser).save().then(user => done(null, user));
-          console.log('Created a new user: \n', user.googleID);
-        }
-      });
-    }
-  )
-);
-
 /* Local */
-exports.login = passport.authenticate('local', {
+exports.login = passport.authenticate(['local', 'google'], {
+  scope: ['https://www.googleapis.com/auth/plus.login', 'profile', 'email'],
   failureRedirect: '/login',
   failureFlash: 'Login falhou!',
   successRedirect: '/',
