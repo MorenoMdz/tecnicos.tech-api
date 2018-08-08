@@ -7,12 +7,11 @@ const hwController = require('../controllers/hwController');
 const problemController = require('../controllers/problemController');
 const authController = require('../controllers/authController');
 const commentController = require('../controllers/commentController');
+const homeController = require('../controllers/homeController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
 // Do work here
-router.get('/', (req, res) => {
-  res.render('layout');
-}); // will go and run the homePage method
+router.get('/', homeController.homeDisplay);
 
 /* Hardware Route | Perms: Adm/Mod */
 router.get('/config', authController.isLoggedIn, hwController.getAllHw);

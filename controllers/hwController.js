@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-/* const Store = mongoose.model('Store'); // loads the exported store into the variable Store*/
 const Hardware = mongoose.model('Hardware');
 const multer = require('multer');
 const jimp = require('jimp');
