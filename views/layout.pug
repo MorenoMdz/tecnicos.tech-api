@@ -1,60 +1,119 @@
+include mixins/_homeInfo
+
 doctype html
-html
+html(lang='en')
   head
     - let title = 'tecnicos.tech'
     title= `${title} | ${h.siteName}`
+
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4', crossorigin='anonymous')
+    link(href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN", crossorigin="anonymous")
     link(rel='stylesheet', href='/dist/style.css')
-    link(rel="shortcut icon" type="image/png" href="/images/icons/doughnut.png")
-    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
   body
     block header
-      // pre= h.dump(user)
-      header.top
-        nav.nav
-          .nav__section.nav__section--pages
-            li.nav__item
-              a.nav__link.nav__link--logo(href="/")
-                != h.icon('logo')
-            each item in h.menu
-              li.nav__item
-                a.nav__link(href=item.slug, class=(currentPath.startsWith(item.slug) ? 'nav__link--active' : ''))
-                  //!= h.icon(item.icon)
-                  span #{item.title}
-          .nav__section.nav__section--search
-            .search
-              input.search__input(type="text" placeholder="Buscar defeito ou reparo" name="search")
-              .search__results
-          .nav__section.nav__section--user
-            //pre= h.dump(user)
-            if user 
-              // li.nav__item: a.nav__link(href="/hearts", class=(currentPath.startsWith('/hearts') ? 'nav__link--active' : ''))
-                != h.icon('heart')
-                span.heart-count #{user.hearts && user.hearts.length}
-              li.nav__item: a.nav__link(href="/logout", class=(currentPath.startsWith('/logout') ? 'nav__link--active' : ''))
-                != h.icon('logout')
-                span Desconectar
-              li.nav__item: a.nav__link(href="/account", class=(currentPath.startsWith('/account') ? 'nav__link--active' : ''))
-                img.avatar(src=user.gravatar + '&d=retro') 
-            else
-          
-              li.nav__item: a.nav__link(href="/register", class=(currentPath.startsWith('/register') ? 'nav__link--active' : '')) Registrar
-              li.nav__item: a.nav__link(href="/login", class=(currentPath.startsWith('/login') ? 'nav__link--active' : '')) Entrar
+      header
+        nav.navbar.navbar-expand-md.navbar-dark.bg-dark.col-sm-12.col-md-12
+          a.navbar-brand(href="/") Técnicos tech
+            // != h.icon('logo')
+            
+          button.navbar-toggler.collapsed(type='button', data-toggle='collapse', data-target='#navbarsExample04', aria-controls='navbarsExample04', aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+          #navbarsExample04.navbar-collapse.collapse(style='')
+            ul.navbar-nav.mr-auto.lighten-3.py-4.mb-r.font-weight-bold.z-depth-1
 
+              each item in h.menu
+                li.nav-item
+                  a.nav-link(href=item.slug, class=(currentPath.startsWith(item.slug) ? 'nav-item.active' : ''))
+                    //!= h.icon(item.icon)
+                    span #{item.title}
+            ul.navbar-nav.mr-auto
+              each item in h.menu
+                li.nav-item.active
+                  a.nav-link(href=item.slug, class=(currentPath.startsWith(item.slug) ? 'nav-item.active' : ''))
+                    //!= h.icon(item.icon)
+                    span.sr-only #{item.title}
+
+
+              //
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">Dropdown</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+                </li>
+            form.form-inline.my-2.my-md-0
+              input#search-box.form-control(type='text', placeholder='Buscar por aparelho, defeito ou reparo')
+          ul.navbar-nav.px-3
+            if user 
+              li.nav-item.text-nowrap: a.nav-link(href="/logout", class=(currentPath.startsWith('/logout') ? 'nav__link--active' : ''))
+                  != h.icon('logout')
+                  span Desconectar
+              li.nav-item.text-nowrap: a.nav-link(href="/account", class=(currentPath.startsWith('/account') ? 'nav__link--active' : ''))
+                if user.gravatar
+                  img.avatar(src=user.gravatar + '&d=retro')
+                else
+                  img.avatar(src=user.image + '&d=retro')
+            else
+              li.nav-item.text-nowrap: a.nav-link(href="/register", class=(currentPath.startsWith('/register') ? 'nav__link--active' : '')) Registrar
+              li.nav-item.text-nowrap: a.nav-link(href="/login", class=(currentPath.startsWith('/login') ? 'nav__link--active' : '')) Entrar
+        
     block messages
-      if locals.flashes
-        //- pre= h.dump(locals.flashes)
-        .inner
-          .flash-messages
-            - const categories = Object.keys(locals.flashes)
-            each category in categories
-              each message in flashes[category]
-                .flash(class=`flash--${category}`)
-                  p.flash__text!= message
-                  button.flash__remove(onClick="this.parentElement.remove()") &times;
+    if locals.flashes
+      //- pre= h.dump(locals.flashes)
+      .inner
+        .flash-messages
+          - const categories = Object.keys(locals.flashes)
+          each category in categories
+            each message in flashes[category]
+              .flash(class=`flash--${category}`)
+                p.flash__text!= message
+                button.flash__remove(onClick="this.parentElement.remove()") &times;
+      
     .content
       block content
-      // pre= h.dump(locals)
+      // pre= h.dump(locals.currentPath)
+      if locals.currentPath == '/'
+        +homeInfo(homeDisplay)
+
+
+    // Footer
+    // footer
+    .footer
+      .container
+        a(href='#')
+          i.fa.fa-twitch.fa-3x.fa-fw
+        a(href='#')
+          i.fa.fa-facebook.fa-3x.fa-fw
+        a(href='#')
+          i.fa.fa-twitter.fa-3x.fa-fw
+        a(href='#')
+          i.fa.fa-youtube-play.fa-3x.fa-fw
+        a(href='#')
+          i.fa.fa-rss.fa-3x.fa-fw
+        a(href='#')
+          i.fa.fa-vine.fa-3x.fa-fw
+        a(href='#')
+          i.fa.fa-flickr.fa-3x.fa-fw
+        a(href='#')
+          i.fa.fa-linkedin.fa-3x.fa-fw
+
+      .copyright
+        .container
+          .row.text-center
+            p Copyright © 2017 All rights reserved
+
+
+
+
 
     block scripts
-      // script(src=`https://maps.googleapis.com/maps/api/js?key=${process.env.MAP_KEY}&libraries=places`)
-      // script(src="/dist/App.bundle.js")
+      script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', integrity='sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ', crossorigin='anonymous')
+      script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', integrity='sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm', crossorigin='anonymous')
