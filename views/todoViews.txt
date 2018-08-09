@@ -1,0 +1,8 @@
+Views todo:
+  1 - Nav
+  2 - Footer
+  3 - Home
+  4 - Login
+  5 - Register
+  6 - Forgot
+  
