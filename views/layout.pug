@@ -11,7 +11,7 @@ html(lang='en')
     meta(http-equiv='X-UA-Compatible', content='ie=edge')
     link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4', crossorigin='anonymous')
     link(href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN", crossorigin="anonymous")
-    // link(rel='stylesheet', href='/dist/style.css')
+    link(rel='stylesheet', href='/dist/style.css')
     link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
   body
     block header
@@ -52,9 +52,6 @@ html(lang='en')
               input#search-box.form-control(type='text', placeholder='Buscar por aparelho, defeito ou reparo')
           ul.navbar-nav.px-3
             if user 
-              li.nav-item.text-nowrap: a.nav-link(href="/register", class=(currentPath.startsWith('/register') ? 'nav__link--active' : '')) Registrar
-              li.nav-item.text-nowrap: a.nav-link(href="/login", class=(currentPath.startsWith('/login') ? 'nav__link--active' : '')) Entrar
-            else
               li.nav-item.text-nowrap: a.nav-link(href="/logout", class=(currentPath.startsWith('/logout') ? 'nav__link--active' : ''))
                   != h.icon('logout')
                   span Desconectar
@@ -63,6 +60,9 @@ html(lang='en')
                   img.avatar(src=user.gravatar + '&d=retro')
                 else
                   img.avatar(src=user.image + '&d=retro')
+            else
+              li.nav-item.text-nowrap: a.nav-link(href="/register", class=(currentPath.startsWith('/register') ? 'nav__link--active' : '')) Registrar
+              li.nav-item.text-nowrap: a.nav-link(href="/login", class=(currentPath.startsWith('/login') ? 'nav__link--active' : '')) Entrar
         
     block messages
     if locals.flashes
@@ -84,100 +84,32 @@ html(lang='en')
 
 
     // Footer
-    footer.page-footer.font-small.blue-grey.lighten-5.fixed-bottom
-      div(style='background-color: #21d192;')
+    // footer
+    .footer
+      .container
+        a(href='#')
+          i.fa.fa-twitch.fa-3x.fa-fw
+        a(href='#')
+          i.fa.fa-facebook.fa-3x.fa-fw
+        a(href='#')
+          i.fa.fa-twitter.fa-3x.fa-fw
+        a(href='#')
+          i.fa.fa-youtube-play.fa-3x.fa-fw
+        a(href='#')
+          i.fa.fa-rss.fa-3x.fa-fw
+        a(href='#')
+          i.fa.fa-vine.fa-3x.fa-fw
+        a(href='#')
+          i.fa.fa-flickr.fa-3x.fa-fw
+        a(href='#')
+          i.fa.fa-linkedin.fa-3x.fa-fw
+
+      .copyright
         .container
-          // Grid row
-          .row.py-4.d-flex.align-items-center
-            // Grid column
-            .col-md-6.col-lg-5.text-center.text-md-left.mb-4.mb-md-0
-              h6.mb-0 Get connected with us on social networks!
-            // Grid column
-            // Grid column
-            .col-md-6.col-lg-7.text-center.text-md-right
-              // Facebook
-              a.fb-ic
-                i.fa.fa-facebook.white-text.mr-4  
-              // Twitter
-              a.tw-ic
-                i.fa.fa-twitter.white-text.mr-4  
-              // Google +
-              a.gplus-ic
-                i.fa.fa-google-plus.white-text.mr-4  
-              // Linkedin
-              a.li-ic
-                i.fa.fa-linkedin.white-text.mr-4  
-              // Instagram
-              a.ins-ic
-                i.fa.fa-instagram.white-text  
-            // Grid column
-          // Grid row
-      // Footer Links
-      .container.text-center.text-md-left.mt-5
-        // Grid row
-        .row.mt-3.dark-grey-text
-          // Grid column
-          .col-md-3.col-lg-4.col-xl-3.mb-4
-            // Content
-            h6.text-uppercase.font-weight-bold Tecnicos Tech
-            hr.teal.accent-3.mb-4.mt-0.d-inline-block.mx-auto(style='width: 60px;')
-            p
-              | lots of site info
-          // Grid column
-          // Grid column
-          //-.col-md-2.col-lg-2.col-xl-2.mx-auto.mb-4
-            // Links
-            h6.text-uppercase.font-weight-bold Products
-            hr.teal.accent-3.mb-4.mt-0.d-inline-block.mx-auto(style='width: 60px;')
-            p
-              a.dark-grey-text(href='#!') MDBootstrap
-            p
-              a.dark-grey-text(href='#!') MDWordPress
-            p
-              a.dark-grey-text(href='#!') BrandFlow
-            p
-              a.dark-grey-text(href='#!') Bootstrap Angular
-          // Grid column
-          // Grid column
-          .col-md-3.col-lg-2.col-xl-2.mx-auto.mb-4
-            // Links
-            h6.text-uppercase.font-weight-bold  links
-            hr.teal.accent-3.mb-4.mt-0.d-inline-block.mx-auto(style='width: 60px;')
-            p
-              a.dark-grey-text(href='#!') Your Account
-              //-p
-                a.dark-grey-text(href='#!') Become an Affiliate
-                p
-                  a.dark-grey-text(href='#!') Shipping Rates
-                p
-                  a.dark-grey-text(href='#!') Help
-          // Grid column
-          // Grid column
-          .col-md-4.col-lg-3.col-xl-3.mx-auto.mb-md-0.mb-4
-            // Links
-            h6.text-uppercase.font-weight-bold Contact
-            hr.teal.accent-3.mb-4.mt-0.d-inline-block.mx-auto(style='width: 60px;')
-            p
-              i.fa.fa-home.mr-3
-              |  New York, NY 10012, US
-              //-p
-                i.fa.fa-envelope.mr-3
-                |  info@example.com
-                p
-                  i.fa.fa-phone.mr-3
-                  |  + 01 234 567 88
-                p
-                i.fa.fa-print.mr-3
-                |  + 01 234 567 89
-          // Grid column
-        // Grid row
-      // Footer Links
-      // Copyright
-      .footer-copyright.text-center.text-black-50.py-3
-        | © 2018 Copyright:
-        a.dark-grey-text(href='https://mdbootstrap.com/bootstrap-tutorial/')  MDBootstrap.com
-      // Copyright
-    // Footer
+          .row.text-center
+            p Copyright © 2017 All rights reserved
+
+
 
 
 
