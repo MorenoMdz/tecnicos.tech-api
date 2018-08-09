@@ -17,11 +17,11 @@ html(lang='en')
     block header
       header
         nav.navbar.navbar-expand-md.navbar-dark.bg-dark.col-sm-12.col-md-12
+          button.navbar-toggler.collapsed(type='button', data-toggle='collapse', data-target='#navbarsExample04', aria-controls='navbarsExample04', aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
           a.navbar-brand(href="/") Técnicos tech
             // != h.icon('logo')
             
-          button.navbar-toggler.collapsed(type='button', data-toggle='collapse', data-target='#navbarsExample04', aria-controls='navbarsExample04', aria-expanded='false', aria-label='Toggle navigation')
-            span.navbar-toggler-icon
           #navbarsExample04.navbar-collapse.collapse(style='')
             ul.navbar-nav.mr-auto.lighten-3.py-4.mb-r.font-weight-bold.z-depth-1
 
@@ -30,39 +30,25 @@ html(lang='en')
                   a.nav-link(href=item.slug, class=(currentPath.startsWith(item.slug) ? 'nav-item.active' : ''))
                     //!= h.icon(item.icon)
                     span #{item.title}
-            ul.navbar-nav.mr-auto
-              each item in h.menu
-                li.nav-item.active
-                  a.nav-link(href=item.slug, class=(currentPath.startsWith(item.slug) ? 'nav-item.active' : ''))
-                    //!= h.icon(item.icon)
-                    span.sr-only #{item.title}
 
-
-              //
-                <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">Dropdown</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown04">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-                </li>
             form.form-inline.my-2.my-md-0
               input#search-box.form-control(type='text', placeholder='Buscar por aparelho, defeito ou reparo')
-          ul.navbar-nav.px-3
-            if user 
-              li.nav-item.text-nowrap: a.nav-link(href="/logout", class=(currentPath.startsWith('/logout') ? 'nav__link--active' : ''))
-                  != h.icon('logout')
-                  span Desconectar
-              li.nav-item.text-nowrap: a.nav-link(href="/account", class=(currentPath.startsWith('/account') ? 'nav__link--active' : ''))
-                if user.gravatar
-                  img.avatar(src=user.gravatar + '&d=retro')
-                else
-                  img.avatar(src=user.image + '&d=retro')
-            else
-              li.nav-item.text-nowrap: a.nav-link(href="/register", class=(currentPath.startsWith('/register') ? 'nav__link--active' : '')) Registrar
-              li.nav-item.text-nowrap: a.nav-link(href="/login", class=(currentPath.startsWith('/login') ? 'nav__link--active' : '')) Entrar
+        
+            .navbar-nav.px-3#loginDiv
+              if user 
+                span.nav-item.px-5: a.nav-link(href="/account", class=(currentPath.startsWith('/account') ? 'nav__link--active' : ''))
+                  if user.gravatar
+                    img.avatar#avatar(src=user.gravatar + '&d=retro')
+                  else
+                    img.avatar#avatar(src=user.image + '&d=retro')
+
+                span.nav-item.px-5: a.nav-link(href="/logout", class=(currentPath.startsWith('/logout') ? 'nav__link--active' : ''))
+                    //!= h.icon('logout')
+                    span Desconectar
+              else
+                li.nav-item.px-5: a.nav-link(href="/register", class=(currentPath.startsWith('/register') ? 'nav__link--active' : '')) Registrar
+                li.nav-item.px-5: a.nav-link(href="/login", class=(currentPath.startsWith('/login') ? 'nav__link--active' : '')) Entrar
+                
         
     block messages
     if locals.flashes
@@ -103,15 +89,7 @@ html(lang='en')
           i.fa.fa-flickr.fa-3x.fa-fw
         a(href='#')
           i.fa.fa-linkedin.fa-3x.fa-fw
-
-      .copyright
-        .container
-          .row.text-center
-            p Copyright © 2017 All rights reserved
-
-
-
-
+        p Copyright © 2018 All rights reserved
 
     block scripts
       script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
