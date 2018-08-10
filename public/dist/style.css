@@ -8,11 +8,12 @@ body {
 }
 /* Nav */
 nav {
-  border-left: solid #00a478 5px;
+  border-left: solid #60fcf1 5px;
+  background-color: #111 !important;
 }
 
 nav .nav-link {
-  border-left: solid #00a478 2px;
+  border-left: solid #60fcf1 2px;
 }
 
 #loginDiv {
@@ -29,7 +30,7 @@ nav .nav-link {
 
 #avatar {
   max-width: 75px;
-  /* border-left: solid #00a478 5px; */
+  /* border-left: solid #60fcf1 5px; */
 }
 #search-form {
   right: 50px;
@@ -53,7 +54,7 @@ nav .nav-link {
 .homeInfo {
   position: relative;
   font-size: 1.3em;
-  border: solid #00a478 2px;
+  border: solid #60fcf1 2px;
 }
 
 /* HW Item */
@@ -100,7 +101,7 @@ nav .nav-link {
 }
 
 .fa-vine {
-  color: #00a478;
+  color: #60fcf1;
 }
 
 .fa-flickr {
@@ -134,11 +135,16 @@ nav .nav-link {
   body > div.footer > div > a > i {
     display: none;
   }
+
+  #hwItem {
+    max-width: 90%;
+  }
 }
 
 @media screen and (min-width: 768px) {
   body > header > nav {
     height: 80px;
+    background-color: #111 !important;
   }
   #loginDiv {
     display: flex;
@@ -151,5 +157,10 @@ nav .nav-link {
   }
   #search-box {
     width: 600px;
+  }
+
+  .repairsBtnHwList {
+    max-width: 120%;
+    max-height: 50px;
   }
 }

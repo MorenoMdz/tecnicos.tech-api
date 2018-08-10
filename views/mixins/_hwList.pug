@@ -3,7 +3,7 @@ include _hwItem.pug
 mixin hwList(hws = [{}])
   // pre= h.dump(hardwares)
   if hardwares
-    .container
+    .hwList.container
       div.list-group
         each hardware in hardwares
           +hwItem(hardware)
