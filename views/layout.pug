@@ -17,37 +17,37 @@ html(lang='en')
     block header
       header
         nav.navbar.navbar-expand-md.navbar-dark.bg-dark.col-sm-12.col-md-12
-          button.navbar-toggler.collapsed(type='button', data-toggle='collapse', data-target='#navbarsExample04', aria-controls='navbarsExample04', aria-expanded='false', aria-label='Toggle navigation')
+          button.navbar-toggler.collapsed(type='button', data-toggle='collapse', data-target='#navbarCollapseTarget', aria-controls='navbarCollapseTarget', aria-expanded='false', aria-label='Toggle navigation')
             span.navbar-toggler-icon
           a.navbar-brand(href="/") Técnicos tech
             // != h.icon('logo')
             
-          #navbarsExample04.navbar-collapse.collapse(style='')
+          #navbarCollapseTarget.navbar-collapse.collapse(style='')
             ul.navbar-nav.mr-auto.lighten-3.py-4.mb-r.font-weight-bold.z-depth-1
 
               each item in h.menu
                 li.nav-item
-                  a.nav-link(href=item.slug, class=(currentPath.startsWith(item.slug) ? 'nav-item.active' : ''))
+                  a.nav-link.pl-3(href=item.slug, class=(currentPath.startsWith(item.slug) ? 'nav-item.active' : ''))
                     //!= h.icon(item.icon)
                     span #{item.title}
 
-            form.form-inline.my-2.my-md-0
+            form.form-inline.my-2.my-md-0.mx-auto
               input#search-box.form-control(type='text', placeholder='Buscar por aparelho, defeito ou reparo')
         
-            .navbar-nav.px-3#loginDiv
+            .navbar-nav#loginDiv.z-depth-1
               if user 
-                span.nav-item.px-5: a.nav-link(href="/account", class=(currentPath.startsWith('/account') ? 'nav__link--active' : ''))
+                span.nav-item.px-2: a.nav-link(href="/account", class=(currentPath.startsWith('/account') ? 'nav__link--active' : ''))
                   if user.gravatar
                     img.avatar#avatar(src=user.gravatar + '&d=retro')
                   else
                     img.avatar#avatar(src=user.image + '&d=retro')
 
-                span.nav-item.px-5: a.nav-link(href="/logout", class=(currentPath.startsWith('/logout') ? 'nav__link--active' : ''))
+                span.nav-item.px-2: a.nav-link(href="/logout", class=(currentPath.startsWith('/logout') ? 'nav__link--active' : ''))
                     //!= h.icon('logout')
                     span Desconectar
               else
-                li.nav-item.px-5: a.nav-link(href="/register", class=(currentPath.startsWith('/register') ? 'nav__link--active' : '')) Registrar
-                li.nav-item.px-5: a.nav-link(href="/login", class=(currentPath.startsWith('/login') ? 'nav__link--active' : '')) Entrar
+                li.nav-item.px-2: a.nav-link(href="/register", class=(currentPath.startsWith('/register') ? 'nav__link--active' : '')) Registrar
+                li.nav-item.px-2: a.nav-link(href="/login", class=(currentPath.startsWith('/login') ? 'nav__link--active' : '')) Entrar
                 
         
     block messages
@@ -66,13 +66,14 @@ html(lang='en')
       block content
       // pre= h.dump(locals.currentPath)
       if locals.currentPath == '/'
-        +homeInfo(homeDisplay)
+        .homeInfo.m-5.p-5
+          +homeInfo(homeDisplay)
 
 
     // Footer
     // footer
     .footer
-      .container
+      .container.fixed-bottom
         a(href='#')
           i.fa.fa-twitch.fa-3x.fa-fw
         a(href='#')
