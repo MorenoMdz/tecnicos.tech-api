@@ -31,7 +31,7 @@ html(lang='en')
                     //!= h.icon(item.icon)
                     span #{item.title}
 
-            form.form-inline.my-2.my-md-0.mx-auto
+            form.form-inline.my-2.my-md-0#search-form
               input#search-box.form-control(type='text', placeholder='Buscar por aparelho, defeito ou reparo')
         
             .navbar-nav#loginDiv.z-depth-1
@@ -44,7 +44,7 @@ html(lang='en')
 
                 span.nav-item.px-2: a.nav-link(href="/logout", class=(currentPath.startsWith('/logout') ? 'nav__link--active' : ''))
                     //!= h.icon('logout')
-                    span Desconectar
+                    span Sair?
               else
                 li.nav-item.px-2: a.nav-link(href="/register", class=(currentPath.startsWith('/register') ? 'nav__link--active' : '')) Registrar
                 li.nav-item.px-2: a.nav-link(href="/login", class=(currentPath.startsWith('/login') ? 'nav__link--active' : '')) Entrar
@@ -75,22 +75,22 @@ html(lang='en')
     .footer
       .container.fixed-bottom
         a(href='#')
-          i.fa.fa-twitch.fa-3x.fa-fw
-        a(href='#')
-          i.fa.fa-facebook.fa-3x.fa-fw
-        a(href='#')
           i.fa.fa-twitter.fa-3x.fa-fw
         a(href='#')
           i.fa.fa-youtube-play.fa-3x.fa-fw
         a(href='#')
-          i.fa.fa-rss.fa-3x.fa-fw
-        a(href='#')
-          i.fa.fa-vine.fa-3x.fa-fw
-        a(href='#')
-          i.fa.fa-flickr.fa-3x.fa-fw
-        a(href='#')
           i.fa.fa-linkedin.fa-3x.fa-fw
-        p Copyright © 2018 All rights reserved
+          //-  a(href='#')
+              i.fa.fa-twitch.fa-3x.fa-fw
+            a(href='#')
+              i.fa.fa-facebook.fa-3x.fa-fw
+            a(href='#')
+              i.fa.fa-rss.fa-3x.fa-fw
+            a(href='#')
+              i.fa.fa-vine.fa-3x.fa-fw
+            a(href='#')
+          i.fa.fa-flickr.fa-3x.fa-fw
+        p © 2018 Todos direitos reservados || Project by Moreno A
 
     block scripts
       script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')

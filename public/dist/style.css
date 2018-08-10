@@ -31,6 +31,9 @@ nav .nav-link {
   max-width: 75px;
   /* border-left: solid #00a478 5px; */
 }
+#search-form {
+  right: 50px;
+}
 
 #search-box {
   max-width: 350px;
@@ -48,9 +51,9 @@ nav .nav-link {
 }
 /* Body */
 .homeInfo {
-  display: block;
   position: relative;
-  border: solid #3b5998 3px;
+  font-size: 1.3em;
+  border: solid #00a478 2px;
 }
 
 /* Footer */
