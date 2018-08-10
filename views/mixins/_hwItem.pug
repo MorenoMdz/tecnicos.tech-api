@@ -1,8 +1,16 @@
 mixin hwItem(hardware)
   
-  li 
-    #hwItem
-      p: a(href=`/hardware/${hardware.slug}`) #{hardware.name} 
-        img(src=`/uploads/${hardware.photo || 'default.jpg'}`)
-        p Modelos: #{hardware.model}
-      hr
+  .container
+    #hwItem.py-1
+      li.list-group-item.d-flex.justify-content-between.align-items-center.bg-light
+        .row
+          span.col-md-4
+            img#hwItemPhoto(src=`/uploads/${hardware.photo || 'default.jpg'}`)
+          span.col-md-8
+            a.text-dark(href=`/hardware/${hardware.slug}`) 
+              p Aparelho #{hardware.name} 
+              p Modelo: #{hardware.model}
+        span.btn.badge.badge-info.w-25 
+          p.m-2 Reparos Cadastrados: XX
+          
+

@@ -56,6 +56,17 @@ nav .nav-link {
   border: solid #00a478 2px;
 }
 
+/* HW Item */
+#hwList li {
+  list-style-type: none;
+  color: #111;
+  text-transform: none;
+}
+#hwItemPhoto {
+  max-width: 100px;
+  max-height: 75px;
+}
+
 /* Footer */
 .footer {
   position: absolute;

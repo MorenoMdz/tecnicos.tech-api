@@ -1,12 +1,12 @@
 include _hwItem.pug
 
-mixin hwList(hws = [{name: "xbox", marca: "ms"}, {name: "playstation", marca: "sony"}])
+mixin hwList(hws = [{}])
   // pre= h.dump(hardwares)
   if hardwares
-    div
-    ul
-    each hardware in hardwares
-      +hwItem(hardware)
+    .container
+      div.list-group
+        each hardware in hardwares
+          +hwItem(hardware)
 
   
 

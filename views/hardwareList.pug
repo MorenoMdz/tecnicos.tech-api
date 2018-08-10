@@ -5,8 +5,9 @@ include mixins/_hwList.pug
 
 block content
   // pre= h.dump(hardware)
-  .inner  
-    p: strong Aparelhos cadastrados no sistema:
-    p orderar por: #[strong TODO] 
-      #hwList.city(style="display:block")
-        +hwList
+  .container  
+    .mt-3
+      p: strong Aparelhos cadastrados no sistema:
+      p orderar por: #[strong TODO] 
+        #hwList.city(style="display:block")
+          +hwList
