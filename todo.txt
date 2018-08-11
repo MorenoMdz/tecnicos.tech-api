@@ -14,11 +14,11 @@
     Defeitos
   Configurar permissões
 
-  Configurar HOME PAGE com info:
-    Quantos reparos ativos
-    Quantos aparelhos ativos
-    Em breve dados de termal
-    Em breve encontre um técnico perto de você
+* OK! Configurar HOME PAGE com info:
+      Quantos reparos ativos
+      Quantos aparelhos ativos
+      Em breve dados de termal
+      Em breve encontre um técnico perto de você
 
 * OK! A) Vincular um user a um defeito 
 * OK! B) Vincular um defeito a um console || Através do dropdown 
@@ -28,6 +28,7 @@
 * OK! C) Vincular um reparo a um defeito
 * OK! D) !Important em problemItem corrigir o display do nome do hardware no defeito
 * OK! E) Add comentarios aos reparos
+
 2) defeitos
   a - Listar todos os defeitos
   b - Filtrar por

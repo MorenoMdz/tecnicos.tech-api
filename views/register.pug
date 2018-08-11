@@ -1,15 +1,16 @@
 extends layout
 
 block content
-  .inner
-    form.form(action="/register" method="POST")
-      h2 Register
-      label(for="name") Name
-      input(type="text" name="name" )
-      label(for="email") Email
-      input(type="email" name="email" )
-      label(for="password") Password
-      input(type="password" name="password")
-      label(for="password-confirm") Confirm Password
-      input(type="password" name="password-confirm")
-      input.button(type="submit" value="Register!")
+  .container.py-3
+    form(action="/register" method="POST")
+      .form-group
+        h2 Registre sua conta
+        label(for="name") Name
+        input.form-control(type="text" name="name" )
+        label(for="email") Email
+        input.form-control(type="email" name="email" )
+        label(for="password") Senha
+        input.form-control(type="password" name="password")
+        label(for="password-confirm") Confirmar Senha
+        input.form-control(type="password" name="password-confirm")
+        input.form-control.btn.btn-info.py-2.my-2(type="submit" value="Register!")

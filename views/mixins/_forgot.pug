@@ -1,6 +1,19 @@
 mixin forgotForm()
-  form.form(action="/account/forgot" method="POST")
-    h2 Esqueceu sua senha?
-    label(for="email") Email
-    input(type="email" name="email")
-    input.button(type="submit", value="Resetar senha")
+  .container
+    script.
+      let forgotForm = document.getElementById("#forgotForm") 
+      console.log(forgotForm)
+    .forgotForm
+      p: a(href='#' data-toggle='modal' data-target='#myModal') Esqueceu sua senha?
+
+      #myModal.modal.fade(role='dialog')
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close(type='button', data-dismiss='modal') ×
+            .modal-body
+              form#forgotForm.form-group(action="/account/forgot" method="POST")
+                label(for="email") Digite seu Email cadastrado para receber um link de reset de senha:
+                input.form-control(type="email" name="email")
+                input.py-2.my-2.btn.btn-info.form-control(type="submit", value="Resetar senha")
+            

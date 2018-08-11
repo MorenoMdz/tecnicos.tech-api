@@ -3,11 +3,11 @@ const Technician = mongoose.model('Technician');
 const promisify = require('es6-promisify');
 
 exports.loginForm = (req, res) => {
-  res.render('login', { title: 'Login' });
+  res.render('login', { title: 'Entrar' });
 };
 
 exports.registerForm = (req, res) => {
-  res.render('register', { title: 'Register' });
+  res.render('register', { title: 'Registrar' });
 };
 
 // validation middleware
@@ -33,27 +33,41 @@ exports.validateRegister = (req, res, next) => {
 
   const errors = req.validationErrors();
   if (errors) {
-    req.flash('error', errors.map(err => err.msg));
+    req.flash('danger', errors.map(err => err.msg));
     res.render('register', {
-      title: 'Register',
+      title: 'Registrar',
       body: req.body,
       flashes: req.flash(),
     });
     return;
   }
+
   next();
 };
 
 exports.registerTechnician = async (req, res, next) => {
   const user = new Technician({ email: req.body.email, name: req.body.name });
   const registerWithPromise = promisify(Technician.register, Technician);
-  await registerWithPromise(user, req.body.password); // this will store a hash in the db
-
-  next();
+  await registerWithPromise(user, req.body.password) // this will store a hash in the db
+    .catch(e => {
+      return (emailExists = e.name);
+    });
+  if (emailExists == 'UserExistsError') {
+    req.flash('danger', 'Um usuário já existe com esse email.');
+    res.render('register', {
+      title: 'Registrar',
+      body: req.body,
+      flashes: req.flash(),
+    });
+    emailExists = '';
+    return;
+  } else {
+    next();
+  }
 };
 
 exports.account = (req, res) => {
-  res.render('account', { title: 'Edit your account' });
+  res.render('account', { title: 'Editar sua conta' });
 };
 
 exports.updateAccount = async (req, res) => {

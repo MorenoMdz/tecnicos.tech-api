@@ -15,7 +15,7 @@ exports.login = passport.authenticate('local', {
 
 exports.logout = (req, res) => {
   req.logout();
-  req.flash('success', 'Desconectou!');
+  req.flash('warning', 'Desconectou!');
   res.redirect('/');
 };
 
@@ -26,7 +26,7 @@ exports.isLoggedIn = (req, res, next) => {
     return;
   }
 
-  req.flash('error', 'Não autorizado.');
+  req.flash('danger', 'Não autorizado.');
   res.redirect('/login');
 };
 
@@ -34,7 +34,7 @@ exports.forgot = async (req, res) => {
   // 1. See if the user exists
   const user = await Technician.findOne({ email: req.body.email });
   if (!user) {
-    req.flash('error', 'Conta não encontrada.');
+    req.flash('danger', 'Conta não encontrada.');
     return res.redirect('/login');
   }
 
@@ -54,7 +54,7 @@ exports.forgot = async (req, res) => {
     filename: 'password-reset',
   });
 
-  req.flash('success', `You have been emailed a password reset link.`);
+  req.flash('success', `Um email para reconfigurar seu acesso foi enviado.`);
   // 4. Redirect to the login page
   res.redirect('/login');
 };
@@ -66,11 +66,11 @@ exports.reset = async (req, res) => {
   });
 
   if (!user) {
-    req.flash('error', 'Token expired');
+    req.flash('danger', 'Token expirado, tente novamente.');
     return res.redirect('/login');
   }
   // if there is a user show the reset password form
-  res.render('reset', { title: 'Reset your password!' });
+  res.render('reset', { title: 'Reconfigure a sua senha.' });
 };
 
 exports.confirmedPasswords = async (req, res, next) => {
@@ -78,7 +78,7 @@ exports.confirmedPasswords = async (req, res, next) => {
     next();
     return;
   }
-  req.flash('error', 'Passwords do not match!');
+  req.flash('danger', 'Senhas não batem');
   res.redirect('back');
 };
 
@@ -88,7 +88,7 @@ exports.update = async (req, res) => {
     resetPasswordExpires: { $gt: Date.now() }, // if the token is not gt now, it is expired
   });
   if (!user) {
-    req.flash('error', 'Token expired');
+    req.flash('danger', 'Token expirado.');
     return res.redirect('/login');
   }
 
@@ -99,6 +99,9 @@ exports.update = async (req, res) => {
   const updatedUser = await user.save(); // saves the query to the db
   // login the user
   await req.login(updatedUser);
-  req.flash('success', 'Password reset, you are now logged in!');
+  req.flash(
+    'success',
+    'Senha reconfigurada, por favor entre com a senha nova.'
+  );
   res.redirect('/');
 };
