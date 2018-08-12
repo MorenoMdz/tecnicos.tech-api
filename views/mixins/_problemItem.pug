@@ -1,11 +1,15 @@
 mixin problemItem(problem)
-  li   
+  //pre=h.dump(problem)
+  .list-group-item.list-group-item-action.list-group-item-secondary
     #hwItem
-      //pre=h.dump(problem)
-      p: a(href=`/problem/${problem.slug}`) #{problem.title} 
-        p || Console: #{problem.hardware.name}
-        // img(src=`/uploads/${problem.photo || 'default.jpg'}`)
-        // TODO p:strong= `  || Author: ${problem.author.name}`
-        p Reparos: #{problem.repairs}
+    .row
+      .row.col-md-9.font-weight-bold.px-4 Título do defeito:
+        p.text-muted.px-3= problem.title
+      .row.col-md-9.font-weight-bold.px-4 Descrição do defeito:
+        p.text-muted.px-3= problem.description
+      a.col-md-3.btn.btn-primary(href=`/problem/${problem.slug}`) Ver reparos para esse defeito
+      
+
         
-      hr
+
+

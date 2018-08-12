@@ -1,34 +1,28 @@
 extends layout
 
 block content
-  //include mixins/_problemForm.pug
+  include mixins/_problemItem.pug
   // pre= h.dump(hardware)
-  .single
-    .single__hero
-      img.single__image(src=`/uploads/${hardware.photo || 'default.jpg'}`)
-      h2.title.title--single
-        a(href=`/hardware/${hardware.slug}`) #{hardware.hardware}
-
-  .single__details.inner
-
-    h1= hardware.name
-      p: strong Descrição: #{hardware.description} description bla bla
-      hr
-      h2: strong Modelos:
-      each model in hardware.model
-        strong= ` ${model}, `
-      hr
-    strong Todo: Listar defeitos
-    if hardware.problems
-      .problemsList
-        // todo problem mixin
-        each problem in hardware.problems
-          p= problem.title
-          p= problem.description
+  .container.py-2
+    .card.mb-3
+      .wrapper
+        .card-body
+          .card-header.card.text-white.bg-info.text-center
+            h5.card-title= hardware.name
+          img.card-img-top.hwCardImg(src=`/uploads/${hardware.photo || 'default.jpg'}` alt='Card image cap')
+          .card-body.card.text-white.bg-secondary.mb-3
+            p.card-title Descrição: #{hardware.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, asperiores dolorum. At iusto id, minus quia est provident omnis sequi sed, fugit excepturi, saepe natus? Rerum, atque eveniet. Id, sit?.
+            p.card-text Modelo: #{hardware.model} | Marca: #{hardware.brand}
+          p.card-text.card-footer.text-white.bg-info Defeitos listados para esse modelo de aparelho:
+            // TODO small.text-muted Last updated 3 mins ago
           hr
-        hr
+          p
+            if hardware.problems
+              .list-group
+                each problem in hardware.problems
+                  +problemItem(problem)
+                
 
-    
-    // Não mostrar form para adicionar por aparelho?
-    // +problemForm(hardwares)
+
+
     

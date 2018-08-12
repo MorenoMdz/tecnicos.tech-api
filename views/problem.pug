@@ -5,7 +5,7 @@ include mixins/_repairList.pug
 
 block content
   //pre= h.dump(problem)
-  .inner
+  .container
     h2 Detalhes do defeito #{problem.title}
       p Aparelho: #{problem.hardware.name}
       p Modelo: #{problem.hardware.model}
