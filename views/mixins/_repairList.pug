@@ -4,9 +4,10 @@ mixin repairList()
   .repairList
   if repairs
     div
-    ul
-    each repair in repairs
-      +repairItem(repair)
+      ul.list-group
+        each repair in repairs
+          li.list-group-item.list-group-item-dark.d-flex.justify-content-between.align-items-center.my-1
+            +repairItem(repair)
 
   
 

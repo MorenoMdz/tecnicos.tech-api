@@ -1,0 +1,9 @@
+mixin loginForm()
+  .container
+    h2 Entrar: 
+    form.form-group(action="/login" method="POST")
+      label(for="email") Seu endereço de email
+      input.form-control(type="email" name="email")
+      label(for="password") Senha
+      input.form-control(type="password" name="password")
+      input.my-2.py-2.form-control.btn.btn-primary(type="submit" value="Entrar")

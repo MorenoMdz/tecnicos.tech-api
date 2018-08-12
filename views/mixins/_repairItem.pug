@@ -1,7 +1,14 @@
 mixin repairItem(repair)
-  
-  li 
-    p: a(href=`/repair/${repair.slug}`) #{repair.title} 
+    
+    a#repairLi.font-weight-bold(href=`/repair/${repair.slug}`) Título do reparo: #[span.small #{repair.title} ]
       // img(src=`/uploads/${hardware.photo || 'default.jpg'}`)
-      p Descrição: #{repair.description}
-      hr
+      | Descrição: #[span.small #{repair.description}] 
+    span#repairItemBadge.badge.badge-dark
+      i.fa.fa-comment.px-1 
+      span #{` ${repair.comments.length} `}
+      if repair.stars > 0
+        i#star.fa.fa-star.px-1 
+        span #{` ${repair.stars} `}
+      else 
+        i.fa.fa-star.px-1 
+        span #{` ${repair.stars} `}

@@ -58,23 +58,6 @@ exports.addNewProblem = async (req, res) => {
   res.redirect('/problems');
 };
 
-/* exports.findModels = async (req, res) => {
-  const hwController = require('./hwController');
-  const hardwares = await hwController.hardwaresList();
-  // find a single hardware based in the ids
-  hw_id = req.body.hardware;
-  hw = await hwController.getHwById(hw_id);
-  hw_name = hw.name;
-  hw_models = hw.model;
-  res.render('addProblem', {
-    hardwares,
-    hw_id,
-    hw_name,
-    hw_models,
-    step: 'selectModel',
-  });
-}; */
-
 exports.getProblemList = async (req, res) => {
   const page = req.params.page || 1;
   const limit = 9;

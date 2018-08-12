@@ -3,33 +3,46 @@ extends layout
 include mixins/_commentForm.pug
 
 block content
-  //pre= h.dump(repair)
-  .single
-    .single__hero
-      img.single__image(src=`/uploads/${repair.photo || 'store.png'}`)
-      h2.title.title--single
-        a(href=`/repair/${repair.slug}`) #{repair.title}
+  // pre= h.dump(repair)
+  .container.py-2
+    .card.mb-3
+      .wrapper
+        .card-body
+          .card-header.card.text-white.bg-info.text-center
+            h3.card-title #{repair.title}
+          img.card-img-top.hwCardImg(src=`/uploads/${repair.photo || 'store.png'}` alt='Card image cap') 
+          .card-body.card.text-white.bg-secondary.mb-3
+            p.card-text Aparelho: #{repair.hardware.name} | Modelo: #{repair.hardware.model} 
+            p.card-title Descrição do reparo: 
+            p.card-text #{repair.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, asperiores dolorum. At iusto id, minus quia est provident omnis sequi sed, fugit excepturi, saepe natus? Rerum, atque eveniet. Id, sit?.
+          hr
+    p.text-white.bg-info.p-2 Comentarios:
+    section.comments.mt-3
+      if repair.comments
+          //-ul
+          each comment in repair.comments
+            article.comment
+              a.comment-img(href='#non')
+                //img(src='https://pbs.twimg.com/profile_images/444197466133385216/UA08zh-B.jpeg', alt='', width='50', height='50')
+                img.avatar(src=comment.author.gravatar, alt="gravatar", width='80', height='80')
+              .comment-body
+                .text
+                  p #{comment.text}
+                p.attribution
+                  | por
+                  |
+                  a(href='#non') #{comment.author.name}
+                  | 
+                  time(datetime=comment.created)= h.moment(comment.created).locale('pt-br').fromNow()
+          
 
-  .single__details.inner
 
-    p todo data
-    p.single__location= repair.description
-    hr
 
-    if repair.comments
-      ul
-        each comment in repair.comments
-          li
-            //a.tag__link(href=`/tags/${comment}`)
-            span.tag__text ##{comment.text}
-            span.tag__text ##{comment.author.name}
-            img.avatar(src=comment.author.gravatar, alt="gravatar")
-            hr
 
-    if user
-      +commentForm(repair)
+      if user
+        +commentForm(repair)
 
-    if repair.comments 
+    //-if repair.comments 
       .reviews
         each comment in repair.comments 
           .review

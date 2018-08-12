@@ -6,21 +6,48 @@ include mixins/_repairList.pug
 block content
   //pre= h.dump(problem)
   .container
-    h2 Detalhes do defeito #{problem.title}
-      p Aparelho: #{problem.hardware.name}
-      p Modelo: #{problem.hardware.model}
-      p Placa: #{problem.board}
-      p Descrição: #{problem.description}
-      //img(src=`/uploads/${problem.photo || 'default.jpg'}`, alt="Foto do Defeito")
+    .card
+      h2.card-header Detalhes do defeito, "#{problem.title}":
+      .card-body 
+        h4: p.card-text Aparelho: 
+          span.text-info #{problem.hardware.name}
+        h4: p.card-text Modelo: 
+          span.text-info #{problem.hardware.model}
+        h4: p.card-text Placa: 
+          span.text-info #{problem.board}
+        h4: p.card-text Descrição: 
+          span.text-info #{problem.description}
+        h4.card-text.bg-warning todo: Dificuldade de reparo // peças // etc
+        h4.card-text.bg-warning todo: Galeria de imagens adicionadas
+        // todo image galery
+        if problem.photo.length > 0
+          a(href=`/uploads/${problem.photo}`)
+            img#problemCardImg.img-thumbnail.border.border-info( src=`/uploads/${problem.photo || 'default.jpg'}`, alt="Foto do Defeito")
+            figcaption.figure-caption Imagem do defeito.
+        else
+          p.p-3.border.border-info ** Defeito sem foto **
+        .btn.btn-primary.block(data-toggle='modal' data-target='#myModal') Adicionar um reparo
+
+        .addRepairForm
+          #myModal.modal.fade(role='dialog')
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  button.close(type='button', data-dismiss='modal') × 
+                .modal-body
+
+                  +repairForm 
+
     hr    
     // button(type="submit") Adicionar reparo
 
-    p Reparos para esse Defeito:
-    +repairList(repairs)
+    h2 Reparos para esse Defeito:
+    .py-3
+      +repairList(repairs)
   
-    +repairForm 
 
-    hr 
+
+    
     
 
     
