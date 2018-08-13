@@ -1,15 +1,9 @@
 mixin problemItem(problem)
   //pre=h.dump(problem)
-  .list-group-item.list-group-item-action.list-group-item-secondary
-    #hwItem
-    .row
-      .row.col-md-9.font-weight-bold.px-4 Título do defeito:
-        p.text-muted.px-3= problem.title
-      .row.col-md-9.font-weight-bold.px-4 Descrição do defeito:
-        p.text-muted.px-3= problem.description
-      a.col-md-3.btn.btn-primary(href=`/problem/${problem.slug}`) Ver reparos para esse defeito
-      
+  #problemItem.list-group-item.list-group-item-secondary.d-flex.align-items-center.justify-content-between.mb-1
+    a#repairLi.font-weight-bold(href=`/problem/${problem.slug}`) Título do reparo: #[span.small #{problem.title} ] 
+      | Descrição: #[span.small #{problem.description}] 
+    a.btn.btn-info(href=`/problem/${problem.slug}`) Ver reparos
 
-        
 
 

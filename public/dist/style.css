@@ -66,11 +66,7 @@ nav .nav-link {
 }
 
 /* HW Item */
-#hwList li {
-  list-style-type: none;
-  color: #111;
-  text-transform: none;
-}
+
 #hwItemPhoto {
   max-width: 100px;
   max-height: 75px;
@@ -87,6 +83,11 @@ nav .nav-link {
   height: 15rem;
 }
 
+/* HW Problems List */
+#hwProblemsList {
+  max-height: 450px;
+  overflow-y: scroll;
+}
 /* Problem img */
 #problemCardImg {
   width: 100%;

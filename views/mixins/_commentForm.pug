@@ -1,4 +1,4 @@
 mixin commentForm(repair)
   form.form-group(action=`/comment/${repair._id}` method="POST")
     textarea.form-control(name="text" placeholder="Seu comentário aqui")
-    input.btn.btn-warning.form-control.my-2(type="submit" value="Adicione seu comentário")
+    input.btn.btn-secondary.form-control.my-2(type="submit" value="Adicione seu comentário")

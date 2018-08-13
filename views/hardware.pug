@@ -7,18 +7,18 @@ block content
     .card.mb-3
       .wrapper
         .card-body
-          .card-header.card.text-white.bg-info.text-center
-            h5.card-title= hardware.name
           img.card-img-top.hwCardImg(src=`/uploads/${hardware.photo || 'default.jpg'}` alt='Card image cap')
+          .card-header.card.text-white.bg-info.text-center
+            h5.card-title #{hardware.name} Modelo: #{hardware.model} 
           .card-body.card.text-white.bg-secondary.mb-3
             p.card-title Descrição: #{hardware.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, asperiores dolorum. At iusto id, minus quia est provident omnis sequi sed, fugit excepturi, saepe natus? Rerum, atque eveniet. Id, sit?.
-            p.card-text Modelo: #{hardware.model} | Marca: #{hardware.brand}
+            p.card-text  Marca: #{hardware.brand}
           p.card-text.card-footer.text-white.bg-info Defeitos listados para esse modelo de aparelho:
             // TODO small.text-muted Last updated 3 mins ago
           hr
           p
             if hardware.problems
-              .list-group
+              .list-group#hwProblemsList
                 each problem in hardware.problems
                   +problemItem(problem)
                 

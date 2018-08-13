@@ -32,11 +32,12 @@ block content
           #myModal.modal.fade(role='dialog')
             .modal-dialog
               .modal-content
-                .modal-header
+                .modal-header.bg-primary.text-white.p-1
+                  h6.p-2 Adicionar um Reparo a esse defeito
                   button.close(type='button', data-dismiss='modal') × 
-                .modal-body
-
+                .modal-body.p-1
                   +repairForm 
+                  
 
     hr    
     // button(type="submit") Adicionar reparo

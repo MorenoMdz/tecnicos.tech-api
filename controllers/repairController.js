@@ -92,7 +92,7 @@ exports.getAllRepairs = async (req, res) => {
 exports.getRepairBySlug = async (req, res) => {
   const repair = await Repair.findOne({
     slug: req.params.slug,
-  }).populate('author hardware');
+  }).populate('author hardware problem');
   if (!repair) return next(); // 404 error handler
   res.render('repair', { repair, title: repair.hardware });
 };

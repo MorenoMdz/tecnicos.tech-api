@@ -4,18 +4,33 @@ include mixins/_commentForm.pug
 
 block content
   // pre= h.dump(repair)
-  .container.py-2
-    .card.mb-3
-      .wrapper
-        .card-body
-          .card-header.card.text-white.bg-info.text-center
-            h3.card-title #{repair.title}
-          img.card-img-top.hwCardImg(src=`/uploads/${repair.photo || 'store.png'}` alt='Card image cap') 
-          .card-body.card.text-white.bg-secondary.mb-3
-            p.card-text Aparelho: #{repair.hardware.name} | Modelo: #{repair.hardware.model} 
-            p.card-title Descrição do reparo: 
-            p.card-text #{repair.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, asperiores dolorum. At iusto id, minus quia est provident omnis sequi sed, fugit excepturi, saepe natus? Rerum, atque eveniet. Id, sit?.
-          hr
+  .container
+    .row
+      .mb-3.col-md-5
+        .wrapper
+          .card-body
+            .card-header.card.text-white.bg-info.text-center
+              h5.card-title Reparo para o defeito: #{repair.problem.title} 
+            img.card-img-top.hwCardImg.py-3(src=`/uploads/${repair.photo || 'store.png'}` alt='Card image cap') 
+          .card-body.card.text-white.bg-secondary.text-center
+            if repair.stars > 0
+              i#star.fa.fa-star.px-1 
+                span #{` ${repair.stars} `} 
+                span.small.text-white Qualifique se o reparo deu resultado!
+            else 
+              i.fa.fa-star.px-1 
+                span #{` ${repair.stars} `}
+                span.small Qualifique se o reparo deu resultado!
+                
+      ul.list-group.list-group-flush.col-md-7
+        li.list-group-item #[h6 Título do reparo] #{repair.title}
+        li.list-group-item #[h6 Aparelho:] #{repair.hardware.name}
+        li.list-group-item #[h6 Modelo:] #{repair.hardware.model}
+        li.list-group-item #[h6 Componentes reparados:] #{repair.parts}
+        li.list-group-item #[h6 Descrição do reparo:]
+          p #{repair.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, asperiores dolorum. At iusto id, minus quia est provident omnis sequi sed, fugit excepturi, saepe natus? Rerum, atque eveniet. Id, sit?.
+        li.list-group-item 
+    
     p.text-white.bg-info.p-2 Comentarios:
     section.comments.mt-3
       if repair.comments
@@ -34,16 +49,6 @@ block content
                   a(href='#non') #{comment.author.name}
                   | 
                   time(datetime=comment.created)= h.moment(comment.created).locale('pt-br').fromNow()
-          
-
-
-
-
       if user
         +commentForm(repair)
 
-    //-if repair.comments 
-      .reviews
-        each comment in repair.comments 
-          .review
-            //+review(comentario)

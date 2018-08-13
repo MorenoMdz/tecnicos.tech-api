@@ -1,29 +1,30 @@
 
 mixin repairForm(repair = {}) 
-  form(action=`/addRepair` method="POST"  class="card" enctype="multipart/form-data" id="repairForm")
-    p Adicionar um Reparo a esse defeito
-    p Id do Defeito #{problem.title} #{problem._id}
-    p Id do hardware #{problem.hardware.name} #{problem.hardware._id}
-
-    input(type="text" name="problem" placeholder="Digite um título para o defeito" value=problem._id hidden)
-    input(type="text" name="hardware" placeholder="Digite um título para o defeito" value=problem.hardware._id hidden)
-
-    label(for="title") Título do Defeito
-    input(type="text" name="title" placeholder="Digite um título para o reparo" value=repair.title required)
+  form.form-group.p-3(action=`/addRepair` method="POST"  class="card" enctype="multipart/form-data" id="repairForm")
     
-    label(for="description") Descrição do reparo
-    textarea(name="description" placeholder="Descrição do reparo" required)= repair.description
+    p(hidden) Id do Defeito #{problem.title} #{problem._id}
+    p(hidden) Id do hardware #{problem.hardware.name} #{problem.hardware._id}
 
-    label(for="photo") Photo
-      input(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
+    input.form-control(type="text" name="problem" placeholder="Digite um título para o defeito" value=problem._id hidden)
+    input.form-control(type="text" name="hardware" placeholder="Digite um título para o defeito" value=problem.hardware._id hidden)
+
+    label(for="title") Título do Defeito:
+    input.mb-2.form-control(type="text" name="title" placeholder="Digite um título para o reparo" value=repair.title required)
+    
+    label(for="description") Descrição do problema:
+    textarea.mb-2.form-control(name="description" placeholder="Descrição do reparo" required)= repair.description
+
+    label(for="photo") Adicione uma imagem do defeito:
+      input.border.border-warning.mb-2.form-control-file(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
       if repair.photo
         img(src=`/uploads/${repair.photo}`, alt=repair.name width=200)
     
-    label(for="video") Link para o video (Use Youtube/streamable)
-    input(type="text" name="video" placeholder="link para o video" value=repair.hardware)
+    label(for="video") Link para um video sobre o defeito: #[span.small (Sugerido: Youtube/Streamable/Vimeo)]
+    input.form-control(type="text" name="video" placeholder="link para o video" value=repair.hardware)
     // break line
     p
-    input(type="submit" value="Salvar" class="button")
+    input.form-control.btn.btn-primary(type="submit" value="Salvar" class="button" for="repairForm")
+
 
 
 
