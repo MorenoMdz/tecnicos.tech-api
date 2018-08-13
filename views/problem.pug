@@ -7,36 +7,37 @@ block content
   //pre= h.dump(problem)
   .container
     .card
-      h2.card-header Detalhes do defeito, "#{problem.title}":
+      h6.card-header Detalhes do defeito, "#{problem.title}":
       .card-body 
-        h4: p.card-text Aparelho: 
+        strong: p.card-text Aparelho: 
           span.text-info #{problem.hardware.name}
-        h4: p.card-text Modelo: 
+        strong: p.card-text Modelo: 
           span.text-info #{problem.hardware.model}
-        h4: p.card-text Placa: 
+        strong: p.card-text Placa: 
           span.text-info #{problem.board}
-        h4: p.card-text Descrição: 
+        strong: p.card-text Descrição: 
           span.text-info #{problem.description}
-        h4.card-text.bg-warning todo: Dificuldade de reparo // peças // etc
-        h4.card-text.bg-warning todo: Galeria de imagens adicionadas
+        strong.card-text.bg-warning todo: Dificuldade de reparo // peças // etc
+        strong.card-text.bg-warning todo: Galeria de imagens adicionadas
         // todo image galery
-        if problem.photo.length > 0
-          a(href=`/uploads/${problem.photo}`)
-            img#problemCardImg.img-thumbnail.border.border-info( src=`/uploads/${problem.photo || 'default.jpg'}`, alt="Foto do Defeito")
-            figcaption.figure-caption Imagem do defeito.
-        else
-          p.p-3.border.border-info ** Defeito sem foto **
-        .btn.btn-primary.block(data-toggle='modal' data-target='#myModal') Adicionar um reparo
+        #problemImg.m-3
+          if problem.photo.length > 0
+            a(href=`/uploads/${problem.photo}`)
+              img#problemCardImg.img-thumbnail.border.border-info( src=`/uploads/${problem.photo || 'default.jpg'}`, alt="Foto do Defeito")
+              figcaption.figure-caption Imagem do defeito.
+          else
+            p.p-3.border.border-info ** Defeito sem foto **
+      .btn.btn-primary.block(data-toggle='modal' data-target='#myModal') Adicionar um reparo
 
-        .addRepairForm
-          #myModal.modal.fade(role='dialog')
-            .modal-dialog
-              .modal-content
-                .modal-header.bg-primary.text-white.p-1
-                  h6.p-2 Adicionar um Reparo a esse defeito
-                  button.close(type='button', data-dismiss='modal') × 
-                .modal-body.p-1
-                  +repairForm 
+      .addRepairForm
+        #myModal.modal.fade(role='dialog')
+          .modal-dialog
+            .modal-content
+              .modal-header.bg-primary.text-white.p-1
+                h6.p-2 Adicionar um Reparo a esse defeito
+                button.close(type='button', data-dismiss='modal') × 
+              .modal-body.p-1
+                +repairForm 
                   
 
     hr    

@@ -13,6 +13,12 @@ block content
               h5.card-title Reparo para o defeito: #{repair.problem.title} 
             img.card-img-top.hwCardImg.py-3(src=`/uploads/${repair.photo || 'store.png'}` alt='Card image cap') 
           .card-body.card.text-white.bg-secondary.text-center
+            if user
+              .star_action
+                form.star(method="POST" action=`/api/repairs/${repair._id}/star`)
+                  button(type="submit" name="star")
+                    i.fa.fa-star
+            
             if repair.stars > 0
               i#star.fa.fa-star.px-1 
                 span #{` ${repair.stars} `} 

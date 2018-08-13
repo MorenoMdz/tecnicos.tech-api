@@ -1,7 +1,7 @@
 mixin problemItem(problem)
   //pre=h.dump(problem)
   #problemItem.list-group-item.list-group-item-secondary.d-flex.align-items-center.justify-content-between.mb-1
-    a#repairLi.font-weight-bold(href=`/problem/${problem.slug}`) Título do reparo: #[span.small #{problem.title} ] 
+    a#repairLi.font-weight-bold(href=`/problem/${problem.slug}`) Defeito: #[span.small #{problem.title} ] 
       | Descrição: #[span.small #{problem.description}] 
     a.btn.btn-info(href=`/problem/${problem.slug}`) Ver reparos
 

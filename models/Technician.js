@@ -34,10 +34,15 @@ const technicianSchema = new Schema({
     zipCode: String,
   },
   siteRank: [0, 1, 2, 3, 4, 5],
-  repairsCreated: [],
+  techStars: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Repairs',
+    },
+  ],
   resetPasswordToken: String,
   resetPasswordExpires: Date,
-  reputationScore: [{ type: mongoose.Schema.ObjectId, ref: 'Store' }],
+  reputationScore: [],
 });
 
 // gets the user's gravatar based in his email address
