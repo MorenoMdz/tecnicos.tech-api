@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Repair = mongoose.model('Repair');
+const User = mongoose.model('Technician');
 const multer = require('multer');
 const jimp = require('jimp');
 const uuid = require('uuid');
@@ -95,4 +96,27 @@ exports.getRepairBySlug = async (req, res) => {
   }).populate('author hardware problem');
   if (!repair) return next(); // 404 error handler
   res.render('repair', { repair, title: repair.hardware });
+};
+
+exports.starsRepair = async (req, res) => {
+  const stars = req.user.stars.map(obj => obj.toString());
+  const operator = stars.includes(req.params.id) ? '$pull' : '$addToSet';
+  const user = User.findByIdAndUpdate(
+    req.user._id,
+    {
+      [operator]: { stars: req.params.id },
+    },
+    { new: true }
+  );
+  // check if the current repair has a heart if not add +1 to it
+  const repair = Repair.findByIdAndUpdate(
+    req.params.id,
+    {
+      [operator]: { stars: req.user._id },
+    },
+    { new: true }
+  );
+  const star = await Promise.all([user, repair]);
+
+  res.redirect('back');
 };

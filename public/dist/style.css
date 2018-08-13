@@ -96,6 +96,12 @@ nav .nav-link {
   object-fit: scale-down;
 }
 
+/* Repair */
+.star-filled > i {
+  color: #1cc6fa;
+  background-color: transparent;
+}
+
 /* Footer */
 .footer {
   position: absolute;

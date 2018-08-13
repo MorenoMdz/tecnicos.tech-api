@@ -35,19 +35,24 @@ html(lang='en')
               input#search-box.form-control(type='text', placeholder='Buscar por aparelho, defeito ou reparo')
         
             .navbar-nav#loginDiv.z-depth-1
-              if user 
-                span.nav-item.px-2: a.nav-link(href="/account", class=(currentPath.startsWith('/account') ? 'nav__link--active' : ''))
+              if user
+
+                li.nav-item.pl-2: a.nav-link(href="/account", class=(currentPath.startsWith('/account') ? 'nav-link-active' : ''))
+                  i.fa.fa-star
+                    span.pl-2.heart-count #{user.stars && user.stars.length}
+                  
+                span.nav-item.px-2: a.nav-link(href="/account", class=(currentPath.startsWith('/account') ? 'nav-link-active' : ''))
                   if user.gravatar
                     img.avatar#avatar(src=user.gravatar + '&d=retro')
                   else
                     img.avatar#avatar(src=user.image + '&d=retro')
 
-                span.nav-item.px-2: a.nav-link(href="/logout", class=(currentPath.startsWith('/logout') ? 'nav__link--active' : ''))
+                span.nav-item.px-2: a.nav-link(href="/logout", class=(currentPath.startsWith('/logout') ? 'nav-link-active' : ''))
                     //!= h.icon('logout')
                     span Sair?
               else
-                li.nav-item.px-2: a.nav-link(href="/register", class=(currentPath.startsWith('/register') ? 'nav__link--active' : '')) Registrar
-                li.nav-item.px-2: a.nav-link(href="/login", class=(currentPath.startsWith('/login') ? 'nav__link--active' : '')) Entrar
+                li.nav-item.px-2: a.nav-link(href="/register", class=(currentPath.startsWith('/register') ? 'nav-link-active' : '')) Registrar
+                li.nav-item.px-2: a.nav-link(href="/login", class=(currentPath.startsWith('/login') ? 'nav-link-active' : '')) Entrar
                 
         
     block messages
@@ -100,3 +105,4 @@ html(lang='en')
       script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
       script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', integrity='sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ', crossorigin='anonymous')
       script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', integrity='sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm', crossorigin='anonymous')
+      //script(src="/javascripts/tech.js")

@@ -40,6 +40,12 @@ const technicianSchema = new Schema({
       ref: 'Repairs',
     },
   ],
+  stars: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Repairs',
+    },
+  ],
   resetPasswordToken: String,
   resetPasswordExpires: Date,
   reputationScore: [],

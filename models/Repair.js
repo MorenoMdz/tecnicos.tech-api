@@ -30,10 +30,11 @@ const repairSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
-    stars: {
-      type: String,
-      default: 0,
-    },
+    stars: [
+      {
+        type: String,
+      },
+    ],
     photo: [String],
     video: [String],
     slug: String,

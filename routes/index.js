@@ -138,9 +138,7 @@ router.post(
 
 /* API Endpoints */
 /* 
-router.get('/api/search', catchErrors(storeController.searchStores));
-router.get('/api/stores/near', catchErrors(storeController.mapStores));
-router.post('/api/stores/:id/hearts', catchErrors(storeController.heartStore)); 
-*/
+router.get('/api/search', catchErrors(storeController.searchStores));*/
+router.post('/api/repairs/:id/star', catchErrors(repairController.starsRepair));
 
 module.exports = router;

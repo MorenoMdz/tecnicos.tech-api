@@ -14,19 +14,15 @@ block content
             img.card-img-top.hwCardImg.py-3(src=`/uploads/${repair.photo || 'store.png'}` alt='Card image cap') 
           .card-body.card.text-white.bg-secondary.text-center
             if user
-              .star_action
+              .star.star_action
                 form.star(method="POST" action=`/api/repairs/${repair._id}/star`)
-                  button(type="submit" name="star")
+                  - const starStrings = user.stars.map(obj => obj.toString())
+                  - const starClass = starStrings.includes(repair._id.toString()) ? 'star-filled' : ''
+                  button.btn.btn-secondary(type="submit" name="star" class=starClass) 
                     i.fa.fa-star
-            
-            if repair.stars > 0
-              i#star.fa.fa-star.px-1 
-                span #{` ${repair.stars} `} 
-                span.small.text-white Qualifique se o reparo deu resultado!
-            else 
-              i.fa.fa-star.px-1 
-                span #{` ${repair.stars} `}
-                span.small Qualifique se o reparo deu resultado!
+                    span #{` ${repair.stars.length} `}
+                    if !starStrings.includes(repair._id.toString())
+                      p.small.text-white Qualifique se o reparo deu resultado!
                 
       ul.list-group.list-group-flush.col-md-7
         li.list-group-item #[h6 Título do reparo] #{repair.title}
@@ -40,21 +36,20 @@ block content
     p.text-white.bg-info.p-2 Comentarios:
     section.comments.mt-3
       if repair.comments
-          //-ul
-          each comment in repair.comments
-            article.comment
-              a.comment-img(href='#non')
-                //img(src='https://pbs.twimg.com/profile_images/444197466133385216/UA08zh-B.jpeg', alt='', width='50', height='50')
-                img.avatar(src=comment.author.gravatar, alt="gravatar", width='80', height='80')
-              .comment-body
-                .text
-                  p #{comment.text}
-                p.attribution
-                  | por
-                  |
-                  a(href='#non') #{comment.author.name}
-                  | 
-                  time(datetime=comment.created)= h.moment(comment.created).locale('pt-br').fromNow()
+        each comment in repair.comments
+          article.comment
+            a.comment-img(href='#non')
+              //img(src='https://pbs.twimg.com/profile_images/444197466133385216/UA08zh-B.jpeg', alt='', width='50', height='50')
+              img.avatar(src=comment.author.gravatar, alt="gravatar", width='80', height='80')
+            .comment-body
+              .text
+                p #{comment.text}
+              p.attribution
+                | por
+                |
+                a(href='#non') #{comment.author.name}
+                | 
+                time(datetime=comment.created)= h.moment(comment.created).locale('pt-br').fromNow()
       if user
         +commentForm(repair)
 
