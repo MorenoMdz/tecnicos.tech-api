@@ -27,10 +27,6 @@ const hardwareSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-    description: {
-      type: String,
-      trim: true,
-    },
     author: {
       type: mongoose.Schema.ObjectId,
       ref: 'Technician',

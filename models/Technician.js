@@ -51,6 +51,10 @@ const technicianSchema = new Schema({
   reputationScore: [],
 });
 
+technicianSchema.index({
+  name: 'text',
+});
+
 // gets the user's gravatar based in his email address
 technicianSchema.virtual('gravatar').get(function() {
   const hash = md5(this.email);

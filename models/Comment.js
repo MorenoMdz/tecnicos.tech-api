@@ -31,6 +31,10 @@ const commentSchema = new mongoose.Schema({
   },
 });
 
+commentSchema.index({
+  text: 'text',
+});
+
 function autopopulate(next) {
   this.populate('author');
   next();

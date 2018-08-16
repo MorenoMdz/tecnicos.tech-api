@@ -120,3 +120,21 @@ exports.starsRepair = async (req, res) => {
 
   res.redirect('back');
 };
+
+exports.searchRepairs = async (req, res) => {
+  const repairs = await Repair.find(
+    {
+      $text: {
+        $search: req.query.q,
+      },
+    },
+    {
+      score: { $meta: 'textScore' },
+    }
+  )
+    .sort({
+      score: { $meta: 'textScore' },
+    })
+    .limit(5);
+  res.json(repairs);
+};

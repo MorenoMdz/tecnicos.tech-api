@@ -137,8 +137,12 @@ router.post(
 );
 
 /* API Endpoints */
-/* 
-router.get('/api/search', catchErrors(storeController.searchStores));*/
+router.get(
+  '/api/search',
+  catchErrors(
+    repairController.searchRepairs /* next searchProblems then comments then hw */
+  )
+);
 router.post('/api/repairs/:id/star', catchErrors(repairController.starsRepair));
 
 module.exports = router;

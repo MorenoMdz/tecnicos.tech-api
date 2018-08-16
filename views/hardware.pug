@@ -17,10 +17,12 @@ block content
             // TODO small.text-muted Last updated 3 mins ago
           hr
           p
-            if hardware.problems
-              .list-group#hwProblemsList
-                each problem in hardware.problems
-                  +problemItem(problem)
+            //if hardware.problems
+
+            // TODO Add Problem Form 
+            .list-group#hwProblemsList
+              each problem in hardware.problems
+                +problemItem(problem)
                 
 
 

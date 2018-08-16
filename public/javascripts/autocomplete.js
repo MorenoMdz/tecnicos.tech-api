@@ -15,4 +15,4 @@ function autocomplete(input, latInput, lngInput) {
   });
 }
 
-export default autocomplete;
+module.exports = autocomplete;

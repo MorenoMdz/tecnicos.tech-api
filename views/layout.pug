@@ -31,8 +31,9 @@ html(lang='en')
                     //!= h.icon(item.icon)
                     span #{item.title}
 
-            form.form-inline.my-2.my-md-0#search-form
-              input#search-box.form-control(type='text', placeholder='Buscar por aparelho, defeito ou reparo')
+            .search.form-inline.my-2.my-md-0#search-form
+              input#search-box.form-control(type='text', placeholder='Buscar por aparelho, defeito ou reparo' name="search")
+              .search-results
         
             .navbar-nav#loginDiv.z-depth-1
               if user
@@ -106,3 +107,4 @@ html(lang='en')
       script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', integrity='sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ', crossorigin='anonymous')
       script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', integrity='sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm', crossorigin='anonymous')
       //script(src="/javascripts/tech.js")
+      script(src="/javascripts/bundle.js")

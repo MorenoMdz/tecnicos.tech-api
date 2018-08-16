@@ -1,16 +1,17 @@
 /* import '../sass/style.scss'; */
+//const autocomplete = require('./autocomplete');
 
-import { $, $$ } from './modules/bling';
-import autocomplete from './modules/autocomplete';
-import typeAhead from './typeAhead';
-import makeMap from './modules/map';
-import ajaxStar from './modules/star';
+const { $, $$ } = require('./bling');
+const typeAhead = require('./typeAhead');
 
-autocomplete($('#address'), $('#lng'), $('#lat'));
-
+console.log($('.search'));
 typeAhead($('.search'));
 
-makeMap($('#map'));
+console.log('changed');
 
-const starForms = $$('form.star');
-starForms.on('submit', ajaxStar);
+//autocomplete($('#address'), $('#lng'), $('#lat'));
+
+//makeMap($('#map'));
+
+/* const starForms = $$('form.star');
+starForms.on('submit', ajaxStar); */

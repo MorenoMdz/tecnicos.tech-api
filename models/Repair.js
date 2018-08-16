@@ -46,10 +46,10 @@ const repairSchema = new mongoose.Schema(
 );
 
 // Define our indexes
-/* repairSchema.index({
-  name: 'text',
+repairSchema.index({
+  title: 'text',
   description: 'text',
-}); */
+});
 
 // slug 'middleware alike' setup
 repairSchema.pre('save', async function(next) {

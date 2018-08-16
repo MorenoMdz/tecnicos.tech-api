@@ -41,20 +41,17 @@ const problemSchema = new mongoose.Schema(
   }
 );
 
-// Define our indexes
-/* problemSchema.index({
-  name: 'text',
+problemSchema.index({
+  title: 'text',
   description: 'text',
-}); */
+});
 
-// slug 'middleware alike' setup
 problemSchema.pre('save', async function(next) {
   if (!this.isModified('title')) {
-    next(); // skip it
-    return; // stop this function from running (leave this middleware)
+    next();
+    return;
   }
-  this.slug = slug(this.title); // if name was modified then run this
-  // find stores that have the same store name via regex
+  this.slug = slug(this.title);
   const slugRegex = new RegExp(`^(${this.slug})((-[0-9]*$)?)$`, 'i');
   const problemsWithSlugWithSlug = await this.constructor.find({
     slug: slugRegex,
@@ -63,21 +60,14 @@ problemSchema.pre('save', async function(next) {
     this.slug = `${this.slug}-${problemsWithSlugWithSlug.length + 1}`;
   }
   next();
-  // TODO make more resiliant slugs
 });
 
-// find reviews where the stores _id property === reviews store property
 problemSchema.virtual('repairsV', {
-  ref: 'Repair', // what model to link?
-  localField: '_id', // which field on the store?
+  ref: 'Repair',
+  localField: '_id',
   foreignField: 'problem',
 });
-/* problemSchema.virtual('hardware', {
-  ref: 'Hardware',
-  localField: '_id',
-  foreignField: '_id',
-});
- */
+
 function autopopulate(next) {
   this.populate('repairsV');
   next();
