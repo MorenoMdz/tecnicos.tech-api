@@ -16,44 +16,52 @@ html(lang='en')
   body
     block header
       header
-        nav.navbar.navbar-expand-md.navbar-dark.col-sm-12.col-md-12
-          button.navbar-toggler.collapsed(type='button', data-toggle='collapse', data-target='#navbarCollapseTarget', aria-controls='navbarCollapseTarget', aria-expanded='false', aria-label='Toggle navigation')
-            span.navbar-toggler-icon
-          a.navbar-brand(href="/") Técnicos tech
-            // != h.icon('logo')
-            
-          #navbarCollapseTarget.navbar-collapse.collapse(style='')
-            ul.navbar-nav.mr-auto.lighten-3.py-4.mb-r.font-weight-bold.z-depth-1
+          //.row
+          nav.navbar.navbar-expand-md.navbar-dark
+            //.col-md-5
+            button.navbar-toggler.collapsed(type='button', data-toggle='collapse', data-target='#navbarCollapseTarget', aria-controls='navbarCollapseTarget', aria-expanded='false', aria-label='Toggle navigation')
+              span.navbar-toggler-icon
+            a.navbar-brand(href="/") Técnicos tech
+              // != h.icon('logo')
+              
+            #navbarCollapseTarget.navbar-collapse.collapse(style='')
+              ul.navbar-nav.mr-auto.lighten-3.py-4.mb-r.font-weight-bold.z-depth-1
 
-              each item in h.menu
-                li.nav-item
-                  a.nav-link.pl-3(href=item.slug, class=(currentPath.startsWith(item.slug) ? 'nav-item.active' : ''))
-                    //!= h.icon(item.icon)
-                    span #{item.title}
-
-            .search.form-inline.my-2.my-md-0#search-form
-              input#search-box.form-control(type='text', placeholder='Buscar por aparelho, defeito ou reparo' name="search")
-              .search-results
-        
-            .navbar-nav#loginDiv.z-depth-1
-              if user
-
-                li.nav-item.pl-2: a.nav-link(href="/account", class=(currentPath.startsWith('/account') ? 'nav-link-active' : ''))
-                  i.fa.fa-star
-                    span.pl-2.heart-count #{user.stars && user.stars.length}
+                each item in h.menu
+                  li.nav-item
+                    a.nav-link.pl-3(href=item.slug, class=(currentPath.startsWith(item.slug) ? 'nav-item.active' : ''))
+                      //!= h.icon(item.icon)
+                      span #{item.title}
                   
-                span.nav-item.px-2: a.nav-link(href="/account", class=(currentPath.startsWith('/account') ? 'nav-link-active' : ''))
-                  if user.gravatar
-                    img.avatar#avatar(src=user.gravatar + '&d=retro')
-                  else
-                    img.avatar#avatar(src=user.image + '&d=retro')
+                  
+              .search
+                //.col-md-4.col-sm-4
+                .form-inline.my-2.my-md-0
+                  input#search-box.form-control(type='text', placeholder='Buscar por defeitos' name="search")
+                  .search-results
 
-                span.nav-item.px-2: a.nav-link(href="/logout", class=(currentPath.startsWith('/logout') ? 'nav-link-active' : ''))
-                    //!= h.icon('logout')
-                    span Sair?
-              else
-                li.nav-item.px-2: a.nav-link(href="/register", class=(currentPath.startsWith('/register') ? 'nav-link-active' : '')) Registrar
-                li.nav-item.px-2: a.nav-link(href="/login", class=(currentPath.startsWith('/login') ? 'nav-link-active' : '')) Entrar
+
+              //.col-md-3.col-sm-3
+              .navbar-nav#loginDiv.z-depth-1
+                if user
+
+                  li.nav-item.pl-2: a.nav-link(href="/account", class=(currentPath.startsWith('/account') ? 'nav-link-active' : ''))
+                    i.fa.fa-star
+                      span.pl-2.heart-count #{user.stars && user.stars.length}
+                    
+                  span.nav-item.px-2: a.nav-link(href="/account", class=(currentPath.startsWith('/account') ? 'nav-link-active' : ''))
+                    if user.gravatar
+                      img.avatar#avatar(src=user.gravatar + '&d=retro')
+                    else
+                      img.avatar#avatar(src=user.image + '&d=retro')
+
+                  span.nav-item.px-2: a.nav-link(href="/logout", class=(currentPath.startsWith('/logout') ? 'nav-link-active' : ''))
+                      //!= h.icon('logout')
+                      span Sair?
+                else
+                  li.nav-item.px-2: a.nav-link(href="/register", class=(currentPath.startsWith('/register') ? 'nav-link-active' : '')) Registrar
+                  li.nav-item.px-2: a.nav-link(href="/login", class=(currentPath.startsWith('/login') ? 'nav-link-active' : '')) Entrar
+
                 
         
     block messages

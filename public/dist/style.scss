@@ -1,15 +1,18 @@
+$default-color: #0aecec;
+
 html {
   position: relative;
-  min-height: 100%; }
+  min-height: 100%;
+}
 
 body {
-  margin-bottom: 100px; }
-
+  margin-bottom: 100px;
+}
 /* Nav */
 .navbar-brand {
   background-color: transparent;
   box-sizing: border-box;
-  color: white !important;
+  color: rgb(255, 255, 255) !important;
   display: inline-block;
   margin-right: 1rem;
   padding-bottom: 0.3125rem;
@@ -17,33 +20,40 @@ body {
   text-decoration: none;
   white-space: nowrap;
   font-size: 1.5rem !important;
-  font-weight: bolder !important; }
+  font-weight: bolder !important;
+}
 
 nav {
-  border-left: solid #0aecec 4px;
-  border-bottom: solid #0aecec 2px;
-  background-color: #111 !important; }
+  border-left: solid $default-color 4px;
+  border-bottom: solid $default-color 2px;
+  background-color: #111 !important;
+}
 
 nav .nav-link {
-  border-left: solid #0aecec 2px; }
+  border-left: solid $default-color 2px;
+}
 
 #loginDiv {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-size: 1.2em; }
+  font-size: 1.2em;
+}
 
 #loginDiv a {
-  border-left: solid 0px; }
+  border-left: solid 0px;
+}
 
 #avatar {
   max-width: 75px;
-  /* border-left: solid $default-color 5px; */ }
+  /* border-left: solid $default-color 5px; */
+}
 
 #navbarCollapseTarget {
   /* position: absolute; */
-  z-index: 1; }
+  z-index: 1;
+}
 
 /* Search */
 #search-box {
@@ -55,7 +65,8 @@ nav .nav-link {
   color: white;
   outline: 0;
   border: 0;
-  top: 100%; }
+  top: 100%;
+}
 
 .search-results {
   background: white;
@@ -64,59 +75,67 @@ nav .nav-link {
   top: 100%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  max-width: 350px; }
-
+  max-width: 350px;
+}
 .search-result {
   padding: 10px;
   display: block;
   border-bottom: 1px solid #ececec;
   color: #007bb6 !important;
-  text-decoration: none black solid !important; }
-
+  text-decoration: none black solid !important;
+}
 .search-result-active {
-  background: #f1f1f1; }
-
+  background: #f1f1f1;
+}
 .list-group {
-  z-index: 0.9 !important; }
+  z-index: 0.9 !important;
+}
 
 /* Body */
 .homeInfo {
   position: relative;
   font-size: 1.3em;
-  border-bottom: solid #0aecec 2px;
-  border-left: #0aecec solid 2px;
-  background-color: #6568707e; }
+  border-bottom: solid $default-color 2px;
+  border-left: $default-color solid 2px;
+  background-color: #6568707e;
+}
 
 /* HW Item */
+
 #hwItemPhoto {
   max-width: 100px;
-  max-height: 75px; }
+  max-height: 75px;
+}
 
 /* HW Card */
 .hwCardImg {
   width: 100%;
   height: 15vw;
-  object-fit: scale-down; }
+  object-fit: scale-down;
+}
 
 .card-img-top {
-  height: 15rem; }
+  height: 15rem;
+}
 
 /* HW Problems List */
 #hwProblemsList {
   max-height: 450px;
-  overflow-y: scroll; }
-
+  overflow-y: scroll;
+}
 /* Problem img */
 #problemCardImg {
   width: 100%;
   height: 15vw;
   /* height: 15rem; */
-  object-fit: scale-down; }
+  object-fit: scale-down;
+}
 
 /* Repair */
 .star-filled > i {
   color: #1cc6fa;
-  background-color: transparent; }
+  background-color: transparent;
+}
 
 /* Footer */
 .footer {
@@ -125,129 +144,160 @@ nav .nav-link {
   width: 100%;
   height: 100px;
   background-color: #111;
-  text-align: center; }
+  text-align: center;
+}
 
 .footer .container {
   margin-top: 25px;
   color: #fff;
-  width: 100%; }
+  width: 100%;
+}
 
 .fa-twitter {
-  color: #4099ff; }
+  color: #4099ff;
+}
 
 .fa-facebook {
-  color: #3b5998; }
+  color: #3b5998;
+}
 
 .fa-youtube-play {
-  color: #e52d27; }
+  color: #e52d27;
+}
 
 .fa-rss {
-  color: #ff6600; }
+  color: #ff6600;
+}
 
 .fa-vine {
-  color: #0aecec; }
+  color: $default-color;
+}
 
 .fa-flickr {
-  color: #ff0084; }
+  color: #ff0084;
+}
 
 .fa-twitch {
-  color: #6441a5; }
+  color: #6441a5;
+}
 
 .fa-linkedin {
-  color: #007bb6; }
+  color: #007bb6;
+}
 
 .fa {
   opacity: 0.7;
   transition: 1s;
-  -webkit-transition: 1s; }
+  -webkit-transition: 1s;
+}
 
 .fa:hover {
   opacity: 1;
   transition: 1s;
-  -webkit-transition: 1s; }
+  -webkit-transition: 1s;
+}
 
 @media screen and (max-width: 767px) {
   nav {
-    border-left: solid #0aecec 3px;
-    border-bottom: solid #0aecec 1px; }
+    border-left: solid $default-color 3px;
+    border-bottom: solid $default-color 1px;
+  }
 
   body > div.footer > div > a > i {
-    display: none; }
+    display: none;
+  }
 
   #hwItem {
-    max-width: 90%; }
+    max-width: 90%;
+  }
 
   .footer {
-    height: 100px; } }
+    height: 100px;
+  }
+}
+
 @media screen and (min-width: 768px) {
   body > header > nav {
     height: 80px;
-    background-color: #111 !important; }
-
+    background-color: #111 !important;
+  }
   #loginDiv {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end; }
+    justify-content: flex-end;
+  }
 
   #avatar {
-    max-width: 75px; }
-
+    max-width: 75px;
+  }
   #search-box {
-    width: 400px; }
+    width: 400px;
+  }
 
   .repairsBtnHwList {
     max-width: 120%;
-    max-height: 50px; } }
+    max-height: 50px;
+  }
+}
+
 /* Repair */
 #repairItemBadge {
   min-width: 100px;
   max-width: 150px;
   height: 35px;
-  font-size: 1.2em; }
-
+  font-size: 1.2em;
+}
 #star {
   color: turquoise;
-  z-index: 2; }
+  z-index: 2;
+}
 
 #repairLi {
   text-decoration: none;
   color: #111;
-  font-size: 1.1em; }
+  font-size: 1.1em;
+}
 
 #repairLi span {
-  font-size: 1em; }
+  font-size: 1em;
+}
 
 .comment {
   overflow: hidden;
   padding: 0 0 1em;
   border-bottom: 1px solid #ddd;
   margin: 0 0 1em;
-  *zoom: 1; }
+  *zoom: 1;
+}
 
 .comment-img {
   float: left;
   margin-right: 33px;
   border-radius: 5px;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .comment-img img {
-  display: block; }
+  display: block;
+}
 
 .comment-body {
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .comment .text {
   padding: 10px;
   border: 1px solid #e5e5e5;
   border-radius: 5px;
-  background: #fff; }
+  background: #fff;
+}
 
 .comment .text p:last-child {
-  margin: 0; }
+  margin: 0;
+}
 
 .comment .attribution {
   margin: 0.5em 0 0;
   font-size: 14px;
-  color: #666; }
-
-/*# sourceMappingURL=style.css.map */
+  color: #666;
+}
