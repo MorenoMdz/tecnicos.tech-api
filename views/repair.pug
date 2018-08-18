@@ -25,12 +25,16 @@ block content
                       p.small.text-white Qualifique se o reparo deu resultado!
                 
       ul.list-group.list-group-flush.col-md-7
-        li.list-group-item #[h6 Título do reparo] #{repair.title}
-        li.list-group-item #[h6 Aparelho:] #{repair.hardware.name}
-        li.list-group-item #[h6 Modelo:] #{repair.hardware.model}
-        li.list-group-item #[h6 Componentes reparados:] #{repair.parts}
-        li.list-group-item #[h6 Descrição do reparo:]
-          p #{repair.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, asperiores dolorum. At iusto id, minus quia est provident omnis sequi sed, fugit excepturi, saepe natus? Rerum, atque eveniet. Id, sit?.
+        h6: li.list-group-item Título do reparo: 
+          span.text-secondary #{repair.title}
+        h6: li.list-group-item Aparelho: 
+          span.text-secondary #{repair.hardware.name} 
+        h6: li.list-group-item Modelo:  
+          span.text-secondary #{repair.hardware.model}
+        h6: li.list-group-item Componentes reparados:
+          span.text-secondary #{repair.parts}
+        h6: li.list-group-item Descrição do reparo:  
+          span.text-secondary #{repair.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, asperiores dolorum. At iusto id, minus quia est provident omnis sequi sed, fugit excepturi, saepe natus? Rerum, atque eveniet. Id, sit?.
         li.list-group-item 
     
     p.text-white.bg-info.p-2 Comentarios:

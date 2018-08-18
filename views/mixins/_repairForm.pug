@@ -13,14 +13,14 @@ mixin repairForm(repair = {})
     
     label(for="description") Descrição do problema:
     textarea.mb-2.form-control(name="description" placeholder="Descrição do reparo" required)= repair.description
-
-    label(for="photo") Adicione uma imagem do defeito:
+    p
+    label(for="photo") Adicione uma imagem do reparo:
       input.border.border-warning.mb-2.form-control-file(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
       if repair.photo
         img(src=`/uploads/${repair.photo}`, alt=repair.name width=200)
     
     label(for="video") Link para um video sobre o defeito: #[span.small (Sugerido: Youtube/Streamable/Vimeo)]
-    input.form-control(type="text" name="video" placeholder="link para o video" value=repair.hardware)
+    input.form-control(type="text" name="video" placeholder=" Link para o video" value=repair.hardware)
     // break line
     p
     input.form-control.btn.btn-primary(type="submit" value="Salvar" class="button" for="repairForm")

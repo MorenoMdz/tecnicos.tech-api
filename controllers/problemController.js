@@ -55,7 +55,7 @@ exports.addNewProblem = async (req, res) => {
     .catch(err => console.log(err)); // it wont move to the next line until the save returns something */
 
   req.flash('success', `Adicionado defeito ${problem.title} com sucesso.`);
-  res.redirect('/problems');
+  res.redirect('back');
 };
 
 exports.getProblemList = async (req, res) => {

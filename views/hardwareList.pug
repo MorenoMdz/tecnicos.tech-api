@@ -4,15 +4,15 @@ include mixins/_hwForm.pug
 include mixins/_hwList.pug
 
 block content
-  // pre= h.dump(hardware)
+  //pre= h.dump(hardwares)
   .container  
     .mt-3.row
-      .col-md-3.col-sm-12
+      .col-md-3
         p: strong Aparelhos cadastrados no sistema:
         p orderar por: #[strong TODO] 
         form.form-inline.pr-2(for="hwFilterBy") 
           input(type="text" id="hwFilterBy" placeholder="Filtrar aparelhos:")
-      .col-md-6.col-sm-12
-        #hwList.city(style="display:block")
+      .col-md-9
+        #hwList(style="display:block")
           +hwList
         

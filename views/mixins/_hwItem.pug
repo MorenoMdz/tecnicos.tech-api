@@ -1,16 +1,12 @@
 mixin hwItem(hardware)
   
-    //.container
-    #hwItem.py-1.px-0
-      li.list-group-item.d-flex.justify-content-center.align-items-center.bg-light
-        .row
-          span.col-md-4
-            img#hwItemPhoto(src=`/uploads/${hardware.photo || 'default.jpg'}`)
-          span.col-md-6
-            a.text-dark(href=`/hardware/${hardware.slug}`) 
-              p.text-center Aparelho #{hardware.name} 
-              p.text-center Modelo: #{hardware.model}
-          span.repairsBtnHwList.btn.btn-info.right.col-md-12
-            p.m-2 Reparos Cadastrados: XX
+  #hwItem.py-1
+    li.list-group-item.bg-light
+      .row
+        .col-md-10.col-sm-10.d-flex.align-items-center
+          strong: a.text-dark(href=`/hardware/${hardware.slug}`) Aparelho #[span.text-muted #{hardware.name}]  Modelo: #[span.text-muted #{hardware.model}]
+        .col-md-2.col-sm-2
+          img#hwItemPhoto(src=`/uploads/${hardware.photo || 'default.jpg'}`)
+          
           
 

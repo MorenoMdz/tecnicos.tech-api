@@ -16,7 +16,7 @@ body {
   padding-top: 0.3125rem;
   text-decoration: none;
   white-space: nowrap;
-  font-size: 1.5rem !important;
+  font-size: 1.3rem !important;
   font-weight: bolder !important; }
 
 nav {
@@ -48,10 +48,9 @@ nav .nav-link {
 /* Search */
 #search-box {
   height: 60px;
-  color: #fff;
   background-color: #111;
   max-width: 600px;
-  font-size: 30px;
+  font-size: 1.3rem;
   color: white;
   outline: 0;
   border: 0;
@@ -62,7 +61,7 @@ nav .nav-link {
   position: absolute;
   width: 100%;
   top: 100%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px #0aecec;
   z-index: 1;
   max-width: 350px; }
 
@@ -89,17 +88,16 @@ nav .nav-link {
 
 /* HW Item */
 #hwItemPhoto {
-  max-width: 100px;
-  max-height: 75px; }
+  /*   max-width: 75px;
+  max-height: 75px; */
+  width: 50px;
+  height: 50px; }
 
 /* HW Card */
 .hwCardImg {
   width: 100%;
-  height: 15vw;
+  height: 15rem;
   object-fit: scale-down; }
-
-.card-img-top {
-  height: 15rem; }
 
 /* HW Problems List */
 #hwProblemsList {

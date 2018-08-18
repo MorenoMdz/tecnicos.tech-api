@@ -2,27 +2,43 @@ extends layout
 
 block content
   include mixins/_problemItem.pug
-  // pre= h.dump(hardware)
+  include mixins/_problemForm.pug
+  //pre= h.dump(hardware)
   .container.py-2
     .card.mb-3
-      .wrapper
-        .card-body
-          img.card-img-top.hwCardImg(src=`/uploads/${hardware.photo || 'default.jpg'}` alt='Card image cap')
-          .card-header.card.text-white.bg-info.text-center
-            h5.card-title #{hardware.name} Modelo: #{hardware.model} 
-          .card-body.card.text-white.bg-secondary.mb-3
-            p.card-title Descrição: #{hardware.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, asperiores dolorum. At iusto id, minus quia est provident omnis sequi sed, fugit excepturi, saepe natus? Rerum, atque eveniet. Id, sit?.
-            p.card-text  Marca: #{hardware.brand}
-          p.card-text.card-footer.text-white.bg-info Defeitos listados para esse modelo de aparelho:
-            // TODO small.text-muted Last updated 3 mins ago
-          hr
-          p
-            //if hardware.problems
+      .card-body
+        .row
+          .col-sm-4
+            img.card-img-top.img-thumbnail.border-info.hwCardImg(src=`/uploads/${hardware.photo || 'default.jpg'}` alt='Card image cap')
+          .col-sm-8
+            //.card-header.card.text-white.bg-info.text-center
+            h5.card-header #{hardware.name} Modelo: #{hardware.model} 
+            .card-body
+              strong: p.card-text Descrição: 
+                span.text-secondary #{hardware.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, asperiores dolorum. At iusto id, minus quia est provident omnis sequi sed, fugit excepturi, saepe natus? Rerum, atque eveniet. Id, sit?.
+              strong: p.card-text Marca: 
+                span.text-secondary #{hardware.brand}
+      .btn.btn-info.block.mx-3.mb-2(data-toggle='modal' data-target='#myModal') Adicionar um novo Defeito
 
-            // TODO Add Problem Form 
-            .list-group#hwProblemsList
-              each problem in hardware.problems
-                +problemItem(problem)
+      .addRepairForm
+      #myModal.modal.fade(role='dialog')
+        .modal-dialog
+          .modal-content
+            .modal-header.bg-primary.text-white.p-1
+              h5.p-2 Defeito novo para #{hardware.name} modelo #{hardware.model}
+              button.close(type='button', data-dismiss='modal') × 
+            .modal-body.p-1
+              +problemForm 
+      
+    p.card-text.card-footer.text-white.bg-dark Defeitos listados para esse modelo de aparelho:
+        //pre= h.dump(hardware.problems)
+        if hardware.problems.length > 0
+          .list-group#hwProblemsList
+            each problem in hardware.problems
+              +problemItem(problem)
+        else
+          p Nenhum defeito listado para esse aparelho ainda!
+
                 
 
 

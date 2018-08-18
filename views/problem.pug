@@ -7,27 +7,31 @@ block content
   //pre= h.dump(problem)
   .container
     .card
-      h6.card-header Detalhes do defeito, "#{problem.title}":
-      .card-body 
-        strong: p.card-text Aparelho: 
-          span.text-info #{problem.hardware.name}
-        strong: p.card-text Modelo: 
-          span.text-info #{problem.hardware.model}
-        strong: p.card-text Placa: 
-          span.text-info #{problem.board}
-        strong: p.card-text Descrição: 
-          span.text-info #{problem.description}
-        strong.card-text.bg-warning todo: Dificuldade de reparo // peças // etc
-        strong.card-text.bg-warning todo: Galeria de imagens adicionadas
-        // todo image galery
-        #problemImg.m-3
-          if problem.photo.length > 0
-            a(href=`/uploads/${problem.photo}`)
-              img#problemCardImg.img-thumbnail.border.border-info( src=`/uploads/${problem.photo || 'default.jpg'}`, alt="Foto do Defeito")
-              figcaption.figure-caption Imagem do defeito.
-          else
-            p.p-3.border.border-info ** Defeito sem foto **
-      .btn.btn-primary.block(data-toggle='modal' data-target='#myModal') Adicionar um reparo
+      .row
+        .col-sm-4
+          #problemImg.m-3
+            if problem.photo.length > 0
+              a(href=`/uploads/${problem.photo}`)
+                img#problemCardImg.img-thumbnail.border.border-info( src=`/uploads/${problem.photo || 'default.jpg'}`, alt="Foto do Defeito")
+                figcaption.figure-caption Imagem do defeito.
+            else
+              p.p-3.border.border-info ** Defeito sem foto **
+        .col-sm-8
+          h6.card-header Detalhes do defeito, "#{problem.title}":
+          .card-body 
+            strong: p.card-text Aparelho: 
+              span.text-secondary #{problem.hardware.name}
+            strong: p.card-text Modelo: 
+              span.text-secondary #{problem.hardware.model}
+            strong: p.card-text Placa: 
+              span.text-secondary #{problem.board}
+            strong: p.card-text Descrição: 
+              span.text-secondary #{problem.description}
+            strong.card-text.bg-warning todo: Dificuldade de reparo // peças // etc
+            strong.card-text.bg-warning todo: Galeria de imagens adicionadas
+            // todo image galery
+
+      .btn.btn-info.block.mx-3.mb-2(data-toggle='modal' data-target='#myModal') Adicionar um reparo
 
       .addRepairForm
         #myModal.modal.fade(role='dialog')
