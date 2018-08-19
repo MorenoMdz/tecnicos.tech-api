@@ -11,7 +11,6 @@ block content
           .col-sm-4
             img.card-img-top.img-thumbnail.border-info.hwCardImg(src=`/uploads/${hardware.photo || 'default.jpg'}` alt='Card image cap')
           .col-sm-8
-            //.card-header.card.text-white.bg-info.text-center
             h5.card-header #{hardware.name} Modelo: #{hardware.model} 
             .card-body
               strong: p.card-text Descrição: 
@@ -37,7 +36,7 @@ block content
             each problem in hardware.problems
               +problemItem(problem)
         else
-          p Nenhum defeito listado para esse aparelho ainda!
+          p.mx-2 Nenhum defeito listado para esse aparelho ainda!
 
                 
 

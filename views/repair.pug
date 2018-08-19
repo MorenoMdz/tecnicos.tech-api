@@ -37,13 +37,12 @@ block content
           span.text-secondary #{repair.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, asperiores dolorum. At iusto id, minus quia est provident omnis sequi sed, fugit excepturi, saepe natus? Rerum, atque eveniet. Id, sit?.
         li.list-group-item 
     
-    p.text-white.bg-info.p-2 Comentarios:
+    p.text-white.bg-dark.p-2 Comentarios:
     section.comments.mt-3
       if repair.comments
         each comment in repair.comments
           article.comment
             a.comment-img(href='#non')
-              //img(src='https://pbs.twimg.com/profile_images/444197466133385216/UA08zh-B.jpeg', alt='', width='50', height='50')
               img.avatar(src=comment.author.gravatar, alt="gravatar", width='80', height='80')
             .comment-body
               .text

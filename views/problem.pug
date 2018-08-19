@@ -41,17 +41,13 @@ block content
                 h6.p-2 Adicionar um Reparo a esse defeito
                 button.close(type='button', data-dismiss='modal') × 
               .modal-body.p-1
-                +repairForm 
-                  
-
     hr    
-    // button(type="submit") Adicionar reparo
 
-    h2 Reparos para esse Defeito:
-    .py-3
+    h4 Reparos para esse Defeito:
+    .py-2
       +repairList(repairs)
-  
 
+      
 
     
     

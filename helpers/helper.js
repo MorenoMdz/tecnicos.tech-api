@@ -25,9 +25,9 @@ exports.siteName = `Técnicos Tech`;
 
 exports.menu = [
   { slug: '/hardwares', title: 'Aparelhos', icon: 'top' },
-  { slug: '/addProblem', title: 'Adicionar Defeito', icon: 'top' },
   { slug: '/config', title: 'Config', icon: 'config' },
   /*{ slug: '/problems', title: 'Defeitos', icon: 'store' },
+  { slug: '/addProblem', title: 'Adicionar Defeito', icon: 'top' },
    { slug: '/addForm', title: 'Adicionar Reparo', icon: 'add' }, */
   /*   { slug: '/map', title: 'Map', icon: 'map' }, */
 ];
