@@ -43,7 +43,7 @@ exports.addRepairForm = async (req, res) => {
 exports.createRepair = async (req, res) => {
   req.body.author = req.user._id;
   const repair = await new Repair(req.body).save();
-  console.log(req.body);
+
   req.flash(
     'success',
     `Reparo ao defeito ${req.body.title} adicionado com sucesso!`

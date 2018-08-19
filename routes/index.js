@@ -10,7 +10,6 @@ const commentController = require('../controllers/commentController');
 const homeController = require('../controllers/homeController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
-// Do work here
 router.get('/', homeController.homeDisplay);
 
 /* Hardware Route | Perms: Adm/Mod */
@@ -54,14 +53,6 @@ router.get(
   authController.isLoggedIn,
   catchErrors(problemController.addProblem)
 );
-
-/* router.post(
-  '/findModels',
-  authController.isLoggedIn,
-  hwController.upload,
-  catchErrors(problemController.resize),
-  catchErrors(problemController.findModels)
-); */
 
 router.post(
   '/addNewProblem',
@@ -137,12 +128,7 @@ router.post(
 );
 
 /* API Endpoints */
-router.get(
-  '/api/search',
-  catchErrors(
-    repairController.searchRepairs /* next searchProblems then comments then hw */
-  )
-);
+router.get('/api/search', catchErrors(repairController.searchRepairs));
 router.post('/api/repairs/:id/star', catchErrors(repairController.starsRepair));
 
 module.exports = router;

@@ -4,7 +4,6 @@ const multer = require('multer');
 const jimp = require('jimp');
 const uuid = require('uuid');
 
-/* Image handler */
 const multerOptions = {
   storage: multer.memoryStorage(),
   fileFilter(req, file, next) {
@@ -62,21 +61,20 @@ exports.getProblemList = async (req, res) => {
   const page = req.params.page || 1;
   const limit = 9;
   const skip = page * limit - limit;
-  // query db for a list of all repairs
+
   const problemPromise = Problem.find()
     .populate('author hardware repairs repairsV')
     .skip(skip)
     .limit(limit);
   const countPromise = Problem.count();
-  // will await until both promises return
+
   const [problems, count] = await Promise.all([problemPromise, countPromise]);
-  const pages = Math.ceil(count / limit); // rounded
+  const pages = Math.ceil(count / limit);
   if (!problems.length && skip) {
     req.flash(
       'info',
       `You asked for page ${page} that does not exists. Redirecting to the page ${pages}!`
     );
-    /* res.redirect(`/stores/page/${pages}`); */
     return;
   }
 
@@ -106,7 +104,6 @@ exports.getProblemBySlug = async (req, res) => {
 
   // finds the related repairs
   const repairController = require('./repairController');
-  console.log(problem._id);
   const repairs = await repairController.repairsPerProblem(problem._id);
 
   res.render('problem', {

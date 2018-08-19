@@ -6,7 +6,6 @@ const Tech = mongoose.model('Technician');
 
 exports.countHw = async (req, res, next) => {
   const hwCount = await Hardware.count();
-  //res.render('layout', { hwCount });
   problemController.countProblems;
 };
 
@@ -14,7 +13,6 @@ exports.countProblems = async (req, res, next) => {
   const problemsCount = await Problem.count();
   console.log(problemsCount);
   res.render('layout', { problemsCount });
-  /* next(); */
 };
 
 exports.homeDisplay = async (req, res) => {

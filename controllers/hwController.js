@@ -4,7 +4,6 @@ const multer = require('multer');
 const jimp = require('jimp');
 const uuid = require('uuid');
 
-/* Image handler */
 const multerOptions = {
   storage: multer.memoryStorage(),
   fileFilter(req, file, next) {
@@ -46,11 +45,8 @@ exports.addNewHw = async (req, res) => {
 };
 
 async function hwList(req, res, next) {
-  // query db for a list of all repairs
   const hardwares = await Hardware.find();
-  const totalHwCount = await Hardware.count();
-
-  /* console.log(hardwares); */
+  // const totalHwCount = await Hardware.count();
 
   return hardwares;
 }
@@ -61,20 +57,19 @@ exports.getAllHw = async (req, res) => {
   const page = req.params.page || 1;
   const limit = 9;
   const skip = page * limit - limit;
-  // query db for a list of all repairs
+
   const hwPromise = Hardware.find()
     .skip(skip)
     .limit(limit);
   const countPromise = Hardware.count();
-  // will await until both promises return
+
   const [hardwares, count] = await Promise.all([hwPromise, countPromise]);
-  const pages = Math.ceil(count / limit); // rounded
+  const pages = Math.ceil(count / limit);
   if (!hardwares.length && skip) {
     req.flash(
       'info',
       `You asked for page ${page} that does not exists. Redirecting to the page ${pages}!`
     );
-    /* res.redirect(`/stores/page/${pages}`); */
     return;
   }
   res.render('config', {

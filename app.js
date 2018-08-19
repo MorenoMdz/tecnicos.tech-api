@@ -14,12 +14,11 @@ const helpers = require('./helpers/helper');
 const errorHandlers = require('./handlers/errorHandlers');
 require('./handlers/passport');
 
-// create our Express app
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views')); // this is the folder where we keep our pug files
-app.set('view engine', 'pug'); // we use the engine pug, mustache or EJS work great too
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
 // serves up static files from the public folder. Anything in public/ will just be served up as the file it is
 app.use(express.static(path.join(__dirname, 'public')));
@@ -28,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Exposes a bunch of methods for validating data. Used heavily on userController.validateRegister
+// Exposes a bunch of methods for validating data.
 app.use(expressValidator());
 
 // populates req.cookies with any cookies that came along with the request
@@ -50,10 +49,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// // The flash middleware let's us use req.flash('error', 'Shit!'), which will then pass that message to the next page the user requests
+// // The flash middleware
 app.use(flash());
 
-// pass variables to our templates + all requests
+// pass variables to our templates + all requests via locals
 app.use((req, res, next) => {
   res.locals.h = helpers;
   res.locals.flashes = req.flash();
@@ -69,23 +68,23 @@ app.use((req, res, next) => {
   next();
 });
 
-// After allllll that above middleware, we finally handle our own routes!
+/* Routes */
 app.use('/', routes);
 
-// If that above routes didnt work, we 404 them and forward to error handler
+/* Handle notFound error */
 app.use(errorHandlers.notFound);
 
-// One of our error handlers will see if these errors are just validation errors
+/* Handle error flash msgs */
 app.use(errorHandlers.flashValidationErrors);
 
-// Otherwise this was a really bad error we didn't expect! Shoot eh
+/* Display error stack when in Dev build */
 if (app.get('env') === 'development') {
   /* Development Error Handler - Prints stack trace */
   app.use(errorHandlers.developmentErrors);
 }
 
-// production error handler
+/* production error handler */
 app.use(errorHandlers.productionErrors);
 
-// done! we export it so we can start the site in start.js
+/* exports the app starting module to start the app */
 module.exports = app;

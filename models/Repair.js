@@ -45,26 +45,23 @@ const repairSchema = new mongoose.Schema(
   }
 );
 
-// Define our indexes
 repairSchema.index({
   title: 'text',
   description: 'text',
 });
 
-// slug 'middleware alike' setup
 repairSchema.pre('save', async function(next) {
   if (!this.isModified('title')) {
-    next(); // skip it
-    return; // stop this function from running (leave this middleware)
+    next();
+    return;
   }
-  this.slug = slug(this.title); // if name was modified then run this
+  this.slug = slug(this.title);
   const slugRegex = new RegExp(`^(${this.slug})((-[0-9]*$)?)$`, 'i');
   const repairsWithSlug = await this.constructor.find({ slug: slugRegex });
   if (repairsWithSlug.length) {
     this.slug = `${this.slug}-${repairsWithSlug.length + 1}`;
   }
   next();
-  // TODO make more resiliant slugs
 });
 
 repairSchema.virtual('comments', {
@@ -74,7 +71,6 @@ repairSchema.virtual('comments', {
 });
 
 function autopopulate(next) {
-  /* this.populate('author'); */
   this.populate('comments');
   next();
 }

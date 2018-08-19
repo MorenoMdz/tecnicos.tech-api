@@ -48,13 +48,13 @@ const hardwareSchema = new mongoose.Schema(
   }
 );
 
-// Define our indexes
+/* Indexes */
 hardwareSchema.index({
   name: 'text',
   model: 'text',
 });
 
-// slug 'middleware alike' setup
+/* Auto set the slug */
 hardwareSchema.pre('save', async function(next) {
   if (!this.isModified('name')) {
     next(); // skip it
@@ -67,26 +67,14 @@ hardwareSchema.pre('save', async function(next) {
     this.slug = `${this.slug}-${hardwaresWithSlug.length + 1}`;
   }
   next();
-  // TODO make more resiliant slugs
 });
 
 hardwareSchema.virtual('problems', {
-  ref: 'Problem', // what model to link?
-  localField: '_id', // which field on the sotre?
+  ref: 'Problem',
+  localField: '_id',
   foreignField: 'hardware',
 });
-/* hardwareSchema.statics.getProblemsList = function() {
-  return this.aggregate([
-    // the '$' means it is a filed inside the document like in '$tags"
-    { $unwind: '$tags' },
-    { $group: { _id: '$tags', count: { $sum: 1 } } },
-    { $sort: { count: -1 } },
-  ]);
-};
- */
-// find reviews where the stores _id property === reviews store property
 
-// ToDo pre load Problems
 function autopopulate(next) {
   this.populate('reviews');
   next();

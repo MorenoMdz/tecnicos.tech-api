@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Technician = mongoose.model('Technician');
 const promisify = require('es6-promisify');
 
+/* Login Methods */
 exports.loginForm = (req, res) => {
   res.render('login', { title: 'Entrar' });
 };
@@ -10,7 +11,7 @@ exports.registerForm = (req, res) => {
   res.render('register', { title: 'Registrar' });
 };
 
-// validation middleware
+/* Validation Middleware */
 exports.validateRegister = (req, res, next) => {
   req.sanitizeBody('name');
   req.checkBody('name', 'Você precisa adicionar um nome!').notEmpty();
@@ -48,7 +49,7 @@ exports.validateRegister = (req, res, next) => {
 exports.registerTechnician = async (req, res, next) => {
   const user = new Technician({ email: req.body.email, name: req.body.name });
   const registerWithPromise = promisify(Technician.register, Technician);
-  await registerWithPromise(user, req.body.password) // this will store a hash in the db
+  await registerWithPromise(user, req.body.password) // this will store a hash of the password in the db
     .catch(e => {
       return (emailExists = e.name);
     });
