@@ -23,11 +23,16 @@ html(lang='en')
 
             #navbarCollapseTarget.navbar-collapse.collapse(style='')
               ul.navbar-nav.mr-auto.lighten-3.py-4.mb-r.font-weight-bold.z-depth-1
-
                 each item in h.menu
                   li.nav-item
                     a.nav-link.pl-3(href=item.slug, class=(currentPath.startsWith(item.slug) ? 'nav-item.active' : ''))
                       span #{item.title}
+                if user
+                  if user.siteRank == 'admin'
+                    li.nav-item
+                      a.nav-link.pl-3(href='/config', class=(currentPath.startsWith('/config') ? 'nav-item.active' : ''))
+                        span Admin
+
                   
                   
               .search
@@ -57,19 +62,19 @@ html(lang='en')
                 
         
     block messages
-    
-    if locals.flashes
-      .flashDiv.py-2
-        #flash-messages
-          - const categories = Object.keys(locals.flashes)
-          each category in categories
-            each message in flashes[category]
-              -if(message == 'Login falhou!')
-                .flash-msg.alert.alert-danger #{message}
-              -else 
-                .flash-msg(class=`alert alert-${category} py-1 text-center`)
-                  p.flash-text!= message 
-                    button.flash-remove.close(onClick="this.parentElement.parentElement.remove()") &times;
+      .container
+        if locals.flashes
+          .flashDiv.py-2
+            #flash-messages
+              - const categories = Object.keys(locals.flashes)
+              each category in categories
+                each message in flashes[category]
+                  -if(message == 'Login falhou!')
+                    .flash-msg.alert.alert-danger #{message}
+                  -else 
+                    .flash-msg(class=`alert alert-${category} py-1 text-center`)
+                      p.flash-text!= message 
+                        button.flash-remove.close(onClick="this.parentElement.parentElement.remove()") &times;
       
     .content
       block content

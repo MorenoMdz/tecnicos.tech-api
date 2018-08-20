@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  .container
+    h5 Lista de Técnicos ativos no sistema:
+    ul.list-group.mb-2
+    //pre= h.dump(technics)
+    each tech in technics
+      li.list-group-item
+        a(href=`/tech/${tech._id}`): strong #{tech.name} #{tech.stars.length}
+        // if user ...
+    

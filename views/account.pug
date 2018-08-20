@@ -1,11 +1,39 @@
 extends layout
 
 block content
-  .inner  
-    h2 Edit your Account
-    form(action="/account" method="post")
-      label(for="name") Name
-      input(type="text" name="name" value=user.name )
-      label(for="email") Email
-      input(type="email" name="email" value=user.email)
-      input.button(type="submit", value="Update my Account")
+  .container  
+    h4 Informações de usuário:
+    p Agradecimentos (estrelas dadas) : #{user.stars.length}
+    //p Estrelas conquistadas: #{user.techStars.length}
+    p 
+    h4 Edite seus dados:
+    form.form-group(action="/account" method="POST")
+      .card.p-2.mb-3
+        label(for="name") Seu nome: 
+        input.form-control.mb-2(type="text" name="name" value=user.name )
+        label(for="email") Email: 
+        input.form-control.mb-2(type="email" name="email" value=user.email)
+        label(for="phone") Telefone de contato: 
+        input.form-control.mb-2(type="phone" name="phone" value=user.phone)
+      .card.p-2
+        h6 Dados de endereço de sua assistência ou local onde trabalha:
+        p.small Esses dados ficarão no nosso sistema para caso outros técnicos queiram indicar alguém da sua região, ou para promoções futuras. Essas informações são opcionais.
+        label(for="street") Rua: 
+        input.form-control(type="street" name="street" value=user.address.street)
+        label(for="number") Número: 
+        input.form-control(type="number" name="number" value=user.address.number)
+        label(for="complemento") Complemento: 
+        input.form-control(type="complemento" name="complemento" value=user.address.complemento)
+        label(for="bairro") Bairro: 
+        input.form-control(type="bairro" name="bairro" value=user.address.bairro)
+        label(for="city") Cidade: 
+        input.form-control(type="city" name="city" value=user.address.city)
+        label(for="state") Estado: 
+        input.form-control(type="state" name="state" value=user.address.state)
+        label(for="zipCode") Cep: 
+        input.form-control(type="zipCode" name="zipCode" value=user.address.zipCode)
+        label(for="store_name") Nome de sua Loja ou onde trabalha: 
+        input.form-control(type="store_name" name="store_name" value=user.address.store_name)
+
+      
+      input.btn.btn-warning.form-control.my-2(type="submit", value="Atualizar meus dados")

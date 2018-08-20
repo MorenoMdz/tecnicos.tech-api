@@ -19,14 +19,21 @@ exports.logout = (req, res) => {
 };
 
 exports.isLoggedIn = (req, res, next) => {
-  // check if user is auth
   if (req.isAuthenticated()) {
-    next(); // carry on, he is logged in
+    next(); // check if user is auth carry on, he is logged in
     return;
   }
-
   req.flash('danger', 'Não autorizado.');
   res.redirect('/login');
+};
+
+exports.isMod = (req, res, next) => {
+  if (req.user.siteRank == 'admin') {
+    next();
+    return;
+  }
+  req.flash('danger', 'Somente moderadores.');
+  res.redirect('/');
 };
 
 exports.forgot = async (req, res) => {

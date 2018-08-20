@@ -27,11 +27,12 @@ const technicianSchema = new Schema({
   address: {
     street: String,
     number: String,
-    complement: String,
+    complemento: String,
     bairro: String,
     city: String,
     state: String,
     zipCode: String,
+    store_name: String,
   },
   siteRank: [0, 1, 2, 3, 4, 5],
   techStars: [
@@ -54,6 +55,18 @@ const technicianSchema = new Schema({
 technicianSchema.index({
   name: 'text',
 });
+
+/* technicianSchema.pre('save', async function(next) {
+  this.slug = slug(this.name);
+  const slugRegex = new RegExp(`^(${this.slug})((-[0-9]*$)?)$`, 'i');
+  const techWithSlugWithSlug = await this.constructor.find({
+    slug: slugRegex,
+  });
+  if (techWithSlugWithSlug.length) {
+    this.slug = `${this.slug}-${techWithSlugWithSlug.length + 1}`;
+  }
+  next();
+}); */
 
 // gets the user's gravatar based in his email address
 technicianSchema.virtual('gravatar').get(function() {

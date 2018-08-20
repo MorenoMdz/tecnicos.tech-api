@@ -49,6 +49,7 @@ exports.validateRegister = (req, res, next) => {
 exports.registerTechnician = async (req, res, next) => {
   const user = new Technician({ email: req.body.email, name: req.body.name });
   const registerWithPromise = promisify(Technician.register, Technician);
+  let emailExists = '';
   await registerWithPromise(user, req.body.password) // this will store a hash of the password in the db
     .catch(e => {
       return (emailExists = e.name);
@@ -75,6 +76,15 @@ exports.updateAccount = async (req, res) => {
   const updates = {
     name: req.body.name,
     email: req.body.email,
+    phone: req.body.phone,
+    'address.street': req.body.street,
+    'address.number': req.body.number,
+    'address.complemento': req.body.complemento,
+    'address.bairro': req.body.bairro,
+    'address.city': req.body.city,
+    'address.state': req.body.state,
+    'address.zipCode': req.body.zipCode,
+    'address.store_name': req.body.store_name,
   };
 
   const technician = await Technician.findOneAndUpdate(
@@ -83,5 +93,19 @@ exports.updateAccount = async (req, res) => {
     { new: true, runValidators: true, context: 'query' }
   );
   req.flash('success', 'Perfil atualizado.');
-  res.redirect('/login');
+  res.redirect('/account');
+};
+
+exports.getTechList = async (req, res) => {
+  const technics = await Technician.find().select({
+    name: 1,
+    stars: 1,
+    techStars: 1,
+  });
+  res.render('techList', { title: 'Técnicos do site', technics });
+};
+
+exports.getTech = async (req, res) => {
+  const technician = await Technician.findById({ _id: req.params.id });
+  res.render('tech', { title: 'Tecnico', technician });
 };

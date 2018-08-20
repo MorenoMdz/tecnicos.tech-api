@@ -48,9 +48,10 @@ nav .nav-link {
 /* Search */
 #search-box {
   height: 60px;
-  background-color: #111;
+  background-color: #222;
   max-width: 600px;
   font-size: 1.3rem;
+  font-weight: bold;
   color: white;
   outline: 0;
   border: 0;

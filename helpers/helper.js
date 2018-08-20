@@ -16,5 +16,6 @@ exports.siteName = `Técnicos Tech`;
 
 exports.menu = [
   { slug: '/hardwares', title: 'Aparelhos', icon: 'top' },
-  { slug: '/config', title: 'Config', icon: 'config' },
+  { slug: '/techs', title: 'Técnicos', icon: 'top' },
+  /* { slug: '/config', title: 'Config', icon: 'config' }, */
 ];

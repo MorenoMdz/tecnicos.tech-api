@@ -13,10 +13,16 @@ const { catchErrors } = require('../handlers/errorHandlers');
 router.get('/', homeController.homeDisplay);
 
 /* Hardware Route | Perms: Adm/Mod */
-router.get('/config', authController.isLoggedIn, hwController.getAllHw);
+router.get(
+  '/config',
+  authController.isLoggedIn,
+  authController.isMod,
+  hwController.getAllHw
+);
 router.post(
   '/addHw',
   authController.isLoggedIn,
+  authController.isMod,
   hwController.upload,
   catchErrors(hwController.resize),
   catchErrors(hwController.addNewHw)
@@ -126,6 +132,10 @@ router.post(
   authController.isLoggedIn,
   catchErrors(technicianController.updateAccount)
 );
+
+/* Tech List */
+router.get('/techs', catchErrors(technicianController.getTechList));
+router.get('/tech/:id', catchErrors(technicianController.getTech));
 
 /* API Endpoints */
 router.get('/api/search', catchErrors(repairController.searchRepairs));
