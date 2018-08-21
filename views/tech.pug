@@ -19,12 +19,12 @@ block content
           .list-group
             p: strong.list-group-item #{technician.name}
             if technician.contacts_public === true
-              p: strong.list-group-item Contato: #{technician.phone}
+              p: strong.list-group-item Contato: #[span.font-weight-normal #{technician.phone}].
             else
               p: strong.list-group-item Contato: #[span.text-muted Telefone não disponível].
               
             if technician.contacts_public === true
-              p: strong.list-group-item Email: #{technician.email}
+              p: strong.list-group-item Email: #[span.font-weight-normal #{technician.email}].
             else
               p: strong.list-group-item Email: #[span.text-muted Email não disponível].
             // TODO check if a address is set
