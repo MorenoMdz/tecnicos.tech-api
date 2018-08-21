@@ -34,6 +34,14 @@ block content
         input.form-control(type="zipCode" name="zipCode" value=user.address.zipCode)
         label(for="store_name") Nome de sua Loja ou onde trabalha: 
         input.form-control(type="store_name" name="store_name" value=user.address.store_name)
+        label(for="site_name") Seu site: 
+        input.form-control(type="site_name" name="site_name" value=user.address.site_name)
 
-      
+        .custom-control.custom-checkbox
+          input#defaultUnchecked.custom-control-input(type="checkbox", name="contacts_public", checked=(user.contacts_public))
+          label.custom-control-label(for='defaultUnchecked') Deixar seu contato (email e telefone) visível? 
+        .custom-control.custom-checkbox
+          input#defaultUncheckedAddress.custom-control-input(type="checkbox", name="showAddress", checked=(user.address.public))
+          label.custom-control-label(for='defaultUncheckedAddress') Deixar seu endereço visível?
+
       input.btn.btn-warning.form-control.my-2(type="submit", value="Atualizar meus dados")

@@ -12,6 +12,10 @@ const technicianSchema = new Schema({
     required: 'Please supply the technicians name',
     trim: true,
   },
+  contacts_public: {
+    type: Boolean,
+    default: true,
+  },
   email: {
     type: String,
     unique: true,
@@ -33,6 +37,11 @@ const technicianSchema = new Schema({
     state: String,
     zipCode: String,
     store_name: String,
+    site_name: String,
+    public: {
+      type: Boolean,
+      default: true,
+    },
   },
   siteRank: [0, 1, 2, 3, 4, 5],
   techStars: [
@@ -49,24 +58,15 @@ const technicianSchema = new Schema({
   ],
   resetPasswordToken: String,
   resetPasswordExpires: Date,
-  reputationScore: [],
+  warning: {
+    type: String,
+    default: 'You are not suposed to be here, and the cake is a lie!',
+  },
 });
 
 technicianSchema.index({
   name: 'text',
 });
-
-/* technicianSchema.pre('save', async function(next) {
-  this.slug = slug(this.name);
-  const slugRegex = new RegExp(`^(${this.slug})((-[0-9]*$)?)$`, 'i');
-  const techWithSlugWithSlug = await this.constructor.find({
-    slug: slugRegex,
-  });
-  if (techWithSlugWithSlug.length) {
-    this.slug = `${this.slug}-${techWithSlugWithSlug.length + 1}`;
-  }
-  next();
-}); */
 
 // gets the user's gravatar based in his email address
 technicianSchema.virtual('gravatar').get(function() {

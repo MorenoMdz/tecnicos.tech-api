@@ -2,8 +2,24 @@ extends layout
 
 block content
   .container
-    pre= h.dump(technician)
-    h5 Técnico #{technician.name}
-    p #{technician.address}
+    //pre= h.dump(technician)
+    h5.mb-2 Perfil do técnico:
+    p #{technician.name}
+    if technician.contacts_public === true
+      p Contato: #{technician.phone}
+    else
+      p Telefone não disponível.
+      
+    if technician.contacts_public === true
+      p Email: #{technician.email}
+    else
+      p Email não disponível.
 
+    if technician.address.public === true
+      p Local de trabalho: #{technician.address.store_name}
+      p #{technician.address.street}, número #{technician.address.number} bairro #{technician.address.bairro}
+      p Cidade: #{technician.address.city} Estado: #{technician.address.state}
+      p Site: #{technician.address.site_name}
+    else  
+      p O endereço desse técnico não é público.
     

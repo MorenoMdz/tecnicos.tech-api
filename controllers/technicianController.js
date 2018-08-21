@@ -73,6 +73,20 @@ exports.account = (req, res) => {
 };
 
 exports.updateAccount = async (req, res) => {
+  let showContactInfo = false;
+  if (req.body.contacts_public == 'on') {
+    showContactInfo = true;
+  } else {
+    showContactInfo = false;
+  }
+
+  let showAddress = false;
+  if (req.body.showAddress == 'on') {
+    showAddress = true;
+  } else {
+    showAddress = false;
+  }
+
   const updates = {
     name: req.body.name,
     email: req.body.email,
@@ -85,6 +99,9 @@ exports.updateAccount = async (req, res) => {
     'address.state': req.body.state,
     'address.zipCode': req.body.zipCode,
     'address.store_name': req.body.store_name,
+    'address.site_name': req.body.site_name,
+    'address.public': showAddress,
+    contacts_public: showContactInfo,
   };
 
   const technician = await Technician.findOneAndUpdate(
@@ -93,7 +110,7 @@ exports.updateAccount = async (req, res) => {
     { new: true, runValidators: true, context: 'query' }
   );
   req.flash('success', 'Perfil atualizado.');
-  res.redirect('/account');
+  res.redirect(`/tech/${req.user._id}`);
 };
 
 exports.getTechList = async (req, res) => {
