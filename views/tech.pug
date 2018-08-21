@@ -2,24 +2,44 @@ extends layout
 
 block content
   .container
-    //pre= h.dump(technician)
-    h5.mb-2 Perfil do técnico:
-    p #{technician.name}
-    if technician.contacts_public === true
-      p Contato: #{technician.phone}
-    else
-      p Telefone não disponível.
-      
-    if technician.contacts_public === true
-      p Email: #{technician.email}
-    else
-      p Email não disponível.
+    //pre= h.dump(technician.gravatar)
 
-    if technician.address.public === true
-      p Local de trabalho: #{technician.address.store_name}
-      p #{technician.address.street}, número #{technician.address.number} bairro #{technician.address.bairro}
-      p Cidade: #{technician.address.city} Estado: #{technician.address.state}
-      p Site: #{technician.address.site_name}
-    else  
-      p O endereço desse técnico não é público.
+    .container.pb-3.border-bottom
+      h5.mb-3.pb-2.border-bottom Perfil do técnico:
+      .row
+        .col-md-2 
+          // TODO: abrir em modal
+          if technician.siteRank[0] === 'admin'
+            a(href=rnGesus)
+              img.avatar(src=technician.gravatar, alt="gravatar", width='120', height='120')
+          else
+            a(href=technician.gravatar)
+              img.avatar(src=technician.gravatar, alt="gravatar", width='120', height='120')
+        .col-md-9
+          .list-group
+            p: strong.list-group-item #{technician.name}
+            if technician.contacts_public === true
+              p: strong.list-group-item Contato: #{technician.phone}
+            else
+              p: strong.list-group-item Contato: #[span.text-muted Telefone não disponível].
+              
+            if technician.contacts_public === true
+              p: strong.list-group-item Email: #{technician.email}
+            else
+              p: strong.list-group-item Email: #[span.text-muted Email não disponível].
+            // TODO check if a address is set
+            // loop em todos elementos de address
+              se o elemento atual (ex street) tem algo, 
+              show
+            if technician.address
+              if technician.address.public === true
+                p: strong.list-group-item Local de trabalho: #[span.font-weight-normal #{technician.address.store_name}]
+                p: strong.list-group-item Site: #{technician.address.site_name}
+                .card.p-2.pt-2
+                  p.pl-2: strong.card-item Endereço: #[span.font-weight-normal #{technician.address.street}] Número: #[span.font-weight-normal #{technician.address.number}] 
+                  p.pl-2: strong.card-item Bairro: #[span.font-weight-normal #{technician.address.bairro}] Complemento: #[span.font-weight-normal #{technician.address.complemento}] 
+                  p.pl-2.mb-1: strong.card-item Cidade: #[span.font-weight-normal #{technician.address.city}] Estado: #[span.font-weight-normal #{technician.address.state}]
+                  
+              else  
+                p: strong.list-group-item Endereço: #[span.text-muted O endereço desse técnico não é público].
     

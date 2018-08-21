@@ -62,6 +62,11 @@ const technicianSchema = new Schema({
     type: String,
     default: 'You are not suposed to be here, and the cake is a lie!',
   },
+  boss: [
+    {
+      type: String,
+    },
+  ],
 });
 
 technicianSchema.index({

@@ -15,28 +15,30 @@ block content
         input.form-control.mb-2(type="email" name="email" value=user.email)
         label(for="phone") Telefone de contato: 
         input.form-control.mb-2(type="phone" name="phone" value=user.phone)
-      .card.p-2
+
+      .card.p-2.mb-2
         h6 Dados de endereço de sua assistência ou local onde trabalha:
         p.small Esses dados ficarão no nosso sistema para caso outros técnicos queiram indicar alguém da sua região, ou para promoções futuras. Essas informações são opcionais.
         label(for="street") Rua: 
-        input.form-control(type="street" name="street" value=user.address.street)
+        input.form-control.mb-2(type="street" name="street" value=user.address.street)
         label(for="number") Número: 
-        input.form-control(type="number" name="number" value=user.address.number)
+        input.form-control.mb-2(type="number" name="number" value=user.address.number)
         label(for="complemento") Complemento: 
-        input.form-control(type="complemento" name="complemento" value=user.address.complemento)
+        input.form-control.mb-2(type="complemento" name="complemento" value=user.address.complemento)
         label(for="bairro") Bairro: 
-        input.form-control(type="bairro" name="bairro" value=user.address.bairro)
+        input.form-control.mb-2(type="bairro" name="bairro" value=user.address.bairro)
         label(for="city") Cidade: 
-        input.form-control(type="city" name="city" value=user.address.city)
+        input.form-control.mb-2(type="city" name="city" value=user.address.city)
         label(for="state") Estado: 
-        input.form-control(type="state" name="state" value=user.address.state)
+        input.form-control.mb-2(type="state" name="state" value=user.address.state)
         label(for="zipCode") Cep: 
-        input.form-control(type="zipCode" name="zipCode" value=user.address.zipCode)
+        input.form-control.mb-2(type="zipCode" name="zipCode" value=user.address.zipCode)
         label(for="store_name") Nome de sua Loja ou onde trabalha: 
-        input.form-control(type="store_name" name="store_name" value=user.address.store_name)
+        input.form-control.mb-2(type="store_name" name="store_name" value=user.address.store_name)
         label(for="site_name") Seu site: 
-        input.form-control(type="site_name" name="site_name" value=user.address.site_name)
-
+        input.form-control.mb-2(type="site_name" name="site_name" value=user.address.site_name)
+      .card.p-2.mb-2
+        h6 Configuração de exibição dos seus contatos
         .custom-control.custom-checkbox
           input#defaultUnchecked.custom-control-input(type="checkbox", name="contacts_public", checked=(user.contacts_public))
           label.custom-control-label(for='defaultUnchecked') Deixar seu contato (email e telefone) visível? 

@@ -42,7 +42,7 @@ block content
       if repair.comments
         each comment in repair.comments
           article.comment
-            a.comment-img(href='#non')
+            a.comment-img(href=`/tech/${comment.author._id}`)
               img.avatar(src=comment.author.gravatar, alt="gravatar", width='80', height='80')
             .comment-body
               .text
