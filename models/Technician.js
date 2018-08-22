@@ -43,7 +43,10 @@ const technicianSchema = new Schema({
       default: true,
     },
   },
-  siteRank: [0, 1, 2, 3, 4, 5],
+  siteRank: {
+    type: String,
+    default: 'Técnico',
+  },
   techStars: [
     {
       type: mongoose.Schema.ObjectId,

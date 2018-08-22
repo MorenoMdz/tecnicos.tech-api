@@ -7,6 +7,7 @@ html {
 
 body {
   margin-bottom: 100px;
+  max-height: 100%;
 }
 /* Nav */
 .navbar-brand {
@@ -118,8 +119,16 @@ nav .nav-link {
 
 /* HW Problems List */
 #hwProblemsList {
-  max-height: 450px;
-  overflow-y: scroll;
+  max-height: 350px;
+  overflow-y: auto;
+}
+#hwBtn {
+  line-height: 1 !important;
+  max-width: 200px !important;
+  visibility: hidden;
+}
+#hwProblemsList .list-group-item:hover #hwBtn {
+  visibility: visible;
 }
 /* Problem img */
 #problemCardImg {
@@ -134,8 +143,12 @@ nav .nav-link {
   color: #1cc6fa;
   background-color: transparent;
 }
-
-/* Account */
+/* Tech List */
+.techList a {
+  text-transform: none !important;
+  text-decoration: none !important;
+  color: #222;
+}
 
 /* Footer */
 .footer {

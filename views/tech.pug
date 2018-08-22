@@ -31,10 +31,10 @@ block content
             // loop em todos elementos de address
               se o elemento atual (ex street) tem algo, 
               show
-            if technician.address
+            if technician.address.street
               if technician.address.public === true
                 p: strong.list-group-item Local de trabalho: #[span.font-weight-normal #{technician.address.store_name}]
-                p: strong.list-group-item Site: #{technician.address.site_name}
+                p: strong.list-group-item Site: #[a(href=`http://${technician.address.site_name}`) #{technician.address.site_name}]
                 .card.p-2.pt-2
                   p.pl-2: strong.card-item Endereço: #[span.font-weight-normal #{technician.address.street}] Número: #[span.font-weight-normal #{technician.address.number}] 
                   p.pl-2: strong.card-item Bairro: #[span.font-weight-normal #{technician.address.bairro}] Complemento: #[span.font-weight-normal #{technician.address.complemento}] 

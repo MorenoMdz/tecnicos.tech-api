@@ -114,12 +114,13 @@ exports.updateAccount = async (req, res) => {
 };
 
 exports.getTechList = async (req, res) => {
-  const technics = await Technician.find().select({
+  const techs = await Technician.find().select({
     name: 1,
     stars: 1,
     techStars: 1,
+    siteRank: 1,
   });
-  res.render('techList', { title: 'Técnicos do site', technics });
+  res.render('techList', { title: 'Técnicos do site', techs });
 };
 
 exports.getTech = async (req, res) => {

@@ -4,9 +4,17 @@ block content
   .container.pb-3.border-bottom
     h5.mb-3.pb-2.border-bottom Lista de Técnicos ativos no sistema:
     ul.list-group.mb-2
-    //pre= h.dump(technics)
-    each tech in technics
-      li.list-group-item
-        a(href=`/tech/${tech._id}`): strong #{tech.name} #{tech.stars.length}
-        // if user ...
-    
+    //pre= h.dump(techs)
+    .container.techList
+      each technician in techs
+        a(href=`/tech/${technician._id}`)
+          li.list-group-item.p-3.mb-2
+            .row
+              .col-md-2
+                span.fa.fa-star.badge-primary.p-2 #[span.pl-1 #{technician.stars.length}]
+              .col-md-8
+                strong.ml-2.mr-auto #[span.font-primary #{technician.name}]
+              .col-md-2
+                strong.ml-2.mr-auto Rank: #{technician.siteRank}
+                
+                
