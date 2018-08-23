@@ -8,11 +8,38 @@ block content
   .container  
     .mt-3.row
       .col-md-3
-        p: strong Aparelhos cadastrados no sistema:
-        p orderar por: #[strong TODO] 
-        form.form-inline.pr-2(for="hwFilterBy") 
-          input(type="text" id="hwFilterBy" placeholder="Filtrar aparelhos:")
+        p.mb-2: strong Aparelhos cadastrados no sistema:
+        input.pl-2#filterHw(type='text', onkeyup='filter()', placeholder='Filtrar aparelhos por...')
+        // Orderar por: #[strong TODO] 
       .col-md-9
         #hwList(style="display:block")
           +hwList
+          p#emptyMsg: strong(style={'display': '' }) Nada encontrado, por favor modifique sua busca!
+          
         
+  script.
+    function filter() {
+      let input, filter, ul, li, a, i, msg;
+      input = document.getElementById('filterHw');
+      filter = input.value.toUpperCase();
+      ul = document.getElementById("hwListUl");
+      li = ul.getElementsByTagName('li');
+      msg = document.getElementById("emptyMsg")
+      msg.style.display = "none";
+      let found = 0;
+      for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          li[i].style.display = "";
+          found++;
+        } else {
+          li[i].style.display = "none";
+        }
+      }
+      if(!found){
+        console.log('not found')
+        msg.style.display = "";
+      }
+    }
+    filter()
+

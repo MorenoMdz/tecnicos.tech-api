@@ -2501,23 +2501,27 @@ NodeList.prototype.on = NodeList.prototype.addEventListener = function(
 module.exports = { $, $$ };
 
 },{}],29:[function(require,module,exports){
-/* import '../sass/style.scss'; */
-//const autocomplete = require('./autocomplete');
-
 const { $, $$ } = require('./bling');
 const typeAhead = require('./typeAhead');
+//const filterHw = require('./filter');
 
-console.log($('.search'));
 typeAhead($('.search'));
 
-console.log('changed');
-
-//autocomplete($('#address'), $('#lng'), $('#lat'));
-
-//makeMap($('#map'));
-
-/* const starForms = $$('form.star');
-starForms.on('submit', ajaxStar); */
+function filterHw() {
+  let input, filter, ul, li, a, i;
+  input = document.getElementById('filterHw');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById('hwListUl');
+  li = ul.getElementsByTagName('li');
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName('a')[0];
+    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = '';
+    } else {
+      li[i].style.display = 'none';
+    }
+  }
+}
 
 },{"./bling":28,"./typeAhead":30}],30:[function(require,module,exports){
 const axios = require('axios');

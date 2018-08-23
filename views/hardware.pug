@@ -30,15 +30,40 @@ block content
               +problemForm 
       
     p.card-text.card-footer.text-white.bg-dark Defeitos listados para esse modelo de aparelho:
-        //pre= h.dump(hardware.problems)
-        if hardware.problems.length > 0
-          .list-group#hwProblemsList
-            each problem in hardware.problems
-              +problemItem(problem)
-        else
-          p.mx-2 Nenhum defeito listado para esse aparelho ainda!
+      if hardware.problems.length > 0
+        p: input.pl-2#filterProblem(type='text', onkeyup='filter()', placeholder='Filtrar problemas por...')
+        ul.list-group#hwProblemsList
+          each problem in hardware.problems
+            +problemItem(problem)
+          p#emptyMsg: strong(style={'display': '' }) Nada encontrado, por favor modifique sua busca!
+      else
+        p.mx-2 Nenhum defeito listado para esse aparelho ainda!
 
-          // TODO Filtrar os HW exibidos a cada type no campo de filter, adicionar a classe visible ou remover se não contiver o contexto do filtro!
+  script.
+    function filter() {
+      let input, filter, ul, li, a, i, msg;
+      input = document.getElementById('filterProblem');
+      filter = input.value.toUpperCase();
+      ul = document.getElementById("hwProblemsList");
+      li = ul.getElementsByTagName('li');
+      msg = document.getElementById("emptyMsg")
+      msg.style.display = "none";
+      let found = 0;
+      for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          li[i].style.display = "";
+          found++;
+        } else {
+          li[i].style.display = "none";
+        }
+      }
+      if(!found){
+        console.log('not found')
+        msg.style.display = "";
+      }
+    }
+    filter()
 
                 
 

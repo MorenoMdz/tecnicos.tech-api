@@ -1,13 +1,15 @@
 mixin repairItem(repair)
-    
-    a#repairLi.font-weight-bold(href=`/repair/${repair.slug}`) Título do reparo: #[span.small #{repair.title} ]
-      | Descrição: #[span.small #{repair.description}] 
-    span#repairItemBadge.badge.badge-dark
-      i.fa.fa-comment.px-1 
-      span #{` ${repair.comments.length} `}
-      if repair.stars > 0
-        i#star.fa.fa-star.px-1 
-        span #{` ${repair.stars.length} `}
-      else 
-        i.fa.fa-star.px-1 
-        span #{` ${repair.stars.length} `}
+    .row
+      .col-md-10
+        a#repairLi.font-weight-bold(href=`/repair/${repair.slug}`) Título do reparo: #[span.small #{repair.title} ]
+          | Descrição: #[span.small #{repair.description}] 
+      .col-md-2
+        span#repairItemBadge.badge.badge-dark
+          i.fa.fa-comment.px-1 
+          span #{` ${repair.comments.length} `}
+          if repair.stars > 0
+            i#star.fa.fa-star.px-1 
+            span #{` ${repair.stars.length} `}
+          else 
+            i.fa.fa-star.px-1 
+            span #{` ${repair.stars.length} `}
