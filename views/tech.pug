@@ -2,14 +2,12 @@ extends layout
 
 block content
   .container
-    //pre= h.dump(technician.gravatar)
-
     .container.pb-3.border-bottom
       h5.mb-3.pb-2.border-bottom Perfil do técnico:
       .row
         .col-md-2 
           // TODO: abrir em modal
-          if technician.siteRank[0] === 'admin'
+          if technician.siteRank = 'admin'
             a(href=rnGesus)
               img.avatar(src=technician.gravatar, alt="gravatar", width='120', height='120')
           else

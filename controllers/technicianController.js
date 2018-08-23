@@ -126,7 +126,7 @@ exports.getTechList = async (req, res) => {
 exports.getTech = async (req, res) => {
   const technician = await Technician.findById({ _id: req.params.id });
   let rnGesus;
-  if (technician.siteRank[0] == 'admin') {
+  if (technician.siteRank == 'admin') {
     let randomBoss = technician.boss;
     rnGesus = randomBoss[(Math.random() * randomBoss.length) | 0];
   }
