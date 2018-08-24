@@ -43,12 +43,14 @@ block content
               .modal-body.p-1
                 +repairForm()
     hr    
-
-    p.card-text.card-footer.text-white.bg-dark Reparos para esse Defeito:
-    input.pl-2#filterRepairs(type='text', onkeyup='filter()', placeholder='Filtrar reparos por...')
-    .py-2
-      +repairList(repairs)
-      p#emptyMsg: strong(style={'display': '' }) Nada encontrado, por favor modifique sua busca!
+    if repairs.length > 0
+      p.card-text.card-footer.text-white.bg-dark Reparos para esse Defeito:
+      input.pl-2#filterRepairs(type='text', onkeyup='filter()', placeholder='Filtrar reparos por...')
+      .py-2
+        +repairList(repairs)
+        p#emptyMsg: strong(style={'display': '' }) Nada encontrado, por favor modifique sua busca!
+    else  
+      p.card-text.card-footer.text-dark.bg-warning.font-weight-bold Nenhum reparo cadastrado para esse defeito, seja o primeiro a adicionar um reparo!
 
     script.
       function filter() {

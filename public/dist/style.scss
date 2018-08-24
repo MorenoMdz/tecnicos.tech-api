@@ -1,5 +1,5 @@
 $default-color: #0aecec;
-
+$progress-bar-color: #df6c4f;
 html {
   position: relative;
   min-height: 100%;
@@ -148,6 +148,20 @@ nav .nav-link {
   text-transform: none !important;
   text-decoration: none !important;
   color: #222;
+}
+
+/* Axios Progress Bar */
+#nprogress .bar {
+  background: $progress-bar-color !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px $progress-bar-color, 0 0 5px $progress-bar-color !important;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: $progress-bar-color !important;
+  border-left-color: $progress-bar-color !important;
 }
 
 /* Footer */

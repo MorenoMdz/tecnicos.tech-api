@@ -132,6 +132,17 @@ nav .nav-link {
   text-decoration: none !important;
   color: #222; }
 
+/* Axios Progress Bar */
+#nprogress .bar {
+  background: #df6c4f !important; }
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #df6c4f, 0 0 5px #df6c4f !important; }
+
+#nprogress .spinner-icon {
+  border-top-color: #df6c4f !important;
+  border-left-color: #df6c4f !important; }
+
 /* Footer */
 .footer {
   position: absolute;
