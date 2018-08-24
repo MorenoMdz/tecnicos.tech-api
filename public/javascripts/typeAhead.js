@@ -1,12 +1,12 @@
 const axios = require('axios');
 const dompurify = require('dompurify');
 
-function searchResultsHTML(repairs) {
-  return repairs
-    .map(repair => {
+function searchResultsHTML(problems) {
+  return problems
+    .map(problem => {
       return dompurify.sanitize(`
-      <a href="/repair/${repair.slug}" class="search-result">
-        <strong>${repair.title}</strong>
+      <a href="/problem/${problem.slug}" class="search-result">
+        <strong>${problem.title}</strong>
       </a>
     `);
     })

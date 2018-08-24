@@ -3,7 +3,7 @@ include mixins/_homeInfo
 doctype html
 html(lang='en')
   head
-    - let title = 'tecnicos.tech'
+    - let title = 'Tecnicos.tech'
     title= `${title} | ${h.siteName}`
 
     meta(charset='UTF-8')
@@ -12,7 +12,7 @@ html(lang='en')
     link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4', crossorigin='anonymous')
     link(href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN", crossorigin="anonymous")
     link(rel='stylesheet', href='/dist/style.css')
-    link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
+    link(rel='icon', href='/images/icons/android-icon-192x192.png', type='image/png')
   body
     block header
       header
@@ -78,7 +78,6 @@ html(lang='en')
       
     .content
       block content
-      // pre= h.dump(locals.currentPath)
       if locals.currentPath == '/'
         .homeInfo.m-5.p-5
           +homeInfo(homeDisplay)

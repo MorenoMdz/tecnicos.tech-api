@@ -113,3 +113,21 @@ exports.getProblemBySlug = async (req, res) => {
     title: problem.title,
   });
 };
+
+exports.searchProblem = async (req, res) => {
+  const problems = await Problem.find(
+    {
+      $text: {
+        $search: req.query.q,
+      },
+    },
+    {
+      score: { $meta: 'textScore' },
+    }
+  )
+    .sort({
+      score: { $meta: 'textScore' },
+    })
+    .limit(5);
+  res.json(problems);
+};

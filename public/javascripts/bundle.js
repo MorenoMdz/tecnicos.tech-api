@@ -2503,36 +2503,19 @@ module.exports = { $, $$ };
 },{}],29:[function(require,module,exports){
 const { $, $$ } = require('./bling');
 const typeAhead = require('./typeAhead');
-//const filterHw = require('./filter');
 
 typeAhead($('.search'));
-
-function filterHw() {
-  let input, filter, ul, li, a, i;
-  input = document.getElementById('filterHw');
-  filter = input.value.toUpperCase();
-  ul = document.getElementById('hwListUl');
-  li = ul.getElementsByTagName('li');
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName('a')[0];
-    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = '';
-    } else {
-      li[i].style.display = 'none';
-    }
-  }
-}
 
 },{"./bling":28,"./typeAhead":30}],30:[function(require,module,exports){
 const axios = require('axios');
 const dompurify = require('dompurify');
 
-function searchResultsHTML(repairs) {
-  return repairs
-    .map(repair => {
+function searchResultsHTML(problems) {
+  return problems
+    .map(problem => {
       return dompurify.sanitize(`
-      <a href="/repair/${repair.slug}" class="search-result">
-        <strong>${repair.title}</strong>
+      <a href="/problem/${problem.slug}" class="search-result">
+        <strong>${problem.title}</strong>
       </a>
     `);
     })
