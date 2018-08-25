@@ -1,4 +1,5 @@
 include _hwItem.pug
+include _pagination.pug
 
 mixin hwList(hws = [{}])
   // pre= h.dump(hardwares)
@@ -7,7 +8,7 @@ mixin hwList(hws = [{}])
       div.list-group
         each hardware in hardwares
           +hwItem(hardware)
-
+      +pagination(area,page, pages, count)
 
 
     

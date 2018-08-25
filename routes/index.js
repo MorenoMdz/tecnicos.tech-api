@@ -44,12 +44,24 @@ router.get(
 router.get(
   '/hardwares',
   authController.isLoggedIn,
-  catchErrors(hwController.getHwList)
+  catchErrors(hwController.getAllHw)
+);
+
+router.get(
+  '/hardwares/page/:page',
+  authController.isLoggedIn,
+  catchErrors(hwController.getAllHw)
 );
 
 /* Problem routes */
 router.get(
   '/problems',
+  authController.isLoggedIn,
+  catchErrors(problemController.getProblemList)
+);
+
+router.get(
+  '/problems/page/:page',
   authController.isLoggedIn,
   catchErrors(problemController.getProblemList)
 );

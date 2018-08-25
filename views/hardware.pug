@@ -3,7 +3,8 @@ extends layout
 block content
   include mixins/_problemItem.pug
   include mixins/_problemForm.pug
-  //pre= h.dump(hardware)
+  include mixins/_pagination.pug
+
   .container.py-2
     .card.mb-3
       .card-body
@@ -36,8 +37,10 @@ block content
           each problem in hardware.problems
             +problemItem(problem)
           p#emptyMsg: strong(style={'display': '' }) Nada encontrado, por favor modifique sua busca!
+        //+pagination(area, page, pages, count)
       else
         p.mx-2 Nenhum defeito listado para esse aparelho ainda!
+
 
   script.
     function filter() {

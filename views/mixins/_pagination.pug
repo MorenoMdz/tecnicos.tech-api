@@ -1,11 +1,11 @@
-mixin pagination(page, pages, count)
-  .pagination
-    .pagination__prev
+mixin pagination(area, page, pages, count)
+  .pagination.row
+    .col-md-2.pagination-prev
       if page > 1
-        a(href=`/repairs/page/${page -1}`) Prev
-      .pagination__text
-        p Page #{page} of #{pages} - #{count} total results
-      .pagination__next
+        a(href=`/${area}/page/${page -1}`) Anterior
+    .col-md-6.pagination-text.text-center.col-sm-2
+        p Página #{page} de #{pages} - De #{count} total.
+    .col-md-2.pagination-next
         if page < pages
-          a(href=`/repairs/page/${parseFloat(page) +1}`) Next
+          a(href=`/${area}/page/${parseFloat(page) +1}`) Próxima
           

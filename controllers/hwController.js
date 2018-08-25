@@ -55,7 +55,7 @@ exports.hardwares = hwList();
 
 exports.getAllHw = async (req, res) => {
   const page = req.params.page || 1;
-  const limit = 9;
+  const limit = 1;
   const skip = page * limit - limit;
 
   const hwPromise = Hardware.find()
@@ -72,9 +72,10 @@ exports.getAllHw = async (req, res) => {
     );
     return;
   }
-  res.render('config', {
+  res.render('hardwareList', {
     title: 'Hardware Config',
     hardwares: hardwares,
+    area: 'hardwares',
     page,
     pages,
     count,

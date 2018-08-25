@@ -59,7 +59,7 @@ exports.addNewProblem = async (req, res) => {
 
 exports.getProblemList = async (req, res) => {
   const page = req.params.page || 1;
-  const limit = 9;
+  const limit = 3;
   const skip = page * limit - limit;
 
   const problemPromise = Problem.find()
@@ -85,6 +85,7 @@ exports.getProblemList = async (req, res) => {
     title: 'Defeitos',
     problems: problems,
     hardwares: hardwares,
+    area: 'problems',
     page,
     pages,
     count,
