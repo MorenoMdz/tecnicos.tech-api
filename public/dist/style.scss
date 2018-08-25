@@ -1,5 +1,5 @@
 $default-color: #0aecec;
-$progress-bar-color: #df6c4f;
+$orange: #df6c4f;
 html {
   position: relative;
   min-height: 100%;
@@ -115,6 +115,10 @@ nav .nav-link {
   width: 100%;
   height: 15rem;
   object-fit: scale-down;
+
+  img {
+    margin-left: -14px;
+  }
 }
 
 /* HW Problems List */
@@ -160,16 +164,16 @@ nav .nav-link {
 
 /* Axios Progress Bar */
 #nprogress .bar {
-  background: $progress-bar-color !important;
+  background: $orange !important;
 }
 
 #nprogress .peg {
-  box-shadow: 0 0 10px $progress-bar-color, 0 0 5px $progress-bar-color !important;
+  box-shadow: 0 0 10px $orange, 0 0 5px $orange !important;
 }
 
 #nprogress .spinner-icon {
-  border-top-color: $progress-bar-color !important;
-  border-left-color: $progress-bar-color !important;
+  border-top-color: $orange !important;
+  border-left-color: $orange !important;
 }
 
 /* Footer */
@@ -335,4 +339,147 @@ nav .nav-link {
   margin: 0.5em 0 0;
   font-size: 14px;
   color: #666;
+}
+
+.row {
+  margin: 15px;
+}
+
+/* lightbox */
+.ekko-lightbox {
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding-right: 0 !important;
+}
+.ekko-lightbox .modal-content {
+  background-color: #333;
+  color: #fff;
+}
+.ekko-lightbox .close {
+  color: #fff;
+}
+.ekko-lightbox-container {
+  position: relative;
+}
+.ekko-lightbox-container > div.ekko-lightbox-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+}
+.ekko-lightbox iframe {
+  width: 100%;
+  height: 100%;
+}
+.ekko-lightbox-nav-overlay {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+}
+.ekko-lightbox-nav-overlay a {
+  -ms-flex: 1;
+  flex: 1;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.5s;
+  color: $orange !important;
+  font-size: 2rem;
+  z-index: 1;
+}
+.ekko-lightbox-nav-overlay a > * {
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+.ekko-lightbox-nav-overlay a > :focus {
+  outline: none;
+}
+.ekko-lightbox-nav-overlay a span {
+  padding: 0 30px;
+}
+.ekko-lightbox-nav-overlay a:last-child span {
+  text-align: right;
+}
+.ekko-lightbox-nav-overlay a:hover {
+  text-decoration: none;
+}
+.ekko-lightbox-nav-overlay a:focus {
+  outline: none;
+}
+.ekko-lightbox-nav-overlay a.disabled {
+  cursor: default;
+  visibility: hidden;
+}
+.ekko-lightbox a:hover {
+  opacity: 1;
+  text-decoration: none;
+}
+.ekko-lightbox .modal-dialog {
+  display: none;
+}
+.ekko-lightbox .modal-footer {
+  text-align: left;
+}
+.ekko-lightbox-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.ekko-lightbox-loader > div {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  text-align: center;
+}
+.ekko-lightbox-loader > div > div {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: a 2s infinite ease-in-out;
+}
+.ekko-lightbox-loader > div > div:last-child {
+  animation-delay: -1s;
+}
+.modal-dialog .ekko-lightbox-loader > div > div {
+  background-color: #333;
+}
+@keyframes a {
+  0%,
+  to {
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
 }

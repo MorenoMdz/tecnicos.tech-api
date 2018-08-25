@@ -47,7 +47,7 @@ const repairSchema = new mongoose.Schema(
         type: String,
       },
     ],
-    photo: [String],
+    photos: [],
     video: [String],
     slug: String,
   },

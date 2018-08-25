@@ -1,0 +1,16 @@
+mixin lightbox(photos)
+  a.col-3(href=`/uploads/${photos[0] || 'default.jpg'}`, data-toggle='lightbox', data-gallery='hidden-images')
+    img.border.border-info.img-fluid(src=`/uploads/${photos[0] || 'default.jpg'}` data-title=`Imagem 1 de ${photos.length}` alt="Foto do Defeito")
+  each photo, i in photos
+    if i > 0
+      div(data-toggle='lightbox', data-gallery='hidden-images', data-remote=`/uploads/${photo || 'default.jpg'}`, data-title=`Imagem ${i + 1} de ${photos.length}`)
+
+
+
+
+
+  
+
+
+  
+

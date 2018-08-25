@@ -2,6 +2,8 @@ extends layout
 
 include mixins/_repairForm.pug
 include mixins/_repairList.pug
+include mixins/_lightbox.pug
+
 
 block content
   //pre= h.dump(problem)
@@ -11,9 +13,8 @@ block content
         .col-sm-4
           #problemImg.m-3
             if problem.photos.length > 0
-              a(href=`/uploads/${problem.photos[0]}`)
-                img#problemCardImg.img-thumbnail.border.border-info( src=`/uploads/${problem.photos[1] || 'default.jpg'}`, alt="Foto do Defeito")
-                figcaption.figure-caption Imagem do defeito.
+              +lightbox(problem.photos)
+              figcaption.figure-caption.text-center Veja #{problem.photos.length} imagens do defeito.
             else
               p.p-3.border.border-info ** Defeito sem foto **
         .col-sm-8
@@ -43,6 +44,9 @@ block content
               .modal-body.p-1
                 +repairForm()
     hr    
+
+    p
+    hr
     if repairs.length > 0
       p.card-text.card-footer.text-white.bg-dark Reparos para esse Defeito:
       input.pl-2#filterRepairs(type='text', onkeyup='filter()', placeholder='Filtrar reparos por...')

@@ -31,8 +31,8 @@ mixin repairForm(repair = {})
     .small.mb-1 Informações que julgar interessante sobre o reparo
     textarea.mb-3.form-control(name="description" placeholder="Descrição do reparo" )= repair.description
     
-    label.mb-1(for="photo") Adicione uma imagem do reparo:
-      input.border.border-warning.mb-3.form-control-file(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
+    label.mb-1(for="photo") Adicione imagens do reparo (máximo 5):
+      input.border.border-warning.mb-3.form-control-file(type="file" name="photos" id="photos" accept="image/gif, image/png, image/jpeg" multiple)
       if repair.photo
         img(src=`/uploads/${repair.photo}`, alt=repair.name width=200)
     

@@ -1,6 +1,7 @@
 extends layout
 
 include mixins/_commentForm.pug
+include mixins/_lightbox.pug
 
 block content
   .container
@@ -10,11 +11,13 @@ block content
           .card-body
             .card-header.card.text-white.bg-info.text-center
               h5.card-title Reparo para o defeito: #{repair.problem.title} 
-            if repair.photo.length > 0
-              img.card-img-top.hwCardImg.py-3(src=`/uploads/${repair.photo}` alt='Card image cap') 
+            if repair.photos.length > 0
+              .card-img-top.hwCardImg.py-3.border
+                +lightbox(repair.photos)
+              figcaption.figure-caption.text-center Veja #{repair.photos.length} imagens do reparo.
             else 
-              img.card-img-top.hwCardImg.py-3(src=`/uploads/default.jpg` alt='Card image cap')
-
+              img.card-img-top.hwCardImg.py-3.border(src=`/uploads/default.jpg` alt='Card image cap')
+              figcaption.figure-caption.text-center Sem imagens cadastradas.
           .card-body.card.text-white.bg-secondary.text-center
             if user
               .star.star_action
@@ -56,10 +59,10 @@ block content
             .comment-body
               .text
                 p #{comment.text}
-              p.attribution
+              p.text-right.attribution.bg-secondary.text-white.px-3
                 | por
                 |
-                a(href='#non') #{comment.author.name}
+                a.text-info(href=`/tech/${comment.author._id}`) #{comment.author.name}
                 | 
                 time(datetime=comment.created)= h.moment(comment.created).locale('pt-br').fromNow()
       if user
