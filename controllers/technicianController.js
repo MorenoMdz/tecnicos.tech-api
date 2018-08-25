@@ -23,6 +23,9 @@ exports.validateRegister = (req, res, next) => {
   });
   req.checkBody('password', 'O campo Senha não pode ser vazio!!').notEmpty();
   req
+    .checkBody('password', 'Password precisa ter no mínimo 8 caracteres')
+    .matches(/^[a-zA-Z0-9]{8}$/, 'i');
+  req
     .checkBody(
       'password-confirm',
       'O campo de confirmação não pode ser vazio!!'
