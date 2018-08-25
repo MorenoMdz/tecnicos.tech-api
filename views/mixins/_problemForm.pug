@@ -14,7 +14,7 @@ mixin problemForm(problem={})
     input(type="text" name="board_model" placeholder=" Insira o modelo da placa" value=problem.board_model required)
     p
     label(for="photo") Uma imagem do Defeito: 
-      input(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
+      input(type="file" name="photos" id="photos" accept="image/gif, image/png, image/jpeg" multiple)
       if problem.photo
         img(src=`/uploads/${problem.photo}`, alt=problem.name width=200)
 

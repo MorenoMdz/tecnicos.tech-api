@@ -17,20 +17,28 @@ const multerOptions = {
   },
 };
 
-exports.upload = multer(multerOptions).single('photo');
+exports.upload = multer(multerOptions).array('photos', 5);
 
 exports.resize = async (req, res, next) => {
   // check if there is no new file to resize
-  if (!req.file) {
+
+  if (!req.files) {
     next(); // skip if no file is uploaded
     return;
   }
-  const extension = req.file.mimetype.split('/')[1]; // gets the extension
-  req.body.photo = `${uuid.v4()}.${extension}`;
-  // now resize
-  const photo = await jimp.read(req.file.buffer);
-  await photo.resize(800, jimp.AUTO);
-  await photo.write(`./public/uploads/${req.body.photo}`);
+
+  const photos = req.files;
+  req.body.photos = [];
+  let photo;
+
+  for (let i = 0; i < photos.length; i++) {
+    const extension = req.files[i].mimetype.split('/')[1]; // gets the extension
+    req.body.photos[i] = `${uuid.v4()}.${extension}`;
+    // now resize
+    photo = await jimp.read(req.files[i].buffer);
+    await photo.resize(800, jimp.AUTO);
+    await photo.write(`./public/uploads/${req.body.photos[i]}`);
+  }
   // once we have written the photo to the fs, keep going
   next();
 };

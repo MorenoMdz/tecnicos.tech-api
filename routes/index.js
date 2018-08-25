@@ -75,10 +75,11 @@ router.get(
 router.post(
   '/addNewProblem',
   authController.isLoggedIn,
-  hwController.upload,
+  problemController.upload,
   catchErrors(problemController.resize),
   catchErrors(problemController.addNewProblem)
 );
+
 router.get(
   '/problem/:slug',
   authController.isLoggedIn,

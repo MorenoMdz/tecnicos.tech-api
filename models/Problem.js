@@ -31,7 +31,7 @@ const problemSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
-    photo: [String],
+    photos: [],
     video: [String],
     slug: String,
   },

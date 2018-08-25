@@ -114,6 +114,12 @@ nav .nav-link {
 #hwProblemsList .list-group-item:hover #hwBtn {
   visibility: visible; }
 
+/* Hw problem form */
+.thumbnail {
+  height: 100px;
+  margin: 10px;
+  float: left; }
+
 /* Problem img */
 #problemCardImg {
   width: 100%;

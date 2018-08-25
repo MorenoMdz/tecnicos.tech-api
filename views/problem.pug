@@ -10,9 +10,9 @@ block content
       .row
         .col-sm-4
           #problemImg.m-3
-            if problem.photo.length > 0
-              a(href=`/uploads/${problem.photo}`)
-                img#problemCardImg.img-thumbnail.border.border-info( src=`/uploads/${problem.photo || 'default.jpg'}`, alt="Foto do Defeito")
+            if problem.photos.length > 0
+              a(href=`/uploads/${problem.photos[0]}`)
+                img#problemCardImg.img-thumbnail.border.border-info( src=`/uploads/${problem.photos[1] || 'default.jpg'}`, alt="Foto do Defeito")
                 figcaption.figure-caption Imagem do defeito.
             else
               p.p-3.border.border-info ** Defeito sem foto **
