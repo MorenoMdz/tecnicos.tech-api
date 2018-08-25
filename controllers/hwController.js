@@ -55,7 +55,7 @@ exports.hardwares = hwList();
 
 exports.getAllHw = async (req, res) => {
   const page = req.params.page || 1;
-  const limit = 1;
+  const limit = 9;
   const skip = page * limit - limit;
 
   const hwPromise = Hardware.find()

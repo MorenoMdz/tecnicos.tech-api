@@ -8,18 +8,35 @@ mixin repairForm(repair = {})
     input.form-control(type="text" name="problem" placeholder="Digite um título para o defeito" value=problem._id hidden)
     input.form-control(type="text" name="hardware" placeholder="Digite um título para o defeito" value=problem.hardware._id hidden)
 
-    label(for="title") Título do Defeito:
-    input.mb-2.form-control(type="text" name="title" placeholder="Digite um título para o reparo" value=repair.title required)
+    label.mb-1(for="title") Título do Defeito:
+    .small.mb-1 Em poucas palavras, exemplo 'Reball' ou 'Trocado HD' etc
+    input.mb-3.form-control(type="text" name="title" placeholder="Digite um título para o reparo" value=repair.title required)
+
+    label.mb-1(for="diagnostic_flow") Etapas do diagnóstico:
+    .small.mb-1 Se possível adicione os passos que seguiu para identificar o problema
+    // todo tooltip
+    textarea.mb-3.form-control(type="text" name="diagnostic_flow" placeholder="Etapas do diagnóstico" value=repair.diagnostic_flow )
+
+    label.mb-1(for="repair_flow") Etapas do reparo:
+    .small.mb-1 Quais procedimentos usou para o reparo?
+    // todo tooltip
+    textarea.mb-3.form-control(type="text" name="repair_flow" placeholder="Etapas do reparo" value=repair.repair_flow )
+
+    label.mb-1(for="parts") Peças usadas no reparo:
+    .small.mb-1 Quais componentes foram trocados e/ou reparados?
+    // todo tooltip
+    input.mb-3.form-control(type="text" name="parts" placeholder="Componentes reparados" value=repair.parts required)
     
-    label(for="description") Descrição do problema:
-    textarea.mb-2.form-control(name="description" placeholder="Descrição do reparo" required)= repair.description
-    p
-    label(for="photo") Adicione uma imagem do reparo:
-      input.border.border-warning.mb-2.form-control-file(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
+    label.mb-1(for="description") Descrição adicional do reparo:
+    .small.mb-1 Informações que julgar interessante sobre o reparo
+    textarea.mb-3.form-control(name="description" placeholder="Descrição do reparo" )= repair.description
+    
+    label.mb-1(for="photo") Adicione uma imagem do reparo:
+      input.border.border-warning.mb-3.form-control-file(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
       if repair.photo
         img(src=`/uploads/${repair.photo}`, alt=repair.name width=200)
     
-    label(for="video") Link para um video sobre o defeito: #[span.small (Sugerido: Youtube/Streamable/Vimeo)]
+    label.mb-1(for="video") Link para um video do reparo: #[span.small (Sugerido: Youtube/Streamable/Vimeo)]
     input.form-control(type="text" name="video" placeholder=" Link para o video" value=repair.hardware)
     p
     input.form-control.btn.btn-primary(type="submit" value="Salvar" class="button" for="repairForm")

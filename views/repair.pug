@@ -14,6 +14,7 @@ block content
               img.card-img-top.hwCardImg.py-3(src=`/uploads/${repair.photo}` alt='Card image cap') 
             else 
               img.card-img-top.hwCardImg.py-3(src=`/uploads/default.jpg` alt='Card image cap')
+
           .card-body.card.text-white.bg-secondary.text-center
             if user
               .star.star_action
@@ -28,15 +29,21 @@ block content
                 
       ul.list-group.list-group-flush.col-md-7
         h6: li.list-group-item Título do reparo: 
-          span.text-secondary #{repair.title}
+          span.text-secondary  #{repair.title}
         h6: li.list-group-item Aparelho: 
-          span.text-secondary #{repair.hardware.name} 
+          span.text-secondary  #{repair.hardware.name} 
         h6: li.list-group-item Modelo:  
-          span.text-secondary #{repair.hardware.model}
+          span.text-secondary  #{repair.hardware.model}
         h6: li.list-group-item Componentes reparados:
-          span.text-secondary #{repair.parts}
+          span.text-secondary  #{repair.parts}
+        h6: li.list-group-item Etapas do diagnóstico:
+          span.text-secondary  #{repair.diagnostic_flow}
+        h6: li.list-group-item Etapas do reparo:
+          span.text-secondary  #{repair.repair_flow}
+        h6: li.list-group-item Componentes reparados:
+          span.text-secondary  #{repair.parts}
         h6: li.list-group-item Descrição do reparo:  
-          span.text-secondary #{repair.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, asperiores dolorum. At iusto id, minus quia est provident omnis sequi sed, fugit excepturi, saepe natus? Rerum, atque eveniet. Id, sit?.
+          span.text-secondary  #{repair.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, asperiores dolorum. At iusto id, minus quia est provident omnis sequi sed, fugit excepturi, saepe natus? Rerum, atque eveniet. Id, sit?.
         li.list-group-item 
     
     p.text-white.bg-dark.p-2 Comentarios:

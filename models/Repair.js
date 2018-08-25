@@ -26,6 +26,18 @@ const repairSchema = new mongoose.Schema(
       trim: true,
       required: 'You must describe the repair!',
     },
+    diagnostic_flow: {
+      type: String,
+      trim: true,
+    },
+    repair_flow: {
+      type: String,
+      trim: true,
+    },
+    parts: {
+      type: String,
+      trim: true,
+    },
     created: {
       type: Date,
       default: Date.now,
