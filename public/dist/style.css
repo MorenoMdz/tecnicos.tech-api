@@ -40,7 +40,7 @@ nav .nav-link {
 
 #avatar {
   max-width: 75px;
-  /* border-left: solid $default-color 5px; */ }
+  /* border-left: solid $main-color 5px; */ }
 
 #navbarCollapseTarget {
   /* position: absolute; */
@@ -101,7 +101,8 @@ nav .nav-link {
   height: 15rem;
   object-fit: scale-down; }
   .hwCardImg img {
-    margin-left: -14px; }
+    margin-left: -14px;
+    max-height: 100%; }
 
 /* HW Problems List */
 #hwProblemsList {
@@ -421,5 +422,10 @@ nav .nav-link {
   50% {
     transform: scale(1);
     -webkit-transform: scale(1); } }
+.hrCurved {
+  border-right: 1px solid #333 !important;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.534) !important;
+  border-bottom-right-radius: 5px !important;
+  border-bottom-left-radius: 5px !important; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,21 @@
+mixin miniBlog(posts = [{ author:'moreno', date:'10/07/1983',title:'title 1', text: '1 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe nesciunt voluptates ipsam error quod impedit deleniti veritatis autem amet aut!'},{ author:'boss', date:'11/11/12',title:'title 2', text: '2 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe nesciunt voluptates ipsam error quod impedit deleniti veritatis autem amet aut!'},{ author:'boss', date:'11/11/12',title:'title 2', text: '2 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe nesciunt voluptates ipsam error quod impedit deleniti veritatis autem amet aut!'},{ author:'boss', date:'11/11/12',title:'title 2', text: '2 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe nesciunt voluptates ipsam error quod impedit deleniti veritatis autem amet aut!'},{ author:'boss', date:'11/11/12',title:'title 2', text: '2 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe nesciunt voluptates ipsam error quod impedit deleniti veritatis autem amet aut!'},{ author:'Julia', date:'11/17/08',title:'Nasci', text: 'Só Deus sabe'}])
+  .posts
+    each post in posts
+      .row.bg-secondary.text-white.pt-2.pl-1
+        h6.text-left.col-md-8= post.title
+          //span.text-right= post.author
+        span.text-right.col-md-4
+            | por
+            |
+            a.text-info(href=`#`) #{post.author}
+            | 
+            time(datetime=post.date)= h.moment(post.date).locale('pt-br').fromNow()
+      .row
+        p.hrCurved.mb-3.px-2.pb-2= post.text
+
+    
+
+
+
+
+

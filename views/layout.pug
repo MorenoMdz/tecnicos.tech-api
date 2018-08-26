@@ -1,4 +1,5 @@
 include mixins/_homeInfo
+include mixins/_miniBlog
 
 doctype html
 html(lang='en')
@@ -81,8 +82,13 @@ html(lang='en')
     .content
       block content
       if locals.currentPath == '/'
-        .homeInfo.m-5.p-5
-          +homeInfo(homeDisplay)
+        .row
+          .col-md-9
+            .miniBlog.m-2.p-2
+              +miniBlog()
+          .col-md-3
+            p
+            +homeInfo(homeDisplay)
 
 
     .footer.fixed-bottom
@@ -95,7 +101,7 @@ html(lang='en')
           i.fa.fa-linkedin.fa-2x.fa-fw
         a(href='#')
           i.fa.fa-medium.fa-2x.fa-fw
-        p © 2018 Todos direitos reservados || #[a.text-info(href='http://www.premoreno.com') Project by Moreno A]
+        p.mt-1 © 2018 Todos direitos reservados || #[a.text-info(href='http://www.premoreno.com') Project by Moreno A]
 
     block scripts
       script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')

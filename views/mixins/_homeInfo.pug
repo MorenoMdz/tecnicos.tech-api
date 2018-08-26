@@ -1,5 +1,8 @@
 mixin homeInfo(homeDisplay = {})
-  p: strong Total de aparelhos no sistema: #{homeDisplay[0]}
-  p: strong Total de defeitos cadastrados: #{homeDisplay[1]}
-  p: strong Total de reparos cadastrados: #{homeDisplay[2]}
-  p: strong Total de técnicos cadastrados: #{homeDisplay[3]}
+  .card.p-1.bg-dark.text-center
+    .card-header.bg-info.text-white.p-2 Dados do site:
+    .card-body.p-2
+      p: strong.card-text.text-white Aparelhos no sistema: #[span.ml-3 #{homeDisplay[0]}]
+      p: strong.card-text.text-white Defeitos cadastrados: #[span.ml-3 #{homeDisplay[1]}]
+      p: strong.card-text.text-white Reparos cadastrados: #[span.ml-3 #{homeDisplay[2]}]
+      p: strong.card-text.text-white Técnicos cadastrados: #[span.ml-3 #{homeDisplay[3]}]
