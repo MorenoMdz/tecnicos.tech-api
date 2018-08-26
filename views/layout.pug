@@ -83,18 +83,19 @@ html(lang='en')
       
     .content
       block content
-      if locals.currentPath == '/' || locals.currentPath == `/posts/page/${paginatedPosts.page}`
-        .row
-          .col-md-9.order-first
-            .miniBlog
-              +miniBlog(paginatedPosts)
 
-          .col-md-3.order-last
-            +homeInfo(homeDisplay)
-            p
-            +topRepairs(homeDisplay)
-            p
-            +topTechs(homeDisplay)
+        if locals.currentPath == '/' || locals.currentPath == `/posts/page/${paginatedPosts.page}`
+          .row
+            .col-md-9.order-first
+              .miniBlog
+                +miniBlog(paginatedPosts)
+
+            .col-md-3.order-last
+              +homeInfo(homeDisplay)
+              p
+              +topRepairs(homeDisplay)
+              p
+              +topTechs(homeDisplay)
             
 
 
