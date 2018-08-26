@@ -160,6 +160,18 @@ nav .nav-link {
   border-top-color: $orange !important;
   border-left-color: $orange !important;
 }
+/* miniBlog */
+#miniBlog {
+  height: 100%;
+  overflow-y: auto;
+}
+.modal-dialog {
+  width: 800px !important;
+  @media (min-width: 576px) {
+    max-width: 800px;
+    margin: 1.75rem auto;
+  }
+}
 /* Footer */
 .footer {
   position: absolute;
@@ -235,7 +247,6 @@ nav .nav-link {
     height: 80px;
     background-color: #111 !important;
   }
-
   #loginDiv {
     display: flex;
     flex-direction: row;

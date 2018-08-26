@@ -147,6 +147,18 @@ nav .nav-link {
   border-top-color: #df6c4f !important;
   border-left-color: #df6c4f !important; }
 
+/* miniBlog */
+#miniBlog {
+  height: 100%;
+  overflow-y: auto; }
+
+.modal-dialog {
+  width: 800px !important; }
+  @media (min-width: 576px) {
+    .modal-dialog {
+      max-width: 800px;
+      margin: 1.75rem auto; } }
+
 /* Footer */
 .footer {
   position: absolute;

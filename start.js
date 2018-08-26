@@ -25,6 +25,7 @@ require('./models/Repair');
 require('./models/Hardware.js');
 require('./models/Problem.js');
 require('./models/Comment.js');
+require('./models/Post.js');
 
 /* App start */
 const app = require('./app');

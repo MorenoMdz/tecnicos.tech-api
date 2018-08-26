@@ -7,6 +7,7 @@ const hwController = require('../controllers/hwController');
 const problemController = require('../controllers/problemController');
 const authController = require('../controllers/authController');
 const commentController = require('../controllers/commentController');
+const postController = require('../controllers/postController');
 const homeController = require('../controllers/homeController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
@@ -20,6 +21,7 @@ router.get(
   authController.isMod,
   hwController.getAllHw
 );
+
 router.post(
   '/addHw',
   authController.isLoggedIn,
@@ -118,6 +120,13 @@ router.post(
   '/comment/:id',
   authController.isLoggedIn,
   catchErrors(commentController.addComment)
+);
+
+/* Posts */
+router.post(
+  '/addNewPost',
+  authController.isLoggedIn,
+  catchErrors(postController.addPost)
 );
 
 /* User routes */

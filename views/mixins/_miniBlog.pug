@@ -1,4 +1,6 @@
-mixin miniBlog(posts = [{ author:'moreno', date:'10/07/1983',title:'title 1', text: '1 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe nesciunt voluptates ipsam error quod impedit deleniti veritatis autem amet aut!'},{ author:'boss', date:'11/11/12',title:'title 2', text: '2 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe nesciunt voluptates ipsam error quod impedit deleniti veritatis autem amet aut!'},{ author:'boss', date:'11/11/12',title:'title 2', text: '2 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe nesciunt voluptates ipsam error quod impedit deleniti veritatis autem amet aut!'},{ author:'boss', date:'11/11/12',title:'title 2', text: '2 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe nesciunt voluptates ipsam error quod impedit deleniti veritatis autem amet aut!'},{ author:'boss', date:'11/11/12',title:'title 2', text: '2 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe nesciunt voluptates ipsam error quod impedit deleniti veritatis autem amet aut!'},{ author:'Julia', date:'11/17/08',title:'Nasci', text: 'Só Deus sabe'}])
+include _postForm.pug
+
+mixin miniBlog(posts = [{ author:'moreno', date:'10/07/1983',title:'title 1', text: '1 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe nesciunt voluptates ipsam error quod impedit deleniti veritatis autem amet aut!'},{ author:'boss', date:'11/11/12',title:'title 2', text: '2 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe nesciunt voluptates ipsam error quod impedit deleniti veritatis autem amet aut!'},{ author:'boss', date:'11/11/12',title:'title 2', text: '2 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe nesciunt voluptates ipsam error quod impedit deleniti veritatis autem amet aut!'},{ author:'Julia', date:'11/17/08',title:'Nasci', text: 'Só Deus sabe'}])
   .posts#miniBlog
     each post in posts
       .row.bg-secondary.text-white.pt-2.pl-1
@@ -8,9 +10,23 @@ mixin miniBlog(posts = [{ author:'moreno', date:'10/07/1983',title:'title 1', te
             |
             a.text-warning(href=`#`) #{post.author}
             | 
-            time(datetime=post.date)= h.moment(post.date).locale('pt-br').fromNow()
+            //time(datetime=post.date)= h.moment(post.date).locale('pt-br').fromNow()
       .row
         p.hrCurved.mb-3.px-2.pb-2= post.text
+      p
+    if user.siteRank == 'admin'
+      .btn.btn-dark.m-1(data-toggle='modal' data-target='#myModal') Novo Post
+      .addPostForm
+          #myModal.modal.fade(role='dialog')
+            .modal-dialog#miniBlogModal
+              .modal-content
+                .modal-header.bg-primary.text-white.p-1
+                  h6.p-2 Adicionar um novo Post
+                  button.close(type='button', data-dismiss='modal') × 
+                .modal-body.p-1
+                  +postForm()
+    hr    
+
 
     
 
