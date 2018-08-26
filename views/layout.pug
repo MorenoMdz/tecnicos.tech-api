@@ -83,10 +83,9 @@ html(lang='en')
       
     .content
       block content
-      if locals.currentPath == '/'
+      if locals.currentPath == '/' || locals.currentPath == `/posts/page/${paginatedPosts.page}`
         .row
           .col-md-9.order-first
-            //pre= h.dump(locals.paginatedPosts)
             .miniBlog
               +miniBlog(paginatedPosts)
 

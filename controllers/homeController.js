@@ -38,17 +38,18 @@ exports.homeDisplay = async (req, res, next) => {
     .sort({ stars: -1 })
     .limit(5);
 
+  // await all home information to be loaded
+  /* order here matters when reading from the object index in the view */
   const homeDisplay = await Promise.all([
     countHws,
     countProblems,
     countRepairs,
     countTechs,
     topTechs,
-    topRepairs /* order here matters when reading from the object index in the view */,
+    topRepairs,
   ]);
+  // puts the info to the req body, which sets the locals with same name
   req.body.homeDisplay = homeDisplay;
-  //const paginatedPosts = req.body.posts; // comes from locals from postController
-
-  //res.render('layout', { homeDisplay, paginatedPosts });
+  // passes the request to the next method
   next();
 };

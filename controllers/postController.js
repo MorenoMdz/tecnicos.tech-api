@@ -40,7 +40,9 @@ exports.getAllPosts = async (req, res, next) => {
     pages,
     count,
   };
-  req.body.posts = paginatedPosts; // putting all the posts info @locals
+
+  // putting all the posts info @locals
+  //req.body.posts = paginatedPosts;
   const homeDisplay = req.body.homeDisplay;
 
   //next();
