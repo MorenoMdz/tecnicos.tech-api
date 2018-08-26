@@ -1,4 +1,5 @@
 include mixins/_homeInfo
+include mixins/_topTechs
 include mixins/_miniBlog
 
 doctype html
@@ -84,11 +85,13 @@ html(lang='en')
       if locals.currentPath == '/'
         .row
           .col-md-9
-            .miniBlog.m-2.p-2
+            .miniBlog
               +miniBlog()
           .col-md-3
             p
             +homeInfo(homeDisplay)
+            p
+            +topTechs(homeDisplay)
 
 
     .footer.fixed-bottom
