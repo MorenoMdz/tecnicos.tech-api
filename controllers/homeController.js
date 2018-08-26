@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Technician = mongoose.model('Technician');
 const Hardware = mongoose.model('Hardware');
 const Problem = mongoose.model('Problem');
 const Repair = mongoose.model('Repair');
@@ -15,16 +16,35 @@ exports.countProblems = async (req, res, next) => {
   res.render('layout', { problemsCount });
 };
 
-exports.homeDisplay = async (req, res) => {
+exports.homeDisplay = async (req, res, next) => {
   const countProblems = Problem.count();
   const countHws = Hardware.count();
   const countRepairs = Repair.count();
+  const topRepairs = Repair.find()
+    .select({
+      title: 1,
+      stars: 1,
+    })
+    .sort({ stars: -1 })
+    .limit(5);
   const countTechs = Tech.count();
+  const topTechs = Technician.find()
+    .select({
+      name: 1,
+      stars: 1,
+      techStars: 1,
+      siteRank: 1,
+    })
+    .sort({ stars: -1 })
+    .limit(5);
+
   const homeDisplay = await Promise.all([
     countHws,
     countProblems,
     countRepairs,
     countTechs,
+    topTechs,
+    topRepairs /* order here matters when reading from the object index in the view */,
   ]);
   res.render('layout', { homeDisplay });
 };

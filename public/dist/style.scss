@@ -1,10 +1,19 @@
 $main-color: #0aecec;
 $orange: #df6c4f;
+$neonPink: #ff0dbf;
+$background: linear-gradient(
+  90deg,
+  #48ded4 0%,
+  #a026bf 20%,
+  #e82c75 60%,
+  #ffc40e 85%,
+  #48ded4 95%
+);
+
 html {
   position: relative;
   min-height: 100%;
 }
-
 body {
   margin-bottom: 100px;
   max-height: 100%;
@@ -23,17 +32,14 @@ body {
   font-size: 1.3rem !important;
   font-weight: bolder !important;
 }
-
 nav {
-  border-left: solid $main-color 4px;
-  border-bottom: solid $main-color 2px;
+  border-left: solid $main-color 2px;
+  border-top: solid $main-color 1px;
   background-color: #111 !important;
 }
-
 nav .nav-link {
-  border-left: solid $main-color 2px;
+  border-left: solid $main-color 1px;
 }
-
 #loginDiv {
   display: flex;
   flex-direction: row;
@@ -41,21 +47,15 @@ nav .nav-link {
   align-items: center;
   font-size: 1.2em;
 }
-
 #loginDiv a {
   border-left: solid 0px;
 }
-
 #avatar {
   max-width: 75px;
-  /* border-left: solid $main-color 5px; */
 }
-
 #navbarCollapseTarget {
-  /* position: absolute; */
   z-index: 1;
 }
-
 /* Search */
 #search-box {
   height: 60px;
@@ -68,7 +68,6 @@ nav .nav-link {
   border: 0;
   top: 100%;
 }
-
 .search-results {
   background: white;
   position: absolute;
@@ -91,7 +90,6 @@ nav .nav-link {
 .list-group {
   z-index: 0.9 !important;
 }
-
 /* Body */
 .homeInfo {
   position: relative;
@@ -100,28 +98,21 @@ nav .nav-link {
   border-left: $main-color solid 2px;
   background-color: #6568707e;
 }
-
 /* HW Item */
-
 #hwItemPhoto {
-  /*   max-width: 75px;
-  max-height: 75px; */
   width: 50px;
   height: 50px;
 }
-
 /* HW Card */
 .hwCardImg {
   width: 100%;
   height: 15rem;
   object-fit: scale-down;
-
   img {
     margin-left: -14px;
     max-height: 100%;
   }
 }
-
 /* HW Problems List */
 #hwProblemsList {
   max-height: 350px;
@@ -135,22 +126,18 @@ nav .nav-link {
 #hwProblemsList .list-group-item:hover #hwBtn {
   visibility: visible;
 }
-
 /* Hw problem form */
 .thumbnail {
   height: 100px;
   margin: 10px;
   float: left;
 }
-
 /* Problem img */
 #problemCardImg {
   width: 100%;
   height: 15vw;
-  /* height: 15rem; */
   object-fit: scale-down;
 }
-
 /* Repair */
 .star-filled > i {
   color: #1cc6fa;
@@ -162,21 +149,17 @@ nav .nav-link {
   text-decoration: none !important;
   color: #222;
 }
-
 /* Axios Progress Bar */
 #nprogress .bar {
   background: $orange !important;
 }
-
 #nprogress .peg {
   box-shadow: 0 0 10px $orange, 0 0 5px $orange !important;
 }
-
 #nprogress .spinner-icon {
   border-top-color: $orange !important;
   border-left-color: $orange !important;
 }
-
 /* Footer */
 .footer {
   position: absolute;
@@ -186,100 +169,89 @@ nav .nav-link {
   background-color: #111;
   text-align: center;
 }
-
 .footer .container {
   margin-top: 25px;
   color: #fff;
   width: 100%;
 }
-
 .fa-twitter {
   color: #4099ff;
 }
-
 .fa-facebook {
   color: #3b5998;
 }
-
 .fa-youtube-play {
   color: #e52d27;
 }
-
 .fa-rss {
   color: #ff6600;
 }
-
 .fa-vine {
   color: $main-color;
 }
-
 .fa-flickr {
   color: #ff0084;
 }
-
 .fa-twitch {
   color: #6441a5;
 }
-
 .fa-linkedin {
   color: #007bb6;
 }
-
 .fa {
   opacity: 0.7;
   transition: 1s;
   -webkit-transition: 1s;
 }
-
 .fa:hover {
   opacity: 1;
   transition: 1s;
   -webkit-transition: 1s;
 }
-
 @media screen and (max-width: 767px) {
   nav {
     border-left: solid $main-color 3px;
     border-bottom: solid $main-color 1px;
   }
-
   body > div.footer > div > a > i {
     display: none;
   }
-
   #hwItem {
     max-width: 90%;
   }
-
   .footer {
     height: 100px;
   }
+  /* Info Panels */
+  #topRepairs {
+    display: none;
+  }
+  #topTechs {
+    display: none;
+  }
 }
-
 @media screen and (min-width: 768px) {
   body > header > nav {
     height: 80px;
     background-color: #111 !important;
   }
+
   #loginDiv {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
   }
-
   #avatar {
     max-width: 75px;
   }
   #search-box {
     width: 400px;
   }
-
   .repairsBtnHwList {
     max-width: 120%;
     max-height: 50px;
   }
 }
-
 /* Repair */
 #repairItemBadge {
   min-width: 100px;
@@ -291,17 +263,14 @@ nav .nav-link {
   color: turquoise;
   z-index: 2;
 }
-
 #repairLi {
   text-decoration: none;
   color: #111;
   font-size: 1.1em;
 }
-
 #repairLi span {
   font-size: 1em;
 }
-
 .comment {
   overflow: hidden;
   padding: 0 0 1em;
@@ -309,43 +278,35 @@ nav .nav-link {
   margin: 0 0 1em;
   *zoom: 1;
 }
-
 .comment-img {
   float: left;
   margin-right: 33px;
   border-radius: 5px;
   overflow: hidden;
 }
-
 .comment-img img {
   display: block;
 }
-
 .comment-body {
   overflow: hidden;
 }
-
 .comment .text {
   padding: 10px;
   border: 1px solid #e5e5e5;
   border-radius: 5px;
   background: #fff;
 }
-
 .comment .text p:last-child {
   margin: 0;
 }
-
 .comment .attribution {
   margin: 0.5em 0 0;
   font-size: 14px;
   color: #666;
 }
-
 .row {
   margin: 15px;
 }
-
 /* lightbox */
 .ekko-lightbox {
   display: -ms-flexbox !important;
@@ -484,10 +445,9 @@ nav .nav-link {
     -webkit-transform: scale(1);
   }
 }
-
 .hrCurved {
-  border-right: 1px solid #333 !important;
+  /* border-right: 1px solid #333 !important; */
   border-bottom: 1px solid rgba(51, 51, 51, 0.534) !important;
   border-bottom-right-radius: 5px !important;
-  border-bottom-left-radius: 5px !important;
+  /* border-bottom-left-radius: 5px !important; */
 }

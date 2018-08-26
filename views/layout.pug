@@ -1,5 +1,6 @@
 include mixins/_homeInfo
 include mixins/_topTechs
+include mixins/_topRepairs
 include mixins/_miniBlog
 
 doctype html
@@ -29,12 +30,12 @@ html(lang='en')
               ul.navbar-nav.mr-auto.lighten-3.py-4.mb-r.font-weight-bold.z-depth-1
                 each item in h.menu
                   li.nav-item
-                    a.nav-link.pl-3(href=item.slug, class=(currentPath.startsWith(item.slug) ? 'nav-item.active' : ''))
+                    a.nav-link.pl-3(href=item.slug, class=(currentPath.startsWith(item.slug) ? 'nav-item active' : ''))
                       span #{item.title}
                 if user
                   if user.siteRank == 'admin'
                     li.nav-item
-                      a.nav-link.pl-3(href='/config', class=(currentPath.startsWith('/config') ? 'nav-item.active' : ''))
+                      a.nav-link.pl-3(href='/config', class=(currentPath.startsWith('/config') ? 'nav-item active' : ''))
                         span Admin
 
                   
@@ -84,14 +85,16 @@ html(lang='en')
       block content
       if locals.currentPath == '/'
         .row
-          .col-md-9
+          .col-md-9.order-first
             .miniBlog
               +miniBlog()
-          .col-md-3
-            p
+          .col-md-3.order-last
             +homeInfo(homeDisplay)
             p
+            +topRepairs(homeDisplay)
+            p
             +topTechs(homeDisplay)
+            
 
 
     .footer.fixed-bottom

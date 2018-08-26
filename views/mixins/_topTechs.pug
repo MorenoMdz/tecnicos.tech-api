@@ -1,8 +1,11 @@
-mixin topTechs(homeDisplay = {})
-  .card.p-1.bg-dark.text-center
-    .card-header.bg-info.text-white.p-2 Dados do site:
-    .card-body.p-2
-      p: strong.card-text.text-white Aparelhos no sistema: #[span.ml-3 #{homeDisplay[0]}]
-      p: strong.card-text.text-white Defeitos cadastrados: #[span.ml-3 #{homeDisplay[1]}]
-      p: strong.card-text.text-white Reparos cadastrados: #[span.ml-3 #{homeDisplay[2]}]
-      p: strong.card-text.text-white Técnicos cadastrados: #[span.ml-3 #{homeDisplay[3]}]
+mixin topTechs(topTechs)
+  //pre= h.dump(topTechs)
+  .card.bg-dark#topTechs
+    .card-header.bg-info.text-white.text-center.p-2 Top stars:
+    .row
+      each tech in topTechs[4]
+        .col-md-9
+          p: strong.card-text.text-white #{tech.name} 
+        .col-md-3.text-right
+          span.text-warning #{tech.stars.length}
+

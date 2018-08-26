@@ -10,6 +10,7 @@ const commentController = require('../controllers/commentController');
 const homeController = require('../controllers/homeController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
+/* Home */
 router.get('/', homeController.homeDisplay);
 
 /* Hardware Route | Perms: Adm/Mod */
