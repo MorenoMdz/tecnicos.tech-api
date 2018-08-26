@@ -162,8 +162,10 @@ nav .nav-link {
 }
 /* miniBlog */
 #miniBlog {
-  height: 100%;
   overflow-y: auto;
+  #homePost {
+    max-height: 30vh;
+  }
 }
 .modal-dialog {
   width: 800px !important;

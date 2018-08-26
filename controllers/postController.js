@@ -14,10 +14,11 @@ exports.addPost = async (req, res) => {
 
 exports.getAllPosts = async (req, res, next) => {
   const page = req.params.page || 1;
-  const limit = 3;
+  const limit = 2;
   const skip = page * limit - limit;
 
   const postPromise = Post.find()
+    .sort({ created: -1 })
     .skip(skip)
     .limit(limit);
   const countPromise = Post.count();
