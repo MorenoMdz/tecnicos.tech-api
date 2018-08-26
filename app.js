@@ -54,6 +54,8 @@ app.use(flash());
 
 // pass variables to our templates + all requests via locals
 app.use((req, res, next) => {
+  res.locals.posts = req.body.posts || null;
+  res.locals.homeDisplay = req.body.homeDisplay || null;
   res.locals.h = helpers;
   res.locals.flashes = req.flash();
   res.locals.user = req.user || null; // passport passes user to our locals

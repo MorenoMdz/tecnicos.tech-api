@@ -12,7 +12,12 @@ const homeController = require('../controllers/homeController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
 /* Home */
-router.get('/', homeController.homeDisplay);
+router.get('/', homeController.homeDisplay, postController.getAllPosts);
+router.get(
+  '/posts/page/:page',
+  homeController.homeDisplay,
+  postController.getAllPosts
+);
 
 /* Hardware Route | Perms: Adm/Mod */
 router.get(

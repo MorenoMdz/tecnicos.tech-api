@@ -86,8 +86,9 @@ html(lang='en')
       if locals.currentPath == '/'
         .row
           .col-md-9.order-first
+            //pre= h.dump(locals.paginatedPosts)
             .miniBlog
-              +miniBlog()
+              +miniBlog(paginatedPosts)
 
           .col-md-3.order-last
             +homeInfo(homeDisplay)

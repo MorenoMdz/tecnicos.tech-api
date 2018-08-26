@@ -11,3 +11,38 @@ exports.addPost = async (req, res) => {
   req.flash('success', 'Postagem Adicionada!');
   res.redirect('back');
 };
+
+exports.getAllPosts = async (req, res, next) => {
+  const page = req.params.page || 1;
+  const limit = 3;
+  const skip = page * limit - limit;
+
+  const postPromise = Post.find()
+    .skip(skip)
+    .limit(limit);
+  const countPromise = Post.count();
+
+  const [posts, count] = await Promise.all([postPromise, countPromise]);
+  const pages = Math.ceil(count / limit);
+  if (!posts.length && skip) {
+    req.flash(
+      'info',
+      `You asked for page ${page} that does not exists. Redirecting back to home.`
+    );
+    res.redirect('/');
+    return;
+  }
+
+  const paginatedPosts = {
+    area: 'posts',
+    posts,
+    page,
+    pages,
+    count,
+  };
+  req.body.posts = paginatedPosts; // putting all the posts info @locals
+  const homeDisplay = req.body.homeDisplay;
+
+  //next();
+  res.render('layout', { homeDisplay, paginatedPosts });
+};

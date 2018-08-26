@@ -46,5 +46,9 @@ exports.homeDisplay = async (req, res, next) => {
     topTechs,
     topRepairs /* order here matters when reading from the object index in the view */,
   ]);
-  res.render('layout', { homeDisplay });
+  req.body.homeDisplay = homeDisplay;
+  //const paginatedPosts = req.body.posts; // comes from locals from postController
+
+  //res.render('layout', { homeDisplay, paginatedPosts });
+  next();
 };
