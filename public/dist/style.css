@@ -6,6 +6,10 @@ body {
   margin-bottom: 100px;
   max-height: 100%; }
 
+/* Global */
+.text-pink {
+  color: #ff0dbf; }
+
 /* Nav */
 .navbar-brand {
   background-color: transparent;

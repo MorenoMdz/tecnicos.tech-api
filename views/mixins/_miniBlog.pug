@@ -5,6 +5,18 @@ mixin miniBlog(paginatedPosts = {})
   if user
     .posts#miniBlog
       h6 Postagens do Administrador
+        if user && user.siteRank == 'admin' 
+          u.btn.m-1.float-right.text-secondary(data-toggle='modal' data-target='#myModal') Novo Post
+          .addPostForm
+              #myModal.modal.fade(role='dialog')
+                .modal-dialog#miniBlogModal
+                  .modal-content
+                    .modal-header.bg-primary.text-white.p-1
+                      h6.p-2 Adicionar um novo Post
+                      button.close(type='button', data-dismiss='modal') × 
+                    .modal-body.p-1
+                      +postForm()
+      hr
       #accordion
         each post, i in paginatedPosts.posts
           .row.bg-dark.text-white.pt-1(id=`heading${i}` data-toggle='collapse', data-target=`#collapse${i}`, aria-expanded='true', aria-controls=`collapse${i}` type="button")
@@ -24,19 +36,8 @@ mixin miniBlog(paginatedPosts = {})
               .collapse(id=`collapse${i}` aria-labelledby=`heading${i}`, data-parent='#accordion' )
                 p !{post.text} #{i}
 
-    +pagination(paginatedPosts.area, paginatedPosts.page, paginatedPosts.pages, paginatedPosts.count)
+    +pagination(paginatedPosts.area, paginatedPosts.page, paginatedPosts.pages, paginatedPosts.count)     
 
-    if user && user.siteRank == 'admin' 
-      .btn.btn-dark.m-1.float-right(data-toggle='modal' data-target='#myModal') Novo Post
-      .addPostForm
-          #myModal.modal.fade(role='dialog')
-            .modal-dialog#miniBlogModal
-              .modal-content
-                .modal-header.bg-primary.text-white.p-1
-                  h6.p-2 Adicionar um novo Post
-                  button.close(type='button', data-dismiss='modal') × 
-                .modal-body.p-1
-                  +postForm()
     hr    
     
   else 
