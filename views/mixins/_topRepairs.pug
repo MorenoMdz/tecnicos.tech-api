@@ -1,10 +1,11 @@
 mixin topRepairs(topRepairs)
-  //pre= h.dump(topTechs)
-  .card.bg-dark#topRepairs
-    .card-header.bg-info.text-white.text-center.p-2 Top Reparos:
-    .row
-      each repair in topRepairs[5]
-        .col-md-9
-          p: strong.card-text.text-white #{repair.title} 
-        .col-md-3.text-right
-          span.text-warning #{repair.stars.length}
+  #accordionTopRepairs
+    .card.bg-dark#topRepairs
+      .card-header.bg-info.text-white.text-center.p-2(id=`headingTopRepairs` data-toggle='collapse', data-target=`#collapseTopRepairs`, aria-expanded='true', aria-controls=`collapseTopRepairs` type="button") Top Reparos:
+      .collapse(id=`collapseTopRepairs` aria-labelledby=`headingTopRepairs`, data-parent='#accordionTopRepairs' )
+        .row
+          each repair in topRepairs[5]
+            .col-md-9
+              p: strong.card-text.text-white #{repair.title} 
+            .col-md-3.text-right
+              span.text-warning #{repair.stars.length}

@@ -1,8 +1,10 @@
 mixin homeInfo(homeDisplay = {})
-  .card.bg-dark.text-center#homeInfo
-    .card-header.bg-info.text-white.p-2 Dados do site:
-    .card-body.p-2
-      p: strong.card-text.text-white Aparelhos no sistema: #[span.ml-3.text-warning #{homeDisplay[0]}]
-      p: strong.card-text.text-white Defeitos cadastrados: #[span.ml-3.text-warning #{homeDisplay[1]}]
-      p: strong.card-text.text-white Reparos cadastrados: #[span.ml-3.text-warning #{homeDisplay[2]}]
-      p: strong.card-text.text-white Técnicos cadastrados: #[span.ml-3.text-warning #{homeDisplay[3]}]
+  #accordionHomeInfo
+    .card.bg-dark.text-center#homeInfo
+      .card-header.bg-info.text-white.p-2(id=`headingHomeInfo` data-toggle='collapse', data-target=`#collapseHomeInfo`, aria-expanded='true', aria-controls=`collapseHomeInfo` type="button") Dados do site:
+      .collapse.show(id=`collapseHomeInfo` aria-labelledby=`headingHomeInfo`, data-parent='#accordionHomeInfo' )
+        .card-body.p-2
+          p: strong.card-text.text-white Aparelhos no sistema: #[span.ml-3.text-warning #{homeDisplay[0]}]
+          p: strong.card-text.text-white Defeitos cadastrados: #[span.ml-3.text-warning #{homeDisplay[1]}]
+          p: strong.card-text.text-white Reparos cadastrados: #[span.ml-3.text-warning #{homeDisplay[2]}]
+          p: strong.card-text.text-white Técnicos cadastrados: #[span.ml-3.text-warning #{homeDisplay[3]}]

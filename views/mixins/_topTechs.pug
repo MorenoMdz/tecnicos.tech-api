@@ -1,11 +1,12 @@
 mixin topTechs(topTechs)
-  //pre= h.dump(topTechs)
-  .card.bg-dark#topTechs
-    .card-header.bg-info.text-white.text-center.p-2 Top stars:
-    .row
-      each tech in topTechs[4]
-        .col-md-9
-          p: strong.card-text.text-white #{tech.name} 
-        .col-md-3.text-right
-          span.text-warning #{tech.stars.length}
+  #accordionTopTechs
+    .card.bg-dark#topTechs
+      .card-header.bg-info.text-white.text-center.p-2(id=`headingTopTechs` data-toggle='collapse', data-target=`#collapseTopTechs`, aria-expanded='true', aria-controls=`collapseTopTechs` type="button") Top Techs:
+      .collapse(id=`collapseTopTechs` aria-labelledby=`headingTopTechs`, data-parent='#accordionTopTechs' )
+        .row
+          each tech in topTechs[4]
+            .col-md-9
+              p: strong.card-text.text-white #{tech.name} 
+            .col-md-3.text-right
+              span.text-warning #{tech.stars.length}
 

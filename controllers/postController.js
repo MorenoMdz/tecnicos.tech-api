@@ -3,8 +3,6 @@ const Post = mongoose.model('Post');
 
 exports.addPost = async (req, res) => {
   req.body.author = req.user._id;
-  console.log(req.body);
-
   const newPost = new Post(req.body);
   await newPost.save();
 
@@ -12,7 +10,7 @@ exports.addPost = async (req, res) => {
   res.redirect('back');
 };
 
-exports.getAllPosts = async (req, res, next) => {
+exports.getAllPosts = async (req, res) => {
   const page = req.params.page || 1;
   const limit = 2;
   const skip = page * limit - limit;
@@ -43,9 +41,7 @@ exports.getAllPosts = async (req, res, next) => {
   };
 
   // putting all the posts info @locals
-  //req.body.posts = paginatedPosts;
   const homeDisplay = req.body.homeDisplay;
 
-  //next();
   res.render('layout', { homeDisplay, paginatedPosts });
 };
