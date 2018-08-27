@@ -4,21 +4,44 @@ include _pagination.pug
 mixin miniBlog(paginatedPosts = {})
   if user
     .posts#miniBlog
-      h6 Postagens do Admin
-        each post in paginatedPosts.posts
-          .row.bg-secondary.text-white.pt-1.pl-1
-            // todo link to a single post
-            p.text-left.col-md-7.pt-1= post.title
-            span.text-right.small.col-md-5.align-items-end.mt-3
+      h6 Postagens do Administrador
+      #accordion
+        each post, i in paginatedPosts.posts
+            //.card
+            .row.bg-dark.text-white.pt-1(id=`heading${i}` data-toggle='collapse', data-target=`#collapse${i}`, aria-expanded='true', aria-controls=`collapse${i}` type="button")
+              p.text-left.col-md-7.pt-1= post.title
+              span.text-right.small.col-md-5.align-items-end.mt-3
                 | por
                 |
                 a.text-warning(href=`/tech/${post.author._id}`) #{post.author.name} #{post.date}
                 | 
                 time(datetime=post.created)= h.moment(post.created).locale('pt-br').fromNow()
 
-          .row
-            #homePost.hrCurved.mb-1.px-2.pb-1.w-100.text-truncate
-              p !{post.text}
+            if i === 0 
+              #homePost.hrCurved.mb-1.px-2.pb-1.w-100.text-truncate
+                .collapse.show(id=`collapse${i}` aria-labelledby=`heading${i}`, data-parent='#accordion' )
+                  
+                    p.mb-2 !{post.text} #{i}
+            else
+              #homePost.hrCurved.mb-1.px-2.py-1.w-100.text-truncate
+                .collapse(id=`collapse${i}` aria-labelledby=`heading${i}`, data-parent='#accordion' )
+                  
+                    p !{post.text} #{i}
+
+            //-.row
+              #homePost.hrCurved.mb-1.px-2.pb-1.w-100.text-truncate
+      
+            //-.row.bg-secondary.text-white.pt-1.pl-1
+              // todo link to a single post
+              p.text-left.col-md-7.pt-1= post.title
+              span.text-right.small.col-md-5.align-items-end.mt-3
+                  | por
+                  |
+                  a.text-warning(href=`/tech/${post.author._id}`) #{post.author.name} #{post.date}
+                  | 
+                  time(datetime=post.created)= h.moment(post.created).locale('pt-br').fromNow()
+
+
     +pagination(paginatedPosts.area, paginatedPosts.page, paginatedPosts.pages, paginatedPosts.count)
 
     if user && user.siteRank == 'admin' 

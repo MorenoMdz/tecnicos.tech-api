@@ -151,7 +151,8 @@ nav .nav-link {
 #miniBlog {
   overflow-y: auto; }
   #miniBlog #homePost {
-    max-height: 30vh; }
+    max-height: 50vh;
+    overflow-y: auto; }
 
 .modal-dialog {
   width: 800px !important; }
