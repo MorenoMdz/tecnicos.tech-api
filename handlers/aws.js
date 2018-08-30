@@ -20,9 +20,7 @@ const multerOptions = {
     limits: {
       fileSize: maxSize,
       files: 5,
-      fields: 5,
     },
-    folder: 'images',
     contentType: multerS3.AUTO_CONTENT_TYPE,
     key: function(req, file, cb) {
       const extension = file.mimetype.split('/')[1]; // gets the extension
@@ -36,15 +34,14 @@ const multerOptions = {
     transforms: [
       {
         id: 'original',
-        /*         key: function(req, file, cb) {
-          const extension = file.mimetype.split('/')[1]; // gets the extension
-          const area = req.body.area;
-          fileName = `${area}${uuid.v4()}.${extension}`;
-          cb(null, fileName);
-        }, */
         transform: function(req, file, cb) {
-          console.log('transform');
-          cb(null, sharp().resize(100));
+          //Perform desired transformations
+          cb(
+            null,
+            sharp()
+              .resize(600, 600)
+              .max()
+          );
         },
       },
     ],

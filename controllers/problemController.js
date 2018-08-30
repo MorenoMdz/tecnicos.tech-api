@@ -4,7 +4,7 @@ const multer = require('multer');
 const jimp = require('jimp');
 const uuid = require('uuid');
 
-const multerOptions = {
+/* const multerOptions = {
   storage: multer.memoryStorage(),
   fileFilter(req, file, next) {
     const isPhoto = file.mimetype.startsWith('image/');
@@ -41,7 +41,7 @@ exports.resize = async (req, res, next) => {
   }
   // once we have written the photo to the fs, keep going
   next();
-};
+}; */
 
 /* Problem Management Methods */
 /* exports.addProblem = async (req, res) => {
