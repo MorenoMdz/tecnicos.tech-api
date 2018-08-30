@@ -1,0 +1,29 @@
+/* Nav right */
+@keyframes rightToLeft {
+  0% {
+    transform: translateX(200%);
+  }
+  90% {
+    transform: rotate(xx) translateX(0);
+  }
+  100% {
+    transform: rotate(xx) translateX(100px);
+  }
+}
+
+#navbarCollapseTarget {
+  animation: rightToLeft 0.3s 1 1.5s ease-in;
+}
+
+@keyframes leftToRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: rotate(xx) translateX(0);
+  }
+}
+
+.blog {
+  animation: leftToRight 0.5s 1 1s ease;
+}

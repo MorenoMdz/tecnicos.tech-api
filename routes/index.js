@@ -92,8 +92,8 @@ router.post(
 router.get(
   '/problem/:slug',
   authController.isLoggedIn,
-  hwController.upload,
-  catchErrors(problemController.resize),
+  /*   hwController.upload,
+  catchErrors(problemController.resize), */
   catchErrors(problemController.getProblemBySlug)
 );
 
