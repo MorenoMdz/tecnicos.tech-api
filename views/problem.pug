@@ -13,6 +13,7 @@ block content
         .col-sm-4
           #problemImg.m-3
             if problem.photos.length > 0
+              //pre= h.dump(problem.photos[0].location)
               +lightbox(problem.photos)
               figcaption.figure-caption.text-center Veja #{problem.photos.length} imagens do defeito.
             else

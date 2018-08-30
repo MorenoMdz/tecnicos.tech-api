@@ -23,11 +23,24 @@ body {
   color: $neonPink;
 }
 /* Nav */
+.homeLogo:hover svg {
+  -ms-transform: none;
+  transform: none;
+}
+.homeLogo svg {
+  bottom: 100px;
+  width: 180px;
+  margin-top: -45px;
+  @media screen and (max-width: 767px) {
+    height: 100%;
+  }
+}
 .navbar-brand {
+  height: 100px;
   background-color: transparent;
   box-sizing: border-box;
   color: rgb(255, 255, 255) !important;
-  display: inline-block;
+  /* display: inline-block; */
   margin-right: 1rem;
   padding-bottom: 0.3125rem;
   padding-top: 0.3125rem;

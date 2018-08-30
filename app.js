@@ -88,5 +88,17 @@ if (app.get('env') === 'development') {
 /* production error handler */
 app.use(errorHandlers.productionErrors);
 
+app.use(function(err, req, res, next) {
+  if (err.code === 'LIMIT_FILE_SIZE') {
+    res.send({
+      result: 'fail',
+      error: { code: 1001, message: 'File is too big' },
+    });
+    return;
+  }
+
+  // Handle any other errors
+});
+
 /* exports the app starting module to start the app */
 module.exports = app;

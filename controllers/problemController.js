@@ -44,7 +44,7 @@ exports.resize = async (req, res, next) => {
 };
 
 /* Problem Management Methods */
-exports.addProblem = async (req, res) => {
+/* exports.addProblem = async (req, res) => {
   const hwController = require('./hwController');
   const hardwares = await hwController.hardwares;
 
@@ -53,10 +53,11 @@ exports.addProblem = async (req, res) => {
     step: '',
     hardwares: hardwares,
   });
-};
+}; */
 
 exports.addNewProblem = async (req, res) => {
   req.body.author = req.user.id;
+  req.body.photos = req.files;
   const problem = await new Problem(req.body)
     .save()
     .catch(err => console.log(err)); // it wont move to the next line until the save returns something */

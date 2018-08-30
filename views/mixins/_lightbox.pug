@@ -1,10 +1,10 @@
 mixin lightbox(photos)
-  a.col-3(href=`/uploads/${photos[0] || 'default.jpg'}`, data-toggle='lightbox', data-gallery='hidden-images')
-    img.border.border-info.img-fluid(src=`/uploads/${photos[0] || 'default.jpg'}` data-title=`Imagem 1 de ${photos.length}` alt="Foto do Defeito")
+  a.col-3(href=photos[0].location || '/uploads/default.jpg', data-toggle='lightbox', data-gallery='example-gallery')
+    img.border.border-info.img-fluid(src=photos[0].location || '/uploads/default.jpeg' data-title=`Imagem 1 de ${photos.length}` alt="Foto do Defeito" class="img-fluid")
   each photo, i in photos
-    if i > 0
-      div(data-toggle='lightbox', data-gallery='hidden-images', data-remote=`/uploads/${photo || 'default.jpg'}`, data-title=`Imagem ${i + 1} de ${photos.length}`)
-
+      if i > 0
+        div(data-toggle='lightbox', data-gallery='example-gallery', data-remote=photo.location || '/uploads/default.jpeg', data-title=`Imagem ${i + 1} de ${photos.length}`)
+      
 
 
 

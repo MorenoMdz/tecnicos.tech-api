@@ -18,13 +18,17 @@ html(lang='en')
     link(rel='stylesheet', type='text/css', href='https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css')
     //link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css')
     link(rel='icon', href='/images/icons/android-icon-192x192.png', type='image/png')
+    script(src="/javascripts/get_detail.js")
   body
     block header
       header
           nav.navbar.navbar-expand-md.navbar-dark
             button.navbar-toggler.collapsed(type='button', data-toggle='collapse', data-target='#navbarCollapseTarget', aria-controls='navbarCollapseTarget', aria-expanded='false', aria-label='Toggle navigation')
               span.navbar-toggler-icon
-            a.navbar-brand(href="/") Técnicos tech #[span.text-warning.underline.font-weight-light beta]
+            a.navbar-brand(href="/") 
+              .homeLogo
+                != h.icon('logo')
+              //Técnicos tech #[span.text-warning.underline.font-weight-light beta]
 
             #navbarCollapseTarget.navbar-collapse.collapse(style='')
               ul.navbar-nav.mr-auto.lighten-3.py-4.mb-r.font-weight-bold.z-depth-1

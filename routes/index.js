@@ -9,6 +9,7 @@ const authController = require('../controllers/authController');
 const commentController = require('../controllers/commentController');
 const postController = require('../controllers/postController');
 const homeController = require('../controllers/homeController');
+const aws = require('../handlers/aws');
 const { catchErrors } = require('../handlers/errorHandlers');
 
 /* Home */
@@ -83,8 +84,8 @@ router.get(
 router.post(
   '/addNewProblem',
   authController.isLoggedIn,
-  problemController.upload,
-  catchErrors(problemController.resize),
+  /* catchErrors(aws.resize), */
+  aws.upload,
   catchErrors(problemController.addNewProblem)
 );
 
