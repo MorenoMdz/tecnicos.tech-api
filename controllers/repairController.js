@@ -50,7 +50,11 @@ exports.addRepairForm = async (req, res) => {
 
 exports.createRepair = async (req, res) => {
   req.body.author = req.user._id;
-  const repair = await new Repair(req.body).save();
+  req.body.photos = req.files;
+
+  const repair = await new Repair(req.body)
+    .save()
+    .catch(err => console.log(err));
 
   req.flash(
     'success',

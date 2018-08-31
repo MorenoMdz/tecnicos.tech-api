@@ -12,7 +12,7 @@ exports.addPost = async (req, res) => {
 
 exports.getAllPosts = async (req, res) => {
   const page = req.params.page || 1;
-  const limit = 2;
+  const limit = 3;
   const skip = page * limit - limit;
 
   const postPromise = Post.find()

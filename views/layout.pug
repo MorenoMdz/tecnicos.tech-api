@@ -7,7 +7,7 @@ doctype html
 html(lang='en')
   head
     - let title = 'Tecnicos.tech'
-    title= `${title} | ${h.siteName}`
+    title= (`${title} | ${locals.currentPath == '/' ? 'Home' : locals.currentPath}`)
 
     meta(charset='UTF-8')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
@@ -17,8 +17,6 @@ html(lang='en')
     link(rel='stylesheet', href='/dist/style.css')
     link(rel='stylesheet', type='text/css', href='https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css')
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css")
-    //link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css')
-    //script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
     link(rel='icon', href='/images/icons/android-icon-192x192.png', type='image/png')
   body
     block header

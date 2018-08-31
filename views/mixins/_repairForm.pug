@@ -5,8 +5,12 @@ mixin repairForm(repair = {})
     p(hidden) Id do Defeito #{problem.title} #{problem._id}
     p(hidden) Id do hardware #{problem.hardware.name} #{problem.hardware._id}
 
-    input.form-control(type="text" name="problem" placeholder="Digite um título para o defeito" value=problem._id hidden)
-    input.form-control(type="text" name="hardware" placeholder="Digite um título para o defeito" value=problem.hardware._id hidden)
+    input.form-control(type="text" name="problem" value=problem._id hidden)
+    input.form-control(type="text" name="hardware" value=problem.hardware._id hidden)
+    
+    input(type="text" name='destinationFolder' form="repairForm" value=`${problem.hardware.name}/problem_${problem.title}` hidden required)
+
+    input(type="text" name='area' form="repairForm" value='repair_' hidden required)
 
     label.mb-1(for="title") Título do Defeito:
     .small.mb-1 Em poucas palavras, exemplo 'Reball' ou 'Trocado HD' etc
@@ -34,10 +38,10 @@ mixin repairForm(repair = {})
     label.mb-1(for="photo") Adicione imagens do reparo (máximo 5):
       input.border.border-warning.mb-3.form-control-file(type="file" name="photos" id="photos" accept="image/gif, image/png, image/jpeg" multiple)
       if repair.photo
-        img(src=`/uploads/${repair.photo}`, alt=repair.name width=200)
+        img(src=repair.photo.location, alt=repair.name width=200)
     
     label.mb-1(for="video") Link para um video do reparo: #[span.small (Sugerido: Youtube/Streamable/Vimeo)]
-    input.form-control(type="text" name="video" placeholder=" Link para o video" value=repair.hardware)
+    input.form-control(type="text" name="video" placeholder=" Link para o video" value=repair.video)
     p
     input.form-control.btn.btn-primary(type="submit" value="Salvar" class="button" for="repairForm")
 
