@@ -16,7 +16,9 @@ html(lang='en')
     link(href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN", crossorigin="anonymous")
     link(rel='stylesheet', href='/dist/style.css')
     link(rel='stylesheet', type='text/css', href='https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css')
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css")
     //link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css')
+    //script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
     link(rel='icon', href='/images/icons/android-icon-192x192.png', type='image/png')
   body
     block header
@@ -29,7 +31,7 @@ html(lang='en')
                 != h.icon('logo')
               //Técnicos tech #[span.text-warning.underline.font-weight-light beta]
 
-            #navbarCollapseTarget.navbar-collapse.collapse(style='')
+            #navbarCollapseTarget.navbar-collapse.collapse(style='' )
               ul.navbar-nav.mr-auto.lighten-3.py-4.mb-r.font-weight-bold.z-depth-1
                 each item in h.menu
                   li.nav-item
@@ -43,12 +45,12 @@ html(lang='en')
 
                   
                   
-              .search
+              .search(class=(locals.currentPath == '/' ? 'navbarShowAnimRight' : ''))
                 .form-inline.my-2.my-md-0
                   input#search-box.form-control(type='text', placeholder='Buscar por defeitos' name="search")
                   .search-results
 
-              .navbar-nav#loginDiv.z-depth-1
+              .navbar-nav#loginDiv.z-depth-1(class=(locals.currentPath == '/' ? 'navbarShowAnimRight' : ''))
                 if user
 
                   li.nav-item.pl-2: a.nav-link(href="/account", class=(currentPath.startsWith('/account') ? 'nav-link-active' : ''))
@@ -73,7 +75,7 @@ html(lang='en')
       .container
         if locals.flashes
           .flashDiv.py-2
-            #flash-messages
+            #flash-messages.animated.bounceIn.faster 
               - const categories = Object.keys(locals.flashes)
               each category in categories
                 each message in flashes[category]
@@ -90,17 +92,18 @@ html(lang='en')
         if locals.currentPath == '/' || locals.currentPath == `/posts/page/${paginatedPosts.page}`
           .row
             .col-md-9.order-first
-              .miniBlog
+              .miniBlogAnim
                 +miniBlog(paginatedPosts)
 
             .col-md-3.order-last
-              +homeInfo(homeDisplay)
-              p
-              +topRepairs(homeDisplay)
-              p
-              +topTechs(homeDisplay)
-              p
-            
+              .sidePanels
+                +homeInfo(homeDisplay)
+                p
+                +topRepairs(homeDisplay)
+                p
+                +topTechs(homeDisplay)
+                p
+              
 
 
     .footer.fixed-bottom
@@ -116,7 +119,9 @@ html(lang='en')
         p.mt-1 #[a.text-info(href='http://www.premoreno.com') Project by Moreno A] © 2018 Todos direitos reservados
 
     block scripts
-      script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
+      script(src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous")
       script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', integrity='sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ', crossorigin='anonymous')
       script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', integrity='sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm', crossorigin='anonymous')
       script(src='https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js')
@@ -127,3 +132,9 @@ html(lang='en')
         });
       script(src="/javascripts/bundle.js")
       script(src="/javascripts/get_detail.js")
+      script.
+        $(document).ready(function () {          
+          setTimeout(function() {
+              $('.flash-msg').fadeOut('slow')
+          }, 3000);
+        });
