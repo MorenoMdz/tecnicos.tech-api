@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 const Problem = mongoose.model('Problem');
-const multer = require('multer');
-const jimp = require('jimp');
-const uuid = require('uuid');
 
 /* const multerOptions = {
   storage: multer.memoryStorage(),

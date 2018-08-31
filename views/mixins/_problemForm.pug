@@ -3,6 +3,7 @@ mixin problemForm(problem={})
   form.form-group.p-3(action=`/addNewProblem` method="POST"  class="card" enctype="multipart/form-data" id="problemForm")
 
     input(type="text" name='hardware' form="problemForm" value=hardware._id hidden required)
+    input(type="text" name='destinationFolder' form="problemForm" value=hardware.name hidden required)
     input(type="text" name='area' form="problemForm" value='problem_' hidden required)
 
     label(for="title") Título do Defeito

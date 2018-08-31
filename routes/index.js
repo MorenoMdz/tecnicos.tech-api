@@ -75,16 +75,15 @@ router.get(
   catchErrors(problemController.getProblemList)
 );
 
-router.get(
+/* router.get(
   '/addProblem',
   authController.isLoggedIn,
   catchErrors(problemController.addProblem)
-);
+); */
 
 router.post(
   '/addNewProblem',
   authController.isLoggedIn,
-  /* catchErrors(aws.resize), */
   aws.upload,
   catchErrors(problemController.addNewProblem)
 );
@@ -92,8 +91,6 @@ router.post(
 router.get(
   '/problem/:slug',
   authController.isLoggedIn,
-  hwController.upload,
-  catchErrors(problemController.resize),
   catchErrors(problemController.getProblemBySlug)
 );
 

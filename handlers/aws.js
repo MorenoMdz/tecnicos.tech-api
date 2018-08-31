@@ -15,7 +15,6 @@ const multerOptions = {
   storage: multerS3({
     s3: s3,
     bucket: process.env.AWS_BUCKET,
-    bucketPath: 'images',
     acl: 'public-read',
     limits: {
       fileSize: maxSize,
@@ -25,7 +24,8 @@ const multerOptions = {
     key: function(req, file, cb) {
       const extension = file.mimetype.split('/')[1]; // gets the extension
       const area = req.body.area;
-      fileName = `${area}${uuid.v4()}.${extension}`;
+      const destinationFolder = req.body.destinationFolder;
+      fileName = `${destinationFolder}/${area}${uuid.v4()}.${extension}`;
       cb(null, fileName);
     },
     shouldTransform: function(req, file, cb) {

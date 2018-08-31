@@ -28,11 +28,11 @@ mixin miniBlog(paginatedPosts = {})
               | 
               time(datetime=post.created)= h.moment(post.created).locale('pt-br').fromNow()
           if i === 0 
-            #homePost.hrCurved.mb-1.px-2.pb-1.w-100.text-truncate
+            #homePost.hrCurved.mb-1.px-2.pb-1.w-90.text-truncate
               .collapse.show(id=`collapse${i}` aria-labelledby=`heading${i}`, data-parent='#accordion' )
                 p.mb-2 !{post.text} #{i}
           else
-            #homePost.hrCurved.mb-1.px-2.py-1.w-100.text-truncate
+            #homePost.hrCurved.mb-1.px-2.py-1.w-90.text-truncate
               .collapse(id=`collapse${i}` aria-labelledby=`heading${i}`, data-parent='#accordion' )
                 p !{post.text} #{i}
 
