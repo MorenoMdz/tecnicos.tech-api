@@ -1,0 +1,11 @@
+extends email-layout
+
+block content
+  h2 Olá Técnico!
+  p Obrigado por se registrar no site, pedimos que dedique uns minutos de seu tempo para manter seu cadastro atualizado. 
+  p Esses dados poderão ser utilizados por clientes em potencial encontrarem seu trabalho no futuro, ou para possíveis ofertas de trabalho, fornecedor, parcerias etc. 
+  p É sempre bom expandir sua rede de contatos.
+  +button(accountUrl, ' Confirme seus dados →')
+  p Se você não conseguir clicar no link acima acesse pelo site #{accountUrl}
+  br
+  hr

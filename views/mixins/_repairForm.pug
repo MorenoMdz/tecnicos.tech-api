@@ -35,15 +35,17 @@ mixin repairForm(repair = {})
     .small.mb-1 Informações que julgar interessante sobre o reparo
     textarea.mb-3.form-control(name="description" placeholder="Descrição do reparo" )= repair.description
     
-    label.mb-1(for="photo") Adicione imagens do reparo (máximo 5):
-      input.border.border-warning.mb-3.form-control-file(type="file" name="photos" id="photos" accept="image/gif, image/png, image/jpeg" multiple)
+    label.mb-1(for="photo") Adicione imagens do reparo
+      p: small máximo 5 imagens com até 5mb cada
+      input(type="file" name="photos" id="file_upload" accept="image/gif, image/png, image/jpeg" onchange="get_detail();" multiple)
       if repair.photo
         img(src=repair.photo.location, alt=repair.name width=200)
+      p#file_detail
     
     label.mb-1(for="video") Link para um video do reparo: #[span.small (Sugerido: Youtube/Streamable/Vimeo)]
     input.form-control(type="text" name="video" placeholder=" Link para o video" value=repair.video)
     p
-    input.form-control.btn.btn-primary(type="submit" value="Salvar" class="button" for="repairForm")
+    input.form-control.btn.btn-primary(type="submit" value="Salvar" class="buttonFormUpload" for="repairForm")
 
 
 

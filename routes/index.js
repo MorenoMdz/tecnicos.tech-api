@@ -9,6 +9,7 @@ const authController = require('../controllers/authController');
 const commentController = require('../controllers/commentController');
 const postController = require('../controllers/postController');
 const homeController = require('../controllers/homeController');
+const admController = require('../controllers/admController');
 const aws = require('../handlers/aws');
 const { catchErrors } = require('../handlers/errorHandlers');
 
@@ -20,26 +21,29 @@ router.get(
   postController.getAllPosts
 );
 
-/* Hardware Route | Perms: Adm/Mod */
+/* Adm */
 router.get(
   '/config',
   authController.isLoggedIn,
   authController.isMod,
-  hwController.getAllHw
+  authController.isActive,
+  catchErrors(technicianController.getInactiveTechList),
+  admController.configPanel
 );
 
 router.post(
   '/addHw',
   authController.isLoggedIn,
   authController.isMod,
-  hwController.upload,
-  catchErrors(hwController.resize),
+  authController.isActive,
   catchErrors(hwController.addNewHw)
 );
 
 router.get(
   '/addForm',
   authController.isLoggedIn,
+  authController.isMod,
+  authController.isActive,
   repairController.addRepairForm
 );
 
@@ -47,18 +51,21 @@ router.get(
 router.get(
   '/hardware/:slug',
   authController.isLoggedIn,
+  authController.isActive,
   catchErrors(hwController.getHwBySlug)
 );
 
 router.get(
   '/hardwares',
   authController.isLoggedIn,
+  authController.isActive,
   catchErrors(hwController.getAllHw)
 );
 
 router.get(
   '/hardwares/page/:page',
   authController.isLoggedIn,
+  authController.isActive,
   catchErrors(hwController.getAllHw)
 );
 
@@ -66,18 +73,21 @@ router.get(
 router.get(
   '/problems',
   authController.isLoggedIn,
+  authController.isActive,
   catchErrors(problemController.getProblemList)
 );
 
 router.get(
   '/problems/page/:page',
   authController.isLoggedIn,
+  authController.isActive,
   catchErrors(problemController.getProblemList)
 );
 
 router.post(
   '/addNewProblem',
   authController.isLoggedIn,
+  authController.isActive,
   aws.upload,
   catchErrors(problemController.addNewProblem)
 );
@@ -85,6 +95,7 @@ router.post(
 router.get(
   '/problem/:slug',
   authController.isLoggedIn,
+  authController.isActive,
   catchErrors(problemController.getProblemBySlug)
 );
 
@@ -92,21 +103,25 @@ router.get(
 router.get(
   '/repairs',
   authController.isLoggedIn,
+  authController.isActive,
   catchErrors(repairController.getAllRepairs)
 );
 router.get(
   '/repairs/page/:page',
   authController.isLoggedIn,
+  authController.isActive,
   catchErrors(repairController.getAllRepairs)
 );
 router.get(
   '/repair/:slug',
   authController.isLoggedIn,
+  authController.isActive,
   catchErrors(repairController.getRepairBySlug)
 );
 router.post(
   '/addRepair',
   authController.isLoggedIn,
+  authController.isActive,
   aws.upload,
   catchErrors(repairController.createRepair)
 );
@@ -115,6 +130,7 @@ router.post(
 router.post(
   '/comment/:id',
   authController.isLoggedIn,
+  authController.isActive,
   catchErrors(commentController.addComment)
 );
 
@@ -122,6 +138,7 @@ router.post(
 router.post(
   '/addNewPost',
   authController.isLoggedIn,
+  authController.isActive,
   catchErrors(postController.addPost)
 );
 
@@ -145,10 +162,16 @@ router.post(
   catchErrors(authController.update)
 );
 
-router.get('/account', authController.isLoggedIn, technicianController.account);
+router.get(
+  '/account',
+  authController.isLoggedIn,
+  authController.isActive,
+  technicianController.account
+);
 router.post(
   '/account',
   authController.isLoggedIn,
+  authController.isActive,
   catchErrors(technicianController.updateAccount)
 );
 
@@ -158,6 +181,25 @@ router.get('/tech/:id', catchErrors(technicianController.getTech));
 
 /* API Endpoints */
 router.get('/api/search', catchErrors(problemController.searchProblem));
-router.post('/api/repairs/:id/star', catchErrors(repairController.starsRepair));
+router.post(
+  '/api/repairs/:id/star',
+  authController.isLoggedIn,
+  authController.isActive,
+  catchErrors(repairController.starsRepair)
+);
+router.post(
+  '/api/tech/:id/activate',
+  authController.isLoggedIn,
+  authController.isActive,
+  authController.isMod,
+  catchErrors(technicianController.activateUser)
+);
+router.post(
+  '/api/tech/:id/deactivate',
+  authController.isLoggedIn,
+  authController.isActive,
+  authController.isMod,
+  catchErrors(technicianController.deactivateUser)
+);
 
 module.exports = router;

@@ -36,6 +36,15 @@ exports.isMod = (req, res, next) => {
   res.redirect('/');
 };
 
+exports.isActive = (req, res, next) => {
+  if (req.user.active_status === true) {
+    next();
+    return;
+  }
+  req.flash('danger', 'Conta inativa, favor contatar os administradores');
+  res.redirect('/');
+};
+
 exports.forgot = async (req, res) => {
   // 1. See if the user exists
   const user = await Technician.findOne({ email: req.body.email });
@@ -55,7 +64,7 @@ exports.forgot = async (req, res) => {
 
   await mail.send({
     user,
-    subject: 'Password reset',
+    subject: 'Reset de senha',
     resetURL,
     filename: 'password-reset',
   });

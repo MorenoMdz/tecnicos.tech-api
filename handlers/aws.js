@@ -45,15 +45,15 @@ const multerOptions = {
         },
       },
     ],
+    fileFilter(req, file, next) {
+      const isPhoto = file.mimetype.startsWith('image/');
+      if (isPhoto) {
+        next(null, true); // null for error means it worked and it is fine to continue to next()
+      } else {
+        next({ message: 'Fotos: Tipo de arquivo não suportado!' }, false); // with error
+      }
+    },
   }),
-  fileFilter(req, file, next) {
-    const isPhoto = file.mimetype.startsWith('image/');
-    if (isPhoto) {
-      next(null, true); // null for error means it worked and it is fine to continue to next()
-    } else {
-      next({ message: 'Fotos: Tipo de arquivo não suportado!' }, false); // with error
-    }
-  },
 };
 
 exports.upload = multer(multerOptions).array('photos', 5);

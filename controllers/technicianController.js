@@ -1,6 +1,15 @@
 const mongoose = require('mongoose');
 const Technician = mongoose.model('Technician');
 const promisify = require('es6-promisify');
+const mail = require('../handlers/mail');
+
+/* Mailing */
+/* await mail.send({
+  user,
+  subject: 'Reset de senha',
+  resetURL,
+  filename: 'password-reset',
+}); */
 
 /* Login Methods */
 exports.loginForm = (req, res) => {
@@ -67,8 +76,56 @@ exports.registerTechnician = async (req, res, next) => {
     emailExists = '';
     return;
   } else {
+    // Notify new user his acc is pending activation
+    await mail.send({
+      user,
+      subject: 'Aguardando ativação',
+      to: req.body.email,
+      filename: 'register-success',
+    });
+    // Notify admin a new user was created
+    const adminUrl = `http://${req.headers.host}/config`;
+    await mail.send({
+      user,
+      subject: 'Novo usuário registrado',
+      to: process.env.SITE_ADMIN,
+      adminUrl,
+      filename: 'check-new-user',
+    });
     next();
   }
+};
+
+exports.activateUser = async (req, res, user) => {
+  // Update user active_status to true
+  const technician = await Technician.findOneAndUpdate(
+    { _id: req.body.technician },
+    { $set: { active_status: true } },
+    { new: true, runValidators: true, context: 'query' }
+  );
+
+  // Notify the new user his account is active
+  const accountUrl = `http://${req.headers.host}/account`;
+  await mail.send({
+    user,
+    subject: 'Bem vindo ao Tecnicos Tech',
+    to: req.body.email,
+    accountUrl,
+    filename: 'new-user',
+  });
+  req.flash('success', 'Usuário ativado com sucesso.');
+  res.redirect('/config');
+  /* res.json(req.body); */
+};
+
+exports.deactivateUser = async (req, res, user) => {
+  const technician = await Technician.findOneAndUpdate(
+    { _id: req.body.technician },
+    { $set: { active_status: false } },
+    { new: true, runValidators: true, context: 'query' }
+  );
+  req.flash('warning', 'Usuário desativado com sucesso.');
+  res.redirect('/config');
 };
 
 exports.account = (req, res) => {
@@ -122,8 +179,22 @@ exports.getTechList = async (req, res) => {
     stars: 1,
     techStars: 1,
     siteRank: 1,
+    active_status: 1,
   });
   res.render('techList', { title: 'Técnicos do site', techs });
+};
+
+exports.getInactiveTechList = async (req, res, next) => {
+  const techs = await Technician.find().select({
+    name: 1,
+    stars: 1,
+    techStars: 1,
+    siteRank: 1,
+    active_status: 1,
+    email: 1,
+  });
+  res.locals.techs = techs;
+  next();
 };
 
 exports.getTech = async (req, res) => {

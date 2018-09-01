@@ -59,6 +59,10 @@ const technicianSchema = new Schema({
       ref: 'Repairs',
     },
   ],
+  active_status: {
+    type: Boolean,
+    default: false,
+  },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
   warning: {

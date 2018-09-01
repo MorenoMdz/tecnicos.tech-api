@@ -1,0 +1,54 @@
+
+mixin techListAdm(techs={})
+  
+  ul#pills-tab.nav.nav-pills.mb-3.justify-content-center(role='tablist')
+    li.nav-item
+      a#techListInactive.nav-link.active(data-toggle='pill', href='#pills-home', role='tab', aria-controls='pills-home', aria-selected='true') Aguardando ativação
+    li.nav-item
+      a#techListActive.nav-link(data-toggle='pill', href='#pills-profile', role='tab', aria-controls='pills-profile', aria-selected='false') Ativos
+    li.nav-item
+      a#hwList.nav-link(data-toggle='pill', href='#pills-contact', role='tab', aria-controls='pills-contact', aria-selected='false') Consoles
+  #pills-tabContent.tab-content
+    #pills-home.tab-pane.fade.show.active(role='tabpanel', aria-labelledby='techListInactive') 
+      ul.list-group.mb-2
+        each technician in techs
+          if !technician.active_status
+            li.list-group-item.p-1.mb-2.bg-dark.text-white
+              .row
+                .col-md-2
+                  form.star(method="POST" action=`/api/tech/${technician._id}/activate`)
+                    input.form-control(type="text" name="technician" value=technician._id hidden)
+                    input.form-control(type="text" name="email" value=technician.email hidden)
+                    input.form-control(type="text" name="name" value=technician.name hidden)
+                    button.btn.btn-primary(type="submit" name="activate_status" ) Ativar
+                .col-md-8
+                  a(href=`/tech/${technician._id}`)
+                    strong.ml-2.mr-auto.text-white #{technician.name}
+                .col-md-2
+                  strong.ml-2.mr-auto Rank: #{technician.siteRank}
+    #pills-profile.tab-pane.fade(role='tabpanel', aria-labelledby='techListActive')
+      ul.list-group.mb-2
+        each technician in techs
+          if technician.active_status
+            
+            li.list-group-item.p-1.mb-2.bg-light
+              .row
+                .col-md-2
+                  form.star(method="POST" action=`/api/tech/${technician._id}/deactivate`)
+                    input.form-control(type="text" name="technician" value=technician._id hidden)
+                    input.form-control(type="text" name="email" value=technician.email hidden)
+                    input.form-control(type="text" name="name" value=technician.name hidden)
+                    if technician.siteRank != 'admin'
+                      button.btn.btn-danger(type="submit" name="activate_status") Desativar
+                .col-md-8
+                  a(href=`/tech/${technician._id}`)
+                    strong.ml-2.mr-auto.text-dark #{technician.name}
+                .col-md-2
+                  strong.ml-2.mr-auto Rank: #{technician.siteRank}
+    #pills-contact.tab-pane.fade(role='tabpanel', aria-labelledby='hwList') todo Add Hw
+
+
+
+
+
+  

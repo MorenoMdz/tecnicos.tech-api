@@ -6,15 +6,31 @@ block content
     ul.list-group.mb-2
     //pre= h.dump(techs)
     .container.techList
-      each technician in techs
-        a(href=`/tech/${technician._id}`)
-          li.list-group-item.p-3.mb-2
-            .row
-              .col-md-2
-                span.fa.fa-star.badge-primary.p-2 #[span.pl-1 #{technician.stars.length}]
-              .col-md-8
-                strong.ml-2.mr-auto #[span.font-primary #{technician.name}]
-              .col-md-2
-                strong.ml-2.mr-auto Rank: #{technician.siteRank}
+      if user.siteRank == 'admin'
+        each technician in techs
+          a(href=`/tech/${technician._id}`)
+            li.list-group-item.p-1.mb-2(class=(technician.active_status == false ? 'bg-secondary text-white' : ''))
+              .row
+                .col-md-2
+                  span.fa.fa-star.badge-primary.p-2 #[span.pl-1 #{technician.stars.length}]
+                .col-md-6
+                  strong.ml-2.mr-auto #[span.font-primary #{technician.name}]
+                .col-md-2
+                  strong.ml-2.mr-auto Ativo: #{technician.active_status}
+                .col-md-2
+                  strong.ml-2.mr-auto Rank: #{technician.siteRank}
+      else
+        each technician in techs
+          //pre= h.dump(technician)
+          if technician.active_status
+            a(href=`/tech/${technician._id}`)
+              li.list-group-item.p-1.mb-2(class=(technician.siteRank == 'admin' ? 'bg-light border-info' : ''))
+                .row
+                  .col-md-2
+                    span.fa.fa-star.badge-primary.p-2 #[span.pl-1 #{technician.stars.length}]
+                  .col-md-8
+                    strong.ml-2.mr-auto #[span.font-primary #{technician.name}]
+                  .col-md-2
+                    strong.ml-2.mr-auto Rank: #{technician.siteRank}
                 
                 
