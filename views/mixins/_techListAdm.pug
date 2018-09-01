@@ -1,7 +1,7 @@
 
 mixin techListAdm(techs={})
   
-  ul#pills-tab.nav.nav-pills.mb-3.justify-content-center(role='tablist')
+  ul#pills-tab.nav.nav-pills.mb-2.justify-content-center(role='tablist')
     li.nav-item
       a#techListInactive.nav-link.active(data-toggle='pill', href='#pills-home', role='tab', aria-controls='pills-home', aria-selected='true') Aguardando ativação
     li.nav-item
@@ -10,10 +10,10 @@ mixin techListAdm(techs={})
       a#hwList.nav-link(data-toggle='pill', href='#pills-contact', role='tab', aria-controls='pills-contact', aria-selected='false') Consoles
   #pills-tabContent.tab-content
     #pills-home.tab-pane.fade.show.active(role='tabpanel', aria-labelledby='techListInactive') 
-      ul.list-group.mb-2
+      ul.list-group.mb-1
         each technician in techs
           if !technician.active_status
-            li.list-group-item.p-1.mb-2.bg-dark.text-white
+            li.list-group-item.p-0.mb-1.mh-50.bg-dark.text-white
               .row
                 .col-md-2
                   form.star(method="POST" action=`/api/tech/${technician._id}/activate`)
@@ -27,11 +27,11 @@ mixin techListAdm(techs={})
                 .col-md-2
                   strong.ml-2.mr-auto Rank: #{technician.siteRank}
     #pills-profile.tab-pane.fade(role='tabpanel', aria-labelledby='techListActive')
-      ul.list-group.mb-2
+      ul.list-group.mb-1
         each technician in techs
           if technician.active_status
             
-            li.list-group-item.p-1.mb-2.bg-light
+            li.list-group-item.p-0.mb-1.bg-light
               .row
                 .col-md-2
                   form.star(method="POST" action=`/api/tech/${technician._id}/deactivate`)
