@@ -195,7 +195,8 @@ nav .nav-link {
   width: 100%;
   height: 100px;
   background-color: #111;
-  text-align: center; }
+  text-align: center;
+  z-index: 0; }
 
 .footer .container {
   margin-top: 25px;
@@ -248,15 +249,7 @@ nav .nav-link {
     max-width: 90%; }
 
   .footer {
-    height: 100px; }
-
-  /* Info Panels */
-  /* #topRepairs {
-    display: none;
-  }
-  #topTechs {
-    display: none;
-  } */ }
+    height: 100px; } }
 @media screen and (min-width: 768px) {
   body > header > nav {
     height: 80px;
@@ -493,5 +486,41 @@ nav .nav-link {
     opacity: 1; } }
 .miniBlogAnim {
   animation: fadeIn 1.5s 1 0s ease-out; }
+
+/* Floating Btn */
+.btn-group-sm .btn-fab {
+  position: fixed !important;
+  right: 9px;
+  z-index: 1; }
+
+.btn-group .btn-fab {
+  position: fixed !important;
+  right: 5px;
+  z-index: 1; }
+
+#main {
+  bottom: 20px; }
+
+#mail {
+  bottom: 125px; }
+
+#sms {
+  bottom: 110px; }
+  @media screen and (max-width: 720px) {
+    #sms span {
+      display: none; }
+    #sms i {
+      display: block; } }
+  @media screen and (min-width: 721px) {
+    #sms span {
+      display: block; }
+    #sms i {
+      display: none; } }
+
+#sms:hover {
+  opacity: 1 !important; }
+
+#autre {
+  bottom: 170px; }
 
 /*# sourceMappingURL=style.css.map */

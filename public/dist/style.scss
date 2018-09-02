@@ -212,6 +212,7 @@ nav .nav-link {
   height: 100px;
   background-color: #111;
   text-align: center;
+  z-index: 0;
 }
 .footer .container {
   margin-top: 25px;
@@ -266,13 +267,6 @@ nav .nav-link {
   .footer {
     height: 100px;
   }
-  /* Info Panels */
-  /* #topRepairs {
-    display: none;
-  }
-  #topTechs {
-    display: none;
-  } */
 }
 @media screen and (min-width: 768px) {
   body > header > nav {
@@ -522,4 +516,46 @@ nav .nav-link {
 }
 .miniBlogAnim {
   animation: fadeIn 1.5s 1 0s ease-out;
+}
+/* Floating Btn */
+.btn-group-sm .btn-fab {
+  position: fixed !important;
+  right: 9px;
+  z-index: 1;
+}
+.btn-group .btn-fab {
+  position: fixed !important;
+  right: 5px;
+  z-index: 1;
+}
+#main {
+  bottom: 20px;
+}
+#mail {
+  bottom: 125px;
+}
+#sms {
+  bottom: 110px;
+  @media screen and (max-width: 720px) {
+    span {
+      display: none;
+    }
+    i {
+      display: block;
+    }
+  }
+  @media screen and (min-width: 721px) {
+    span {
+      display: block;
+    }
+    i {
+      display: none;
+    }
+  }
+}
+#sms:hover {
+  opacity: 1 !important;
+}
+#autre {
+  bottom: 170px;
 }
