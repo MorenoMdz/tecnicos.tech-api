@@ -1,0 +1,23 @@
+include _pagination.pug
+
+mixin feedbackListAdm(feedbacks={})
+    ul.list-group.mb-1
+      each feedback in feedbacks.feedbacks
+        li.list-group-item.p-0.mb-1.mh-50.text-white(class=(feedback.status == 'New' ? 'bg-dark border-info' : 'bg-secondary'))
+          .row
+            .col-md-3
+              .row.justify-content-between
+                  span Status: #{feedback.status}
+                  if feedback.status == 'New'
+                    form.star(method="POST" action=`/api/feedback/${feedback._id}/updateStatus`)
+                      input.form-control(type="text" name="id" value=feedback._id hidden)
+                      button.btn.btn-info.p-1.px-2(type="submit") Ok!
+              .row.border-top.border-white.pt-2
+                time(datetime=feedback.created)= h.moment(feedback.created).locale('pt-br').format('DD/MM/YY, h:mm a')
+            .col-md-3
+              p Por: 
+              a(href=`/tech/${feedback.author._id}`)
+                strong.ml-2.mr-auto.text-white | #{feedback.author.name} |
+            .col-md-6.border-bottom.border-white
+              strong.ml-2.mr-auto Texto: #{feedback.text} 
+    //+pagination(feedbacks.area, feedbacks.page, feedbacks.pages, feedbacks.count)

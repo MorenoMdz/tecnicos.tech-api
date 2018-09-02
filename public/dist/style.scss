@@ -27,6 +27,9 @@ body {
 .bg-pink {
   background-color: $neonPink;
 }
+.bg-blue {
+  background-color: $neonBlue;
+}
 #pills-tab .active {
   background-color: $neonBlue;
   color: #fff;
@@ -344,6 +347,11 @@ nav .nav-link {
 .row {
   margin: 15px;
 }
+/* Feedback List */
+#feedback-tab {
+  max-height: 500px;
+  overflow-y: auto;
+}
 /* lightbox */
 .ekko-lightbox {
   display: -ms-flexbox !important;
@@ -522,11 +530,13 @@ nav .nav-link {
   position: fixed !important;
   right: 9px;
   z-index: 1;
+  opacity: 0.5;
 }
 .btn-group .btn-fab {
   position: fixed !important;
   right: 5px;
   z-index: 1;
+  opacity: 0.5;
 }
 #main {
   bottom: 20px;

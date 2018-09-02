@@ -1,0 +1,9 @@
+extends email-layout
+
+block content
+  h2 Olá Boss!
+  p Novo feedback de usuario adicionado.
+  +button(adminUrl, ' Ver →')
+  p Se você não conseguir clicar no link acima acesse pelo #[a(href=`http://${adminUrl}`) site]
+  br
+  hr

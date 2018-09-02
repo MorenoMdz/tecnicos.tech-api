@@ -8,6 +8,7 @@ const problemController = require('../controllers/problemController');
 const authController = require('../controllers/authController');
 const commentController = require('../controllers/commentController');
 const postController = require('../controllers/postController');
+const feedbackController = require('../controllers/feedbackController');
 const homeController = require('../controllers/homeController');
 const admController = require('../controllers/admController');
 const aws = require('../handlers/aws');
@@ -20,6 +21,12 @@ router.get(
   homeController.homeDisplay,
   postController.getAllPosts
 );
+router.post(
+  '/feedbackPost',
+  authController.isLoggedIn,
+  authController.isActive,
+  catchErrors(feedbackController.addFeedback)
+);
 
 /* Adm */
 router.get(
@@ -28,6 +35,7 @@ router.get(
   authController.isMod,
   authController.isActive,
   catchErrors(hwController.getHwList),
+  catchErrors(feedbackController.getAllFeedbacks),
   catchErrors(technicianController.getInactiveTechList),
   admController.configPanel
 );
@@ -203,6 +211,14 @@ router.post(
   authController.isActive,
   authController.isMod,
   catchErrors(technicianController.deactivateUser)
+);
+
+router.post(
+  '/api/feedback/:id/updateStatus',
+  authController.isLoggedIn,
+  authController.isActive,
+  authController.isMod,
+  catchErrors(feedbackController.updateFeedbackStatus)
 );
 
 module.exports = router;

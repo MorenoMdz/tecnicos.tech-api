@@ -68,9 +68,6 @@ html(lang='en')
                 else
                   li.nav-item.px-2: a.nav-link(href="/register", class=(currentPath.startsWith('/register') ? 'nav-link-active' : '')) Registrar
                   li.nav-item.px-2: a.nav-link(href="/login", class=(currentPath.startsWith('/login') ? 'nav-link-active' : '')) Entrar
-
-                
-        
     block messages
       .container
         if locals.flashes
@@ -85,6 +82,8 @@ html(lang='en')
                     .flash-msg(class=`alert alert-${category} py-1 text-center`)
                       p.flash-text!= message 
                         button.flash-remove.close(onClick="this.parentElement.parentElement.remove()") &times;
+    if user
+      +floatBtn()
       
     .content
       block content
@@ -103,9 +102,7 @@ html(lang='en')
                 p
                 +topTechs(homeDisplay)
                 p
-              
-
-        +floatBtn()
+                
     .footer.fixed-bottom
       .container
         a(href='https://twitter.com/Solidous')

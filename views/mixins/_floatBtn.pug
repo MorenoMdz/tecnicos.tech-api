@@ -1,10 +1,21 @@
+include _feedbackForm
+
 mixin floatBtn()
 
   .container-fluid
+    #feedback.modal.fade(role='dialog')
+      .modal-dialog
+        .modal-content
+          .modal-header.bg-primary.text-white.p-0
+            h5.px-3.pt-2 Seu feedback
+            button.close(type='button', data-dismiss='modal') × 
+          .modal-body.p-0
+            +feedbackForm()
+
     .row
       .col-md-12
         #mini-fab.btn-group-sm.hidden
-          a#sms.btn.btn-warning.btn-fab.px-3.py-1.font-weight-bold(href='#feedback', data-toggle='tooltip', data-placement='left', data-original-title='SMS', title='')
+          a#sms.btn.btn-warning.btn-fab.px-3.py-1.font-weight-bold(type='button', data-toggle='modal' data-target='#feedback')
             i.material-icons 
               svg(style='width:24px;height:24px', viewBox='0 0 24 24')
                 path(fill='#000000', d='M9,22A1,1 0 0,1 8,21V18H4A2,2 0 0,1 2,16V4C2,2.89 2.9,2 4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H13.9L10.2,21.71C10,21.9 9.75,22 9.5,22V22H9Z')
