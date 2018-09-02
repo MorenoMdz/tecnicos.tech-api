@@ -27,6 +27,7 @@ router.get(
   authController.isLoggedIn,
   authController.isMod,
   authController.isActive,
+  catchErrors(hwController.getHwList),
   catchErrors(technicianController.getInactiveTechList),
   admController.configPanel
 );
@@ -36,15 +37,17 @@ router.post(
   authController.isLoggedIn,
   authController.isMod,
   authController.isActive,
+  aws.upload,
   catchErrors(hwController.addNewHw)
 );
 
-router.get(
-  '/addForm',
+router.post(
+  '/updateHw',
   authController.isLoggedIn,
   authController.isMod,
   authController.isActive,
-  repairController.addRepairForm
+  aws.upload,
+  catchErrors(hwController.updateHw)
 );
 
 /* Hardware routes */

@@ -4,6 +4,7 @@ block content
   include mixins/_problemItem.pug
   include mixins/_problemForm.pug
   include mixins/_pagination.pug
+  include mixins/_hwFormUpdate.pug
 
   .container.py-2
     .card.mb-3
@@ -29,6 +30,17 @@ block content
               button.close(type='button', data-dismiss='modal') × 
             .modal-body.p-1
               +problemForm 
+      
+      if user && user.siteRank == 'admin'
+        .btn.bg-warning.block.mx-3.mb-2(data-toggle='modal' data-target='#editModal') Editar
+        #editModal.modal.fade(role='dialog')
+          .modal-dialog
+            .modal-content
+              .modal-header.bg-primary.text-white.p-0
+                h5.p-2 Adicionar novo aparelhozzz
+                button.close(type='button', data-dismiss='modal') × 
+              .modal-body.p-1
+                +hwFormUpdate(hardware) 
       
     p.card-text.card-footer.text-white.bg-dark Defeitos listados para esse modelo de aparelho:
       if hardware.problems.length > 0

@@ -1,10 +1,21 @@
 extends layout
 
-include mixins/_hwForm.pug
-include mixins/_hwList.pug
+include mixins/_hwListAdm.pug
 include mixins/_techListAdm.pug
 
 block content
   .container
-    .mt-3.text-center
-      +techListAdm(techs)
+    ul#main-tab.nav.nav-tabs.mb-2.justify-content-end.bg-dark.text-white.p-2(role='tablist')
+      li.nav-item
+        a#techListBtn.nav-link.active.text-white(data-toggle='pill', href='#techList', role='tab', aria-controls='techList', aria-selected='true') Gerenciar Técnicos
+      li.nav-item
+        a#hwListBtn.nav-link.text-white(data-toggle='pill', href='#hwList', role='tab', aria-controls='hwList', aria-selected='false') Gerenciar Consoles
+      li.nav-item
+        a#miscBtn.nav-link.text-white(data-toggle='pill', href='#pills-contact', role='tab', aria-controls='pills-contact', aria-selected='false') Misc
+        
+    #main-tabContent.tab-content.border.p-2.bg-light
+      #techList.tab-pane.fade.show.active(role='tabpanel', aria-labelledby='techList')
+        +techListAdm(techs)
+      #hwList.tab-pane.fade(role='tabpanel', aria-labelledby='hwList')
+        +hwListAdm(hwList) 
+      #pills-contact.tab-pane.fade(role='tabpanel', aria-labelledby='misc') todo misc

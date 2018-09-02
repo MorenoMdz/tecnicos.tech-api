@@ -1,0 +1,249 @@
+#EXTM3U
+
+#EXTINF:0 tvg-logo="https://goo.gl/3XL5we" group-title="INFORMAÇÕES DA LISTA",LISTA ATUALIZADA 09:50 23/02/2018
+http://0.0.0.0
+
+
+#EXTINF:0 tvg-logo="" group-title="INFORMAÇÕES DA LISTA",CRIADORES: by: MATEUS 
+http://0.0.0.0
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/YZhznm" group-title="INFORMAÇÕES DA LISTA",LINK QUEBRADO? AVISE-NOS
+http://0.0.0.0
+
+#EXTINF:0 tvg-logo="https://goo.gl/DqWcgJ" group-title="INFORMAÇÕES DA LISTA",MANDE SUGESTÕES VIA WHATSAPP
+http://0.0.0.0
+
+#EXTINF:0 tvg-logo="https://goo.gl/DqWcgJ" group-title="INFORMAÇÕES DA LISTA",OU COMPRE SUA LISTA PAGA
+http://0.0.0.0
+
+#EXTINF:0 tvg-logo="https://goo.gl/DqWcgJ" group-title="INFORMAÇÕES DA LISTA",E TESTE ELA ANTES DE COMPRAR
+http://0.0.0.0
+
+#EXTINF:0 tvg-logo="https://goo.gl/DqWcgJ" group-title="INFORMAÇÕES DA LISTA",A PARTIR DE R$18,00
+http://0.0.0.0
+
+#EXTINF:0 tvg-logo="https://goo.gl/DqWcgJ" group-title="INFORMAÇÕES DA LISTA",(87)9807-7779
+http://0.0.0.0
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/9qZgyj" group-title="",ALL SPORT
+http://173.236.10.10:1935/dgrau/dgrau/playlist.m3u8
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/5qRxY6" group-title="",BAND SPORTS HD 
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/5qRxY6" group-title="",BAND SPORTS 
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/4iXcak" group-title="",CHELSEA TV
+http://ooyalahd2-f.akamaihd.net/i/chelsea02_delivery@145821/index_2528_av-p.m3u8
+
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/5VAvqt" group-title="",COMBATE
+http://aovivo.futeboltv.com:8081/live/2/playlist.m3u8
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/5VAvqt" group-title="",COMBATE ALTERNATIVO
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/5VAvqt" group-title="",COMBATE HD
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/RHEGQZ" group-title="",EI MAXX
+http://aovivo.futeboltv.com:8081/live/8/playlist.m3u8
+
+
+#EXTINF:-1 tvg-logo="https://goo.gl/PgyVUc" group-title="" ,EI MAXX HD
+
+
+#EXTINF:0 tvg-logo="http://s20.postimg.org/xm10x1le5/eimaxx2.png" group-title="",EI MAXX 2 
+
+
+#EXTINF:0 tvg-logo="http://s20.postimg.org/xm10x1le5/eimaxx2.png" group-title="",EI MAXX 2 HD
+
+
+
+#EXTINF:0 tvg-logo="" group-title="",ESPN HD
+
+
+
+#EXTINF:0 tvg-logo="" group-title="",ESPN 
+http://aovivo.futeboltv.com:8081/live/16/playlist.m3u8
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/h1kJGG" group-title="",ESPN BRASIL 
+http://aovivo.futeboltv.com:8081/live/2/playlist.m3u8
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/h1kJGG" group-title="",ESPN BRASIL HD
+
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/KtpjM5" group-title="",ESPN PLUS
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/KtpjM5" group-title="",ESPN PLUS HD
+
+
+
+#EXTINF:-1 tvg-logo="https://goo.gl/PgyVUc" group-title="" ,ESPORTE INTERATIVO 
+
+
+
+#EXTINF:-1 tvg-logo="https://goo.gl/PgyVUc" group-title="" ,ESPORTE INTERATIVO HD
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/yLekv7" group-title="",FOX SPORTS 
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/yLekv7" group-title="",FOX SPORTS ALTERNATIVO
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/yLekv7" group-title="",FOX SPORTS 
+http://aovivo.futeboltv.com:8081/live/3/playlist.m3u8
+
+
+#EXTINF:0 tvg-logo="http://s26.postimg.org/8ukaxr1pl/2015_Fox_sports_logo.svg.png" group-title="",FOX SPORTS 2 HD
+
+
+#EXTINF:0 tvg-logo="" group-title="",FOX SPORTS 2 
+http://aovivo.futeboltv.com:8081/live/19/playlist.m3u8
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/frbDx5" group-title="",HORSE BRASIL
+http://490636978.r.worldcdn.net/490636978/_definst_/horsebrasil1/playlist.m3u8
+
+
+#EXTINF:-1 tvg-logo="http://3.bp.blogspot.com/-cS4fGWoKJww/Vktm7QgiRhI/AAAAAAAAA00/M0u0XSBHsI8/s1600/net.png",NBA TV HD
+http://31.204.150.12:8080/edge/4304/tracks-v1a1/index.m3u8?token=17.18.1487.6d44eab61dcf5b1f0e6fa8f6595ee1bc.1.1.1.641.0.0.71875765cf0ee5df30360b6487a7b6ec
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/ooZJBU" group-title="",NFL(INTERNACIONAL)
+https://svglive3-event.level3.nfl.com/nflent3/live/nfl_now/NFLNOW_1200k.m3u8
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/y5dMW7" group-title="",PREMIERE CLUBES 
+http://95.141.35.104:8081/looktvs/pfc1/playlist.m3u8      
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/y5dMW7" group-title="",PREMIERE CLUBES HD
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/y5dMW7" group-title="",PREMIERE 2
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/y5dMW7" group-title="",PREMIERE 3
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/y5dMW7" group-title="",PREMIERE 4
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/y5dMW7" group-title="",PREMIERE 5
+
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/y5dMW7" group-title="",PREMIERE 6
+
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/y5dMW7" group-title="",PREMIERE 7
+
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/y5dMW7" group-title="",PREMIERE 8
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/y5dMW7" group-title="",PREMIERE 9
+
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/7eb2GB" group-title="",REAL MADRID TV
+http://rmtvlive-lh.akamaihd.net/i/rmtv_1@154306/master.m3u8
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/AmnasL" group-title="",SPORTV 1 
+http://aovivo.futeboltv.com:8081/live/20/playlist.m3u8 	
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/AmnasL" group-title="",SPORTV 1 HD 
+
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/AmnasL" group-title="",SPORTV 1 ALTERNATIVO
+
+
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/AmnasL" group-title="",SPORTV 1 ALTERNATIVO
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/JvWzwi" group-title="",SPORTV 2 
+http://aovivo.futeboltv.com:8081/live/15/playlist.m3u8
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/JvWzwi" group-title="",SPORTV 2 HD 
+
+
+
+#EXTINF:0 tvg-logo="https://goo.gl/LUm5AZ" group-title="",SPORTV 3 
+
+
+#EXTINF:0 tvg-logo="" group-title="",SPORTV 3 HD 
+
+
+
+#EXTINF:0 tvg-logo="" group-title="",
+
+
+#EXTINF:0 tvg-logo="" group-title="",
+
+
+#EXTINF:0 tvg-logo="" group-title="",
+
+
+#EXTINF:0 tvg-logo="" group-title="",
+
+
+#EXTINF:0 tvg-logo="" group-title="",
+
+
+#EXTINF:0 tvg-logo="" group-title="",
+
+
+#EXTINF:0 tvg-logo="" group-title="",
+
+
+#EXTINF:0 tvg-logo="" group-title="",
+
+
+#EXTINF:0 tvg-logo="" group-title="",
+
+
+#EXTINF:0 tvg-logo="" group-title="",
+
+
+#EXTINF:0 tvg-logo="" group-title="",
+
+
+#EXTINF:0 tvg-logo="" group-title="",
+
+
+#EXTINF:0 tvg-logo="" group-title="",
+
+
+#EXTINF:0 tvg-logo="" group-title="",
+
+
+#EXTINF:0 tvg-logo="" group-title="",
+
+
+#EXTINF:0 tvg-logo="" group-title="",
+
+
+#EXTINF:0 tvg-logo="" group-title="",
+
+
+#EXTINF:0 tvg-logo="" group-title="",

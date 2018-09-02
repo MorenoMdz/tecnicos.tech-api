@@ -1,14 +1,13 @@
 
 mixin techListAdm(techs={})
   
-  ul#pills-tab.nav.nav-pills.mb-2.justify-content-center(role='tablist')
+  ul#pills-tab.nav.nav-pills.mb-2.justify-content-end.tab-content.bg-secondary.p-2(role='tablist')
     li.nav-item
-      a#techListInactive.nav-link.active(data-toggle='pill', href='#pills-home', role='tab', aria-controls='pills-home', aria-selected='true') Aguardando ativação
+      a#techListInactive.nav-link.text-white.active(data-toggle='pill', href='#pills-home', role='tab', aria-controls='pills-home', aria-selected='true') Aguardando ativação
     li.nav-item
-      a#techListActive.nav-link(data-toggle='pill', href='#pills-profile', role='tab', aria-controls='pills-profile', aria-selected='false') Ativos
-    li.nav-item
-      a#hwList.nav-link(data-toggle='pill', href='#pills-contact', role='tab', aria-controls='pills-contact', aria-selected='false') Consoles
-  #pills-tabContent.tab-content
+      a#techListActive.nav-link.text-white(data-toggle='pill', href='#pills-profile', role='tab', aria-controls='pills-profile', aria-selected='false') Ativos
+
+  #pills-tabContent
     #pills-home.tab-pane.fade.show.active(role='tabpanel', aria-labelledby='techListInactive') 
       ul.list-group.mb-1
         each technician in techs
@@ -45,7 +44,7 @@ mixin techListAdm(techs={})
                     strong.ml-2.mr-auto.text-dark #{technician.name}
                 .col-md-2
                   strong.ml-2.mr-auto Rank: #{technician.siteRank}
-    #pills-contact.tab-pane.fade(role='tabpanel', aria-labelledby='hwList') todo Add Hw
+
 
 
 

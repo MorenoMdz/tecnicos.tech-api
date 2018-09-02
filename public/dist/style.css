@@ -8,10 +8,17 @@ body {
 
 /* Global */
 .text-pink {
-  color: #ff0dbf; }
+  color: #d600ff; }
+
+.bg-pink {
+  background-color: #d600ff; }
 
 #pills-tab .active {
-  background-color: #333; }
+  background-color: #133e7c;
+  color: #fff; }
+
+#main-tab .active {
+  background-color: #711c91; }
 
 /* Nav */
 .homeLogo:hover svg {

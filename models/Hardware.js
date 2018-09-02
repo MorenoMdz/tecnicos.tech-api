@@ -38,7 +38,6 @@ const hardwareSchema = new mongoose.Schema(
     },
     photo: {
       type: String,
-      required: 'Please enter the hardware name',
     },
     slug: String, // access link
   },

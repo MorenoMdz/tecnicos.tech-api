@@ -38,16 +38,18 @@ exports.resize = async (req, res, next) => {
 /* Hardware Management Methods */
 exports.addNewHw = async (req, res) => {
   req.body.author = req.user._id;
-  const hardware = await new Hardware(req.body).save();
+  req.body.photos = req.files;
 
-  req.flash('success', `Adicionado ${hardware.name} com sucesso.`);
+  const hardware = await new Hardware(req.body)
+    .save()
+    .catch(err => console.log(err));
+
+  req.flash('success', `Adicionado ${req.body.name} com sucesso.`);
   res.redirect('/config');
 };
 
 async function hwList(req, res, next) {
   const hardwares = await Hardware.find();
-  // const totalHwCount = await Hardware.count();
-
   return hardwares;
 }
 
@@ -82,10 +84,9 @@ exports.getAllHw = async (req, res) => {
   });
 };
 
-/* Method for the lower rank user */
-exports.getHwList = async (req, res) => {
+exports.getHwList = async (req, res, next) => {
   const page = req.params.page || 1;
-  const limit = 9;
+  const limit = 15;
   const skip = page * limit - limit;
   // query db for a list of all repairs
   const hwPromise = Hardware.find()
@@ -102,13 +103,13 @@ exports.getHwList = async (req, res) => {
     );
     return;
   }
-  res.render('hardwareList', {
-    title: 'Hardware Config',
-    hardwares: hardwares,
+  res.locals.hwList = {
+    hardwares,
     page,
     pages,
     count,
-  });
+  };
+  next();
 };
 
 exports.getHwBySlug = async (req, res) => {
@@ -130,4 +131,22 @@ exports.getHwById = async id => {
   });
 
   return hardware;
+};
+
+exports.updateHw = async (req, res) => {
+  const updates = {
+    name: req.body.name,
+    model: req.body.model,
+    brand: req.body.brand,
+    description: req.body.description,
+    photos: req.body.files,
+  };
+
+  const hw = await Hardware.findOneAndUpdate(
+    { _id: req.body.id },
+    { $set: updates },
+    { new: true, runValidators: true, context: 'query' }
+  );
+  req.flash('success', 'Hardware atualizado.');
+  res.redirect('back');
 };

@@ -1,6 +1,8 @@
 $main-color: #0aecec;
 $orange: #df6c4f;
-$neonPink: #ff0dbf;
+$neonPink: #d600ff;
+$neonPurple: #711c91;
+$neonBlue: #133e7c;
 $background: linear-gradient(
   90deg,
   #48ded4 0%,
@@ -22,8 +24,15 @@ body {
 .text-pink {
   color: $neonPink;
 }
+.bg-pink {
+  background-color: $neonPink;
+}
 #pills-tab .active {
-  background-color: #333;
+  background-color: $neonBlue;
+  color: #fff;
+}
+#main-tab .active {
+  background-color: $neonPurple;
 }
 /* Nav */
 .homeLogo:hover svg {

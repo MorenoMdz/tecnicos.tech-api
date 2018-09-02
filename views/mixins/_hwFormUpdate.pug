@@ -1,8 +1,9 @@
 
-mixin hwForm(hw = {}) 
-  form.form-group(action=`/addHw` method="POST"  class="card" enctype="multipart/form-data" id="hwForm")
+mixin hwFormUpdate(hw = {}) 
+  form.form-group(action=`/updateHw` method="POST"  class="card" enctype="multipart/form-data" id="hwForm")
   
     input(type="text" name='area' form="hwForm" value='hw_' hidden required)
+    input(type="text" name='id' form="hwForm" value=hardware._id hidden required)
     
     label(for="name") Nome do Aparelho 
     input.form-control(type="text" name="name" placeholder="aparelho" value=hw.name required)

@@ -3165,6 +3165,17 @@ const { loadProgressBar } = require('axios-progress-bar');
 typeAhead($('.search'));
 loadProgressBar();
 
+console.log('bundleds');
+/* floating button */
+/* $('#main').click(function() {
+  $('#mini-fab').toggleClass('hidden');
+});
+
+$(document).ready(function() {
+  $('[data-toggle="tooltip"]').tooltip();
+});
+$.material.init(); */
+
 },{"./bling":29,"./typeAhead":31,"axios-progress-bar":2}],31:[function(require,module,exports){
 const axios = require('axios');
 const dompurify = require('dompurify');

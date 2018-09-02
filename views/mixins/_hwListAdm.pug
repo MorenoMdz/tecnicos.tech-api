@@ -1,0 +1,61 @@
+include _hwItem.pug
+include _hwForm.pug
+include _pagination.pug
+
+mixin hwListAdm(hwList = [{}])
+  .row
+    .col-md-4
+      .btn.bg-primary.block.mx-3.mb-2(data-toggle='modal' data-target='#myModal') +
+    .col-md-4
+    .col-md-4
+      input.pl-2#filterHw(type='text', onkeyup='filter()', placeholder='Filtrar aparelhos por...')
+  .row
+    p#emptyMsg: strong(style={'display': '' }) Nada encontrado, por favor modifique sua busca!
+
+  #myModal.modal.fade(role='dialog')
+    .modal-dialog
+      .modal-content
+        .modal-header.bg-primary.text-white.p-0
+          h5.p-2 Adicionar novo aparelhozzz
+          button.close(type='button', data-dismiss='modal') × 
+        .modal-body.p-1
+          +hwForm() 
+  if hwList.hardwares
+    #hwListUl.hwList.container
+      div.list-group
+        each hardware in hwList.hardwares
+          #hwItem.p-0.mb-1
+            .list-group-item.bg-light.p-0
+              .row
+                .col-md-10.col-sm-10.d-flex.align-items-center
+                  strong: a.text-dark(href=`/hardware/${hardware.slug}`) Aparelho #[span.text-muted #{hardware.name}]  Modelo: #[span.text-muted #{hardware.model}]
+                .col-md-2.col-sm-2
+                  a.btn.btn-warning(href=`/hardware/${hardware.slug}`) editar
+      +pagination(hwList.area, hwList.page, hwList.pages, hwList.count)
+    script.
+      function filter() {
+        let input, filter, ul, li, a, i, msg;
+        input = document.getElementById('filterHw');
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("hwListUl");
+        li = ul.getElementsByTagName('li');
+        msg = document.getElementById("emptyMsg")
+        msg.style.display = "none";
+        let found = 0;
+        for (i = 0; i < li.length; i++) {
+          a = li[i].getElementsByTagName("a")[0];
+          if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+            found++;
+          } else {
+            li[i].style.display = "none";
+          }
+        }
+        if(!found){
+          console.log('not found')
+          msg.style.display = "";
+        }
+      }
+      filter()
+
+    
