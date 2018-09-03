@@ -1,0 +1,59 @@
+/* Repair */
+#repairItemBadge {
+  min-width: 100px;
+  max-width: 150px;
+  height: 35px;
+  font-size: 1.2em;
+}
+#star {
+  color: turquoise;
+  z-index: 2;
+}
+#repairLi {
+  text-decoration: none;
+  color: #111;
+  font-size: 1.1em;
+}
+#repairLi span {
+  font-size: 1em;
+}
+.comment {
+  overflow: hidden;
+  padding: 0 0 1em;
+  border-bottom: 1px solid #ddd;
+  margin: 0 0 1em;
+  *zoom: 1;
+}
+.comment-img {
+  float: left;
+  margin-right: 33px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.comment-img img {
+  display: block;
+}
+.comment-body {
+  overflow: hidden;
+}
+.comment .text {
+  padding: 10px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  background: #fff;
+}
+.comment .text p:last-child {
+  margin: 0;
+}
+.comment .attribution {
+  margin: 0.5em 0 0;
+  font-size: 14px;
+  color: #666;
+}
+.row {
+  margin: 15px;
+}
+.star-filled > i {
+  color: #1cc6fa;
+  background-color: transparent;
+}

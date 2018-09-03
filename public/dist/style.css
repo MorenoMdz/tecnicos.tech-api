@@ -1,3 +1,9 @@
+#sms:hover {
+  opacity: 1 !important;
+  z-index: 1000;
+  transform: translateX(-10px) scale(1.1);
+  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 10px 5px; }
+
 html {
   position: relative;
   min-height: 100%; }
@@ -22,6 +28,25 @@ body {
 
 #main-tab .active {
   background-color: #711c91; }
+
+/* Content */
+.homeInfo {
+  position: relative;
+  font-size: 1.3em;
+  border-bottom: solid #0aecec 2px;
+  border-left: #0aecec solid 2px;
+  background-color: #6568707e; }
+
+/* Axios Progress Bar */
+#nprogress .bar {
+  background: #df6c4f !important; }
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #df6c4f, 0 0 5px #df6c4f !important; }
+
+#nprogress .spinner-icon {
+  border-top-color: #df6c4f !important;
+  border-left-color: #df6c4f !important; }
 
 /* Nav */
 .homeLogo:hover svg {
@@ -92,104 +117,6 @@ nav .nav-link {
 .list-group {
   z-index: 0.9 !important; }
 
-/* Body */
-.homeInfo {
-  position: relative;
-  font-size: 1.3em;
-  border-bottom: solid #0aecec 2px;
-  border-left: #0aecec solid 2px;
-  background-color: #6568707e; }
-
-/* HW Item */
-#hwItem {
-  list-style-type: none; }
-  @media (max-width: 768px) {
-    #hwItem .row {
-      width: 300px !important;
-      left: -15px !important; }
-      #hwItem .row img {
-        display: none; } }
-
-#hwItemPhoto {
-  width: 50px;
-  height: 50px; }
-
-/* HW Card */
-.hwCardImg {
-  width: 100%;
-  height: 15rem;
-  object-fit: scale-down; }
-  .hwCardImg img {
-    margin-left: -14px;
-    max-height: 100%; }
-
-/* HW Problems List */
-#hwProblemsList {
-  max-height: 350px;
-  overflow-y: auto; }
-
-#hwBtn {
-  line-height: 1 !important;
-  max-width: 200px !important;
-  visibility: hidden; }
-
-#hwProblemsList .list-group-item:hover #hwBtn {
-  visibility: visible; }
-
-/* Hw problem form */
-.thumbnail {
-  height: 100px;
-  margin: 10px;
-  float: left; }
-
-/* Problem img */
-#problemCardImg {
-  width: 100%;
-  height: 15vw;
-  object-fit: scale-down; }
-
-/* Repair */
-.star-filled > i {
-  color: #1cc6fa;
-  background-color: transparent; }
-
-/* Tech List */
-.techList a {
-  text-transform: none !important;
-  text-decoration: none !important;
-  color: #222; }
-
-/* Axios Progress Bar */
-#nprogress .bar {
-  background: #df6c4f !important; }
-
-#nprogress .peg {
-  box-shadow: 0 0 10px #df6c4f, 0 0 5px #df6c4f !important; }
-
-#nprogress .spinner-icon {
-  border-top-color: #df6c4f !important;
-  border-left-color: #df6c4f !important; }
-
-/* miniBlog */
-#miniBlog {
-  overflow-y: auto; }
-  #miniBlog #homePost {
-    max-height: 50vh;
-    overflow-y: auto; }
-  #miniBlog .postHeading {
-    margin-left: 0 !important; }
-
-@media (max-width: 768px) {
-  .blogSubTitle {
-    display: none; } }
-
-.modal-dialog {
-  width: 800px !important; }
-  @media (min-width: 576px) {
-    .modal-dialog {
-      max-width: 800px;
-      margin: 1.75rem auto; } }
-
 /* Footer */
 .footer {
   position: absolute;
@@ -239,40 +166,129 @@ nav .nav-link {
   transition: 1s;
   -webkit-transition: 1s; }
 
-@media screen and (max-width: 767px) {
-  nav {
-    border-left: solid #0aecec 3px;
-    border-bottom: solid #0aecec 1px; }
+/* Floating Btn */
+.btn-group-sm .btn-fab {
+  position: fixed !important;
+  right: 9px;
+  z-index: 1;
+  opacity: 0.5; }
 
-  body > div.footer > div > a > i {
-    display: none; }
+.btn-group .btn-fab {
+  position: fixed !important;
+  right: 5px;
+  z-index: 1;
+  opacity: 0.5; }
 
-  /* #hwItem {
-    max-width: 90%;
-  } */
-  .footer {
-    height: 70px; }
-    .footer .container {
-      margin-top: 0; } }
-@media screen and (min-width: 768px) {
-  body > header > nav {
-    height: 80px;
-    background-color: #111 !important; }
+#main {
+  bottom: 20px; }
 
-  #loginDiv {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end; }
+#mail {
+  bottom: 125px; }
 
-  #avatar {
-    max-width: 75px; }
+#sms {
+  bottom: 110px; }
+  @media screen and (max-width: 720px) {
+    #sms span {
+      display: none; }
+    #sms i {
+      display: block; } }
+  @media screen and (min-width: 721px) {
+    #sms span {
+      display: block; }
+    #sms i {
+      display: none; } }
 
-  #search-box {
-    width: 400px; }
+#autre {
+  bottom: 170px; }
 
-  .repairsBtnHwList {
-    max-width: 120%;
-    max-height: 50px; } }
+/* miniBlog */
+#miniBlog {
+  overflow-y: auto; }
+  #miniBlog #homePost {
+    max-height: 50vh;
+    overflow-y: auto; }
+  #miniBlog .postHeading {
+    margin-left: 0 !important; }
+
+@media (max-width: 768px) {
+  .blogSubTitle {
+    display: none; } }
+
+.modal-dialog {
+  width: 800px !important; }
+  @media (min-width: 576px) {
+    .modal-dialog {
+      max-width: 800px;
+      margin: 1.75rem auto; } }
+
+.hrCurved {
+  border-bottom: 1px solid rgba(51, 51, 51, 0.534) !important;
+  border-bottom-right-radius: 5px !important; }
+
+/* Nav right */
+@keyframes rightToLeft {
+  0% {
+    transform: translateX(200%); }
+  100% {
+    transform: rotate(xx) translateX(100px); } }
+.navbarShowAnimRight,
+.sidePanels {
+  animation: rightToLeft 0.5s 1 ease-in; }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  98% {
+    transform: rotate(xx);
+    opacity: -1; }
+  100% {
+    transform: rotate(xx);
+    opacity: 1; } }
+.miniBlogAnim {
+  animation: fadeIn 1.5s 1 0s ease-out; }
+
+/* HW Item */
+#hwItem {
+  list-style-type: none; }
+  @media (max-width: 768px) {
+    #hwItem .row {
+      width: 300px !important;
+      left: -15px !important; }
+      #hwItem .row img {
+        display: none; } }
+
+#hwItemPhoto {
+  width: 50px;
+  height: 50px; }
+
+/* HW Card */
+.hwCardImg {
+  width: 100%;
+  height: 15rem;
+  object-fit: scale-down; }
+  .hwCardImg img {
+    margin-left: -14px;
+    max-height: 100%; }
+
+/* HW Problems List */
+#hwProblemsList {
+  max-height: 350px;
+  overflow-y: auto; }
+
+#hwBtn {
+  line-height: 1 !important;
+  max-width: 200px !important;
+  visibility: hidden; }
+
+#hwProblemsList .list-group-item:hover #hwBtn {
+  visibility: visible; }
+
+/* Hw problem form */
+.thumbnail {
+  height: 100px;
+  margin: 10px;
+  float: left; }
+
 /* Repair */
 #repairItemBadge {
   min-width: 100px;
@@ -328,10 +344,9 @@ nav .nav-link {
 .row {
   margin: 15px; }
 
-/* Feedback List */
-#feedback-tab {
-  max-height: 500px;
-  overflow-y: auto; }
+.star-filled > i {
+  color: #1cc6fa;
+  background-color: transparent; }
 
 /* lightbox */
 .ekko-lightbox {
@@ -468,70 +483,52 @@ nav .nav-link {
   50% {
     transform: scale(1);
     -webkit-transform: scale(1); } }
-.hrCurved {
-  /* border-right: 1px solid #333 !important; */
-  border-bottom: 1px solid rgba(51, 51, 51, 0.534) !important;
-  border-bottom-right-radius: 5px !important;
-  /* border-bottom-left-radius: 5px !important; */ }
+@media screen and (max-width: 767px) {
+  nav {
+    border-left: solid #0aecec 3px;
+    border-bottom: solid #0aecec 1px; }
 
-/* Nav right */
-@keyframes rightToLeft {
-  0% {
-    transform: translateX(200%); }
-  100% {
-    transform: rotate(xx) translateX(100px); } }
-.navbarShowAnimRight,
-.sidePanels {
-  animation: rightToLeft 0.5s 1 ease-in; }
+  body > div.footer > div > a > i {
+    display: none; }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0; }
-  98% {
-    transform: rotate(xx);
-    opacity: -1; }
-  100% {
-    transform: rotate(xx);
-    opacity: 1; } }
-.miniBlogAnim {
-  animation: fadeIn 1.5s 1 0s ease-out; }
+  .footer {
+    height: 70px; }
+    .footer .container {
+      margin-top: 0; } }
+@media screen and (min-width: 768px) {
+  body > header > nav {
+    height: 80px;
+    background-color: #111 !important; }
 
-/* Floating Btn */
-.btn-group-sm .btn-fab {
-  position: fixed !important;
-  right: 9px;
-  z-index: 1;
-  opacity: 0.5; }
+  #loginDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end; }
 
-.btn-group .btn-fab {
-  position: fixed !important;
-  right: 5px;
-  z-index: 1;
-  opacity: 0.5; }
+  #avatar {
+    max-width: 75px; }
 
-#main {
-  bottom: 20px; }
+  #search-box {
+    width: 400px; }
 
-#mail {
-  bottom: 125px; }
+  .repairsBtnHwList {
+    max-width: 120%;
+    max-height: 50px; } }
+/* Tech List */
+.techList a {
+  text-transform: none !important;
+  text-decoration: none !important;
+  color: #222; }
 
-#sms {
-  bottom: 110px; }
-  @media screen and (max-width: 720px) {
-    #sms span {
-      display: none; }
-    #sms i {
-      display: block; } }
-  @media screen and (min-width: 721px) {
-    #sms span {
-      display: block; }
-    #sms i {
-      display: none; } }
+/* Feedback List */
+#feedback-tab {
+  max-height: 500px;
+  overflow-y: auto; }
 
-#sms:hover {
-  opacity: 1 !important; }
-
-#autre {
-  bottom: 170px; }
+/* Problem img */
+#problemCardImg {
+  width: 100%;
+  height: 15vw;
+  object-fit: scale-down; }
 
 /*# sourceMappingURL=style.css.map */

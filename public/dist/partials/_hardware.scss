@@ -1,0 +1,46 @@
+/* HW Item */
+#hwItem {
+  list-style-type: none;
+  .row {
+    @media (max-width: 768px) {
+      width: 300px !important;
+      left: -15px !important;
+      img {
+        display: none;
+      }
+    }
+  }
+}
+#hwItemPhoto {
+  width: 50px;
+  height: 50px;
+}
+/* HW Card */
+.hwCardImg {
+  width: 100%;
+  height: 15rem;
+  object-fit: scale-down;
+  img {
+    margin-left: -14px;
+    max-height: 100%;
+  }
+}
+/* HW Problems List */
+#hwProblemsList {
+  max-height: 350px;
+  overflow-y: auto;
+}
+#hwBtn {
+  line-height: 1 !important;
+  max-width: 200px !important;
+  visibility: hidden;
+}
+#hwProblemsList .list-group-item:hover #hwBtn {
+  visibility: visible;
+}
+/* Hw problem form */
+.thumbnail {
+  height: 100px;
+  margin: 10px;
+  float: left;
+}
