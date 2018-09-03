@@ -1,0 +1,36 @@
+@media screen and (max-width: 767px) {
+  nav {
+    border-left: solid $main-color 3px;
+    border-bottom: solid $main-color 1px;
+  }
+  body > div.footer > div > a > i {
+    display: none;
+  }
+  .footer {
+    height: 70px;
+    .container {
+      margin-top: 0;
+    }
+  }
+}
+@media screen and (min-width: 768px) {
+  body > header > nav {
+    height: 80px;
+    background-color: #111 !important;
+  }
+  #loginDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  #avatar {
+    max-width: 75px;
+  }
+  #search-box {
+    width: 400px;
+  }
+  .repairsBtnHwList {
+    max-width: 120%;
+    max-height: 50px;
+  }
+}

@@ -1,0 +1,47 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 100px;
+  max-height: 100%;
+}
+
+/* Global */
+.text-pink {
+  color: $neonPink;
+}
+.bg-pink {
+  background-color: $neonPink;
+}
+.bg-blue {
+  background-color: $neonBlue;
+}
+#pills-tab .active {
+  background-color: $neonBlue;
+  color: #fff;
+}
+#main-tab .active {
+  background-color: $neonPurple;
+}
+
+/* Content */
+.homeInfo {
+  position: relative;
+  font-size: 1.3em;
+  border-bottom: solid $main-color 2px;
+  border-left: $main-color solid 2px;
+  background-color: #6568707e;
+}
+
+/* Axios Progress Bar */
+#nprogress .bar {
+  background: $orange !important;
+}
+#nprogress .peg {
+  box-shadow: 0 0 10px $orange, 0 0 5px $orange !important;
+}
+#nprogress .spinner-icon {
+  border-top-color: $orange !important;
+  border-left-color: $orange !important;
+}

@@ -1,0 +1,17 @@
+/* Tech List */
+.techList a {
+  text-transform: none !important;
+  text-decoration: none !important;
+  color: #222;
+}
+/* Feedback List */
+#feedback-tab {
+  max-height: 500px;
+  overflow-y: auto;
+}
+/* Problem img */
+#problemCardImg {
+  width: 100%;
+  height: 15vw;
+  object-fit: scale-down;
+}
