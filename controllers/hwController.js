@@ -134,12 +134,15 @@ exports.getHwById = async id => {
 };
 
 exports.updateHw = async (req, res) => {
+  console.log(req.files);
+  req.body.photos = req.files;
+
   const updates = {
     name: req.body.name,
     model: req.body.model,
     brand: req.body.brand,
     description: req.body.description,
-    photos: req.body.files,
+    photos: req.body.photos,
   };
 
   const hw = await Hardware.findOneAndUpdate(

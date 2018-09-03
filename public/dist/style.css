@@ -29,26 +29,10 @@ body {
   transform: none; }
 
 .homeLogo svg {
-  bottom: 100px;
-  width: 180px;
-  margin-top: -45px; }
+  width: 180px; }
   @media screen and (max-width: 767px) {
     .homeLogo svg {
       height: 100%; } }
-
-.navbar-brand {
-  height: 100px;
-  background-color: transparent;
-  box-sizing: border-box;
-  color: white !important;
-  /* display: inline-block; */
-  margin-right: 1rem;
-  padding-bottom: 0.3125rem;
-  padding-top: 0.3125rem;
-  text-decoration: none;
-  white-space: nowrap;
-  font-size: 1.3rem !important;
-  font-weight: bolder !important; }
 
 nav {
   border-left: solid #0aecec 2px;
@@ -183,6 +167,12 @@ nav .nav-link {
   #miniBlog #homePost {
     max-height: 50vh;
     overflow-y: auto; }
+  #miniBlog .postHeading {
+    margin-left: 0 !important; }
+
+@media (max-width: 768px) {
+  .blogSubTitle {
+    display: none; } }
 
 .modal-dialog {
   width: 800px !important; }
@@ -202,9 +192,9 @@ nav .nav-link {
   z-index: 0; }
 
 .footer .container {
-  margin-top: 25px;
-  color: #fff;
-  width: 100%; }
+  margin-top: 15px;
+  width: 100%;
+  color: #fff; }
 
 .fa-twitter {
   color: #4099ff; }
@@ -252,7 +242,9 @@ nav .nav-link {
     max-width: 90%; }
 
   .footer {
-    height: 100px; } }
+    height: 70px; }
+    .footer .container {
+      margin-top: 0; } }
 @media screen and (min-width: 768px) {
   body > header > nav {
     height: 80px;

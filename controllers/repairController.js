@@ -1,48 +1,6 @@
 const mongoose = require('mongoose');
 const Repair = mongoose.model('Repair');
 const User = mongoose.model('Technician');
-const multer = require('multer');
-const jimp = require('jimp');
-const uuid = require('uuid');
-
-const multerOptions = {
-  storage: multer.memoryStorage(),
-  fileFilter(req, file, next) {
-    const isPhoto = file.mimetype.startsWith('image/');
-
-    if (isPhoto) {
-      next(null, true); // null for error means it worked and it is fine to continue to next()
-    } else {
-      next({ message: "That filetype ins't allowed!" }, false); // with error
-    }
-  },
-};
-
-exports.upload = multer(multerOptions).array('photos', 5);
-
-exports.resize = async (req, res, next) => {
-  // check if there is no new file to resize
-
-  if (!req.files) {
-    next(); // skip if no file is uploaded
-    return;
-  }
-
-  const photos = req.files;
-  req.body.photos = [];
-  let photo;
-
-  for (let i = 0; i < photos.length; i++) {
-    const extension = req.files[i].mimetype.split('/')[1]; // gets the extension
-    req.body.photos[i] = `${uuid.v4()}.${extension}`;
-    // now resize
-    photo = await jimp.read(req.files[i].buffer);
-    await photo.resize(800, jimp.AUTO);
-    await photo.write(`./public/uploads/${req.body.photos[i]}`);
-  }
-  // once we have written the photo to the fs, keep going
-  next();
-};
 
 exports.addRepairForm = async (req, res) => {
   res.render('addRepairForm');
@@ -107,7 +65,7 @@ exports.getRepairBySlug = async (req, res) => {
     slug: req.params.slug,
   }).populate('author hardware problem');
   if (!repair) return next(); // 404 error handler
-  res.render('repair', { repair, title: repair.hardware });
+  res.render('repair', { repair, title: repair.hardware, area: 'repair' });
 };
 
 exports.starsRepair = async (req, res) => {

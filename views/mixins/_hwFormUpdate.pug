@@ -17,9 +17,9 @@ mixin hwFormUpdate(hw = {})
     label(for="description") Observações
     textarea.form-control(name="description" placeholder="")= hw.description
 
-    label(for="photo") Photo
-      input.form-control(type="file" name="photos" id="photos" accept="image/gif, image/png, image/jpeg")
-      if hw.photo
-        img(src=`/uploads/${hw.photo}`, alt=hw.name width=200)
+    label(for="photos") Photo
+      input.form-control(type="file" name="photos" id="photos" accept="image/gif, image/png, image/jpeg" multiple)
+      if hw.photos
+        img(src=hw.photos.location, alt=hw.name width=200)
 
     input.form-control.btn-primary(type="submit" value="Salvar" class="button" for="hwForm")

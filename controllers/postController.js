@@ -45,3 +45,15 @@ exports.getAllPosts = async (req, res) => {
 
   res.render('layout', { homeDisplay, paginatedPosts });
 };
+
+exports.getPostById = async (req, res, next) => {
+  console.log(req.params.id);
+  const post = await Post.findOne({
+    _id: req.params.id,
+  }).populate('author');
+  if (!post) return next(); // it kicks in the 404 error handler
+  res.render('post', {
+    post,
+    area: 'post',
+  });
+};

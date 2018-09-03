@@ -152,6 +152,12 @@ router.post(
   authController.isActive,
   catchErrors(postController.addPost)
 );
+router.get(
+  '/posts/:id',
+  authController.isLoggedIn,
+  authController.isActive,
+  catchErrors(postController.getPostById)
+);
 
 /* User routes */
 router.get('/register', technicianController.registerForm);

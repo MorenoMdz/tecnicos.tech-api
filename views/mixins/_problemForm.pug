@@ -21,7 +21,7 @@ mixin problemForm(problem={})
       if problem.photo
         img(src=problem.photo.location, alt=problem.name width=200)
       p#file_detail
-    label(for="video") Link para um video do reparo: #[span.small (Sugerido: Youtube/Streamable/Vimeo)]
+    label(for="video") Link (sem 'http://' etc) para um video do reparo: #[span.small (Sugerido: Youtube/Streamable/Vimeo)]
     input(type="text" name="video" placeholder=" Link para o video" value=problem.video)
     p
     input.form-control.btn.btn-primary(type="submit" value="Salvar" class="buttonFormUpload" for="problemForm")

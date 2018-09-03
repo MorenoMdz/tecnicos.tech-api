@@ -6,14 +6,12 @@ include mixins/_lightbox.pug
 
 
 block content
-  //pre= h.dump(problem)
   .container
     .card
       .row
         .col-sm-4
           #problemImg.m-3
             if problem.photos.length > 0
-              //pre= h.dump(problem.photos[0].location)
               +lightbox(problem.photos)
               figcaption.figure-caption.text-center Veja #{problem.photos.length} imagens do defeito.
             else
@@ -29,9 +27,13 @@ block content
               span.text-secondary #{problem.board}
             strong: p.card-text Descrição: 
               span.text-secondary #{problem.description}
-            strong.card-text.bg-warning todo: Dificuldade de reparo // peças // etc
-            strong.card-text.bg-warning todo: Galeria de imagens adicionadas
-            // todo image galery
+            strong: p.card-text Link para o video: 
+              a(href=`http://${problem.video}`)
+                span.text-secondary #{problem.video}
+            
+            p
+            strong.bg-dark.text-info.p-3 Em breve player do video
+
 
       .btn.btn-info.block.mx-3.mb-2(data-toggle='modal' data-target='#myModal') Adicionar um reparo
 
@@ -55,7 +57,7 @@ block content
         +repairList(repairs)
         p#emptyMsg: strong(style={'display': '' }) Nada encontrado, por favor modifique sua busca!
     else  
-      p.card-text.card-footer.text-dark.bg-warning.font-weight-bold Nenhum reparo cadastrado para esse defeito, seja o primeiro a adicionar um reparo!
+      p.card-text.card-footer.text-dark.bg-warning.font-weight-bold.text-center Nenhum reparo cadastrado para esse defeito, seja o primeiro a adicionar um reparo!
 
     script.
       function filter() {

@@ -1,4 +1,5 @@
-mixin commentForm(repair)
-  form.form-group(action=`/comment/${repair._id}` method="POST")
+mixin commentForm(item)
+  form.form-group(action=`/comment/${item._id}` method="POST")
+    input(type="text" name="area" value=area hidden)
     textarea.form-control(name="text" placeholder="Seu comentário aqui")
-    input.btn.btn-warning.form-control.my-2(type="submit" value="Adicione seu comentário")
+    input.btn.btn-warning.form-control.mt-2(type="submit" value="Adicione seu comentário")

@@ -36,9 +36,7 @@ const hardwareSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
-    photo: {
-      type: String,
-    },
+    photos: [],
     slug: String, // access link
   },
   {

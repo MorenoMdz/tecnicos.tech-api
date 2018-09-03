@@ -24,18 +24,20 @@ const postSchema = new mongoose.Schema({
     min: 0,
     max: 1,
   },
-  comments: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Comment',
-  },
 });
 
 postSchema.index({
   text: 'text',
 });
 
+postSchema.virtual('comments', {
+  ref: 'Comment',
+  localField: '_id',
+  foreignField: 'post',
+});
+
 function autopopulate(next) {
-  this.populate('author');
+  this.populate('author comments');
   next();
 }
 

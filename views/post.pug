@@ -1,0 +1,39 @@
+extends layout
+
+include mixins/_commentForm.pug
+
+block content
+  .container.bg-light.py-1.mb-3
+    .row.bg-dark.text-white
+      .col-md-12.col-sm-6
+        .row
+          p.text-left.col-md-7.col-sm-12.pt-1= post.title
+          span.blogSubTitle.text-right.small.col-md-5.col-sm-12.align-items-end.mt-2
+            | por
+            |
+            a.text-warning(href=`/tech/${post.author._id}`) #{post.author.name} #{post.date}
+            | 
+            time(datetime=post.created)= h.moment(post.created).locale('pt-br').fromNow()
+    .row
+      .col-md-12.col-sm-6
+        .hrCurved.mb-1.px-2.pb-1.w-90.text-truncate
+          p.mb-2 !{post.text}
+    .container.p-2
+      p.text-white.bg-dark.p-2 Comentarios:
+      section.comments.mt-3
+        if post.comments
+          each comment in post.comments
+            article.comment
+              a.comment-img(href=`/tech/${comment.author._id}`)
+                img.avatar(src=comment.author.gravatar, alt="gravatar", width='80', height='80')
+              .comment-body
+                .text
+                  p #{comment.text}
+                p.text-right.attribution.bg-secondary.text-white.px-3
+                  | por
+                  |
+                  a.text-info(href=`/tech/${comment.author._id}`) #{comment.author.name}
+                  | 
+                  time(datetime=comment.created)= h.moment(comment.created).locale('pt-br').fromNow()
+        if user
+          +commentForm(post)

@@ -14,7 +14,14 @@ const commentSchema = new mongoose.Schema({
   repair: {
     type: mongoose.Schema.ObjectId,
     ref: 'Repair',
-    required: 'You must supply an author!',
+  },
+  post: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Post',
+  },
+  replies: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Comment',
   },
   text: {
     type: String,
@@ -24,10 +31,6 @@ const commentSchema = new mongoose.Schema({
     type: Number,
     min: 0,
     max: 1,
-  },
-  replies: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Comment',
   },
 });
 

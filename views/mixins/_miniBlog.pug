@@ -4,37 +4,43 @@ include _pagination.pug
 mixin miniBlog(paginatedPosts = {})
   if user
     .posts#miniBlog
+      if user && user.siteRank == 'admin' 
+        u.btn.m-1.float-right.text-secondary(data-toggle='modal' data-target='#myModal') Novo Post
+        .addPostForm
+            #myModal.modal.fade(role='dialog')
+              .modal-dialog#miniBlogModal
+                .modal-content
+                  .modal-header.bg-primary.text-white.p-1
+                    h6.p-2 Adicionar um novo Post
+                    button.close(type='button', data-dismiss='modal') × 
+                  .modal-body.p-1
+                    +postForm()
       h6 Postagens do Administrador
-        if user && user.siteRank == 'admin' 
-          u.btn.m-1.float-right.text-secondary(data-toggle='modal' data-target='#myModal') Novo Post
-          .addPostForm
-              #myModal.modal.fade(role='dialog')
-                .modal-dialog#miniBlogModal
-                  .modal-content
-                    .modal-header.bg-primary.text-white.p-1
-                      h6.p-2 Adicionar um novo Post
-                      button.close(type='button', data-dismiss='modal') × 
-                    .modal-body.p-1
-                      +postForm()
       hr
       #accordion
         each post, i in paginatedPosts.posts
-          .row.bg-dark.text-white.pt-1(id=`heading${i}` data-toggle='collapse', data-target=`#collapse${i}`, aria-expanded='true', aria-controls=`collapse${i}` type="button")
-            p.text-left.col-md-7.pt-1= post.title
-            span.text-right.small.col-md-5.align-items-end.mt-3
-              | por
-              |
-              a.text-warning(href=`/tech/${post.author._id}`) #{post.author.name} #{post.date}
-              | 
-              time(datetime=post.created)= h.moment(post.created).locale('pt-br').fromNow()
+          .m-0
+            .postHeading.row.bg-dark.text-white.pt-1.pb-0.w-100(id=`heading${i}` data-toggle='collapse', data-target=`#collapse${i}`, aria-expanded='true', aria-controls=`collapse${i}` type="button")
+              .col-md-7
+                p.text-left.pt-1.pb-0= post.title
+              .col-md-5
+                span.blogSubTitle.text-right.small.align-items-end.mt-3
+                  | por
+                  |
+                  a.text-warning(href=`/tech/${post.author._id}`) #{post.author.name} #{post.date}
+                  | 
+                  time(datetime=post.created)= h.moment(post.created).locale('pt-br').fromNow()
           if i === 0 
-            #homePost.hrCurved.mb-1.px-2.pb-1.w-90.text-truncate
+            #homePost.hrCurved.mb-1.px-2.pb-1.w-90.text-truncate.bg-light
               .collapse.show(id=`collapse${i}` aria-labelledby=`heading${i}`, data-parent='#accordion' )
-                p.mb-2 !{post.text} #{i}
+                p !{post.text} #{i}
+              a.text-dark(href=`/posts/${post._id}`) #[small ver mais...]
           else
-            #homePost.hrCurved.mb-1.px-2.py-1.w-90.text-truncate
+            #homePost.hrCurved.mb-1.px-2.py-1.w-90.text-truncate.bg-light
               .collapse(id=`collapse${i}` aria-labelledby=`heading${i}`, data-parent='#accordion' )
                 p !{post.text} #{i}
+              a.text-dark(href=`/posts/${post._id}`) #[small ver mais...]
+            
 
     +pagination(paginatedPosts.area, paginatedPosts.page, paginatedPosts.pages, paginatedPosts.count)     
 
