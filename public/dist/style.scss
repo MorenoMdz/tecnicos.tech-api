@@ -115,6 +115,18 @@ nav .nav-link {
   background-color: #6568707e;
 }
 /* HW Item */
+#hwItem {
+  list-style-type: none;
+  .row {
+    @media (max-width: 768px) {
+      width: 300px !important;
+      left: -15px !important;
+      img {
+        display: none;
+      }
+    }
+  }
+}
 #hwItemPhoto {
   width: 50px;
   height: 50px;
@@ -256,9 +268,9 @@ nav .nav-link {
   body > div.footer > div > a > i {
     display: none;
   }
-  #hwItem {
+  /* #hwItem {
     max-width: 90%;
-  }
+  } */
   .footer {
     height: 70px;
     .container {

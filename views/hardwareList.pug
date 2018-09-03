@@ -10,9 +10,9 @@ block content
         p.mb-2: strong Aparelhos cadastrados no sistema:
         input.pl-2#filterHw(type='text', onkeyup='filter()', placeholder='Filtrar aparelhos por...')
       .col-md-9
+        p#emptyMsg.mt-4.text-center: strong(style={'display': '' }) Nada encontrado, por favor modifique sua busca!
         #hwList(style="display:block")
           +hwList
-          p#emptyMsg: strong(style={'display': '' }) Nada encontrado, por favor modifique sua busca!
   script.
     function filter() {
       let input, filter, ul, li, a, i, msg;

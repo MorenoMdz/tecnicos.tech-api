@@ -1,12 +1,14 @@
 mixin hwItem(hardware)
-  //pre= h.dump(hardware)
   #hwItem.py-1
-    li.list-group-item.bg-light
-      .row
-        .col-md-10.col-sm-10.d-flex.align-items-center
-          strong: a.text-dark(href=`/hardware/${hardware.slug}`) Aparelho #[span.text-muted #{hardware.name}]  Modelo: #[span.text-muted #{hardware.model}]
-        .col-md-2.col-sm-2
-          img#hwItemPhoto(src=`/uploads/${hardware.photo || 'default.jpg'}`)
-          
+    li.bg-light.p-0
+      a.text-dark(href=`/hardware/${hardware.slug}`)
+        .row.align-items-center
+          .col-md-4.col-sm-4.text-left
+            strong Aparelho #[span.text-muted #{hardware.name}] 
+          .col-md-6.col-sm-4.text-left
+            strong Modelo: #[span.text-muted #{hardware.model}] 
+          .col-md-2.col-sm-2.justify-content-right
+            img#hwItemPhoto(src=`${hardware.photos[0].location || '/uploads/default.jpg'}`)
+            
           
 

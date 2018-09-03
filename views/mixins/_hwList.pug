@@ -4,11 +4,11 @@ include _pagination.pug
 mixin hwList(hws = [{}])
   // pre= h.dump(hardwares)
   if hardwares
-    ul#hwListUl.hwList.container
-      div.list-group
-        each hardware in hardwares
-          +hwItem(hardware)
-      +pagination(area, page, pages, count)
+    #hwListUl.hwList
+
+      each hardware in hardwares
+        +hwItem(hardware)
+    +pagination(area, page, pages, count)
 
 
     
