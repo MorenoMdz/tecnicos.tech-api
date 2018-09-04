@@ -3,6 +3,7 @@ mixin feedbackForm()
     input(type="text" name='area' value=locals.currentPath hidden required)
     p Sua opinião é importante para ajudar o site a evoluir.
     small Detalhes de uso, se teve dificuldade em encontrar algo, em executar alguma ação, se encontrou algum erro ou bug pedimos que informe com todos detalhes que conseguir
-    small Agradeçemos seu feedback!
+    p: small Agradeçemos seu feedback!
+    p: small A sessão que você está atualmente é: ' #{locals.currentPath} '
     textarea.form-control.mb-2(name="text" required)
     input.btn.btn-warning.form-control.mb-0(type="submit" value="Adicione seu comentário")

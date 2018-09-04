@@ -19,10 +19,6 @@ const hardwareSchema = new mongoose.Schema(
       trim: true,
       required: 'Please enter the hardware brand',
     },
-    mfr_date: {
-      type: String,
-      trim: true,
-    },
     description: {
       type: String,
       trim: true,

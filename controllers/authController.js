@@ -20,7 +20,7 @@ exports.logout = (req, res) => {
 
 exports.isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()) {
-    next(); // check if user is auth carry on, he is logged in
+    next();
     return;
   }
   req.flash('danger', 'Não autorizado.');
@@ -41,7 +41,7 @@ exports.isActive = (req, res, next) => {
     next();
     return;
   }
-  req.flash('danger', 'Conta inativa, favor contatar os administradores');
+  req.flash('danger', 'Conta inativa, por favor contatar os administradores');
   res.redirect('/');
 };
 
@@ -52,7 +52,6 @@ exports.forgot = async (req, res) => {
     req.flash('danger', 'Conta não encontrada.');
     return res.redirect('/login');
   }
-
   // 2. Set reset tokens and expiry on their account
   user.resetPasswordToken = crypto.randomBytes(20).toString('hex');
   user.resetPasswordExpires = Date.now() + 3600000; // 1 hour from now
@@ -65,11 +64,13 @@ exports.forgot = async (req, res) => {
   await mail.send({
     user,
     subject: 'Reset de senha',
+    to: req.body.email,
     resetURL,
     filename: 'password-reset',
   });
 
   req.flash('success', `Um email para reconfigurar seu acesso foi enviado.`);
+
   // 4. Redirect to the login page
   res.redirect('/login');
 };
@@ -77,7 +78,7 @@ exports.forgot = async (req, res) => {
 exports.reset = async (req, res) => {
   const user = await Technician.findOne({
     resetPasswordToken: req.params.token,
-    resetPasswordExpires: { $gt: Date.now() }, // if the token is not gt now, it is expired
+    resetPasswordExpires: { $gt: Date.now() }, // if the token is not 'gt now', it is expired
   });
 
   if (!user) {
@@ -100,7 +101,7 @@ exports.confirmedPasswords = async (req, res, next) => {
 exports.update = async (req, res) => {
   const user = await Technician.findOne({
     resetPasswordToken: req.params.token,
-    resetPasswordExpires: { $gt: Date.now() }, // if the token is not gt now, it is expired
+    resetPasswordExpires: { $gt: Date.now() },
   });
   if (!user) {
     req.flash('danger', 'Token expirado.');
@@ -113,10 +114,10 @@ exports.update = async (req, res) => {
   user.resetPasswordToken = undefined;
   const updatedUser = await user.save(); // saves the query to the db
   // login the user
-  await req.login(updatedUser);
+  //await req.login(updatedUser);
   req.flash(
     'success',
     'Senha reconfigurada, por favor entre com a senha nova.'
   );
-  res.redirect('/');
+  res.redirect('/login');
 };

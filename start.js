@@ -32,5 +32,7 @@ require('./models/Feedback.js');
 const app = require('./app');
 app.set('port', process.env.PORT || 777);
 const server = app.listen(app.get('port'), () => {
-  console.log(`Server Express running on PORT ${server.address().port}`);
+  console.log(
+    `Server Express running on PORT ${server.address().port}, Have fun!`
+  );
 });

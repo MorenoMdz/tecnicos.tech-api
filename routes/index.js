@@ -152,6 +152,13 @@ router.post(
   authController.isActive,
   catchErrors(postController.addPost)
 );
+router.post(
+  '/updatePost',
+  authController.isLoggedIn,
+  authController.isActive,
+  authController.isMod,
+  catchErrors(postController.updatePost)
+);
 router.get(
   '/posts/:id',
   authController.isLoggedIn,

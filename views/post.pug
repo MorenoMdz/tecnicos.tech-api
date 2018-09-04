@@ -18,9 +18,23 @@ block content
       .col-md-12.col-sm-6
         .hrCurved.mb-1.px-2.pb-1.w-90.text-truncate
           p.mb-2 !{post.text}
+    
+    if user && user.siteRank == 'admin'
+        .row
+          u.btn.m-1.float-right.text-secondary(data-toggle='modal' data-target='#myModal') Editar Post
+          .addPostForm
+              #myModal.modal.fade(role='dialog')
+                .modal-dialog#miniBlogModal
+                  .modal-content
+                    .modal-header.bg-primary.text-white.p-1
+                      h6.p-2 Adicionar um novo Post
+                      button.close(type='button', data-dismiss='modal') × 
+                    .modal-body.p-1
+                      +postForm(post)
     .container.p-2
-      p.text-white.bg-dark.p-2 Comentarios:
-      section.comments.mt-3
+      
+      p.text-white.bg-dark.p-2(id=`headingTopTechs` data-toggle='collapse', data-target=`#collapseTopTechs`, aria-expanded='true', aria-controls=`collapseTopTechs` type="button") Clique para carregar os comentarios:
+      section.comments.mt-3.collapse(id=`collapseTopTechs` aria-labelledby=`headingTopTechs`, data-parent='#accordionTopTechs' )
         if post.comments
           each comment in post.comments
             article.comment
@@ -35,5 +49,6 @@ block content
                   a.text-info(href=`/tech/${comment.author._id}`) #{comment.author.name}
                   | 
                   time(datetime=comment.created)= h.moment(comment.created).locale('pt-br').fromNow()
+      
         if user
           +commentForm(post)

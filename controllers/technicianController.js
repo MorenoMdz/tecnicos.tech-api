@@ -3,20 +3,12 @@ const Technician = mongoose.model('Technician');
 const promisify = require('es6-promisify');
 const mail = require('../handlers/mail');
 
-/* Mailing */
-/* await mail.send({
-  user,
-  subject: 'Reset de senha',
-  resetURL,
-  filename: 'password-reset',
-}); */
-
 /* Login Methods */
-exports.loginForm = (req, res) => {
+exports.loginForm = res => {
   res.render('login', { title: 'Entrar' });
 };
 
-exports.registerForm = (req, res) => {
+exports.registerForm = res => {
   res.render('register', { title: 'Registrar' });
 };
 

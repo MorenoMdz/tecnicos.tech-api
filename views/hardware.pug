@@ -1,17 +1,19 @@
 extends layout
 
-block content
-  include mixins/_problemItem.pug
-  include mixins/_problemForm.pug
-  include mixins/_pagination.pug
-  include mixins/_hwFormUpdate.pug
+include mixins/_problemItem.pug
+include mixins/_problemForm.pug
+include mixins/_pagination.pug
+include mixins/_hwFormUpdate.pug
 
+block content
+  
   .container.py-2
     .card.mb-3
       .card-body
         .row
           .col-sm-4
-            img.card-img-top.border-info.hwCardImg(src=`${hardware.photos[0].location || '/uploads/default.jpg'}` alt='Card image cap')
+            if hardware.photos.length > 0
+              img.card-img-top.border-info.hwCardImg(src=`${hardware.photos[0].location || '/uploads/default.jpg'}` alt='Card image cap')
           .col-sm-8
             h5.card-header #{hardware.name} Modelo: #{hardware.model} 
             .card-body

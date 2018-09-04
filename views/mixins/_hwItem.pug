@@ -8,7 +8,8 @@ mixin hwItem(hardware)
           .col-md-6.col-sm-4.text-left
             strong Modelo: #[span.text-muted #{hardware.model}] 
           .col-md-2.col-sm-2.justify-content-right
-            img#hwItemPhoto(src=`${hardware.photos[0].location || '/uploads/default.jpg'}`)
+            if hardware.photos.length > 0
+              img#hwItemPhoto(src=`${hardware.photos[0].location || '/uploads/default.jpg'}`)
             
           
 

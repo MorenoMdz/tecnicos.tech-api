@@ -11,7 +11,6 @@ exports.icon = name => fs.readFileSync(`./public/images/icons/${name}.svg`);
 exports.siteName = `Técnicos Tech`;
 
 exports.menu = [
-  { slug: '/hardwares', title: 'Aparelhos', icon: 'top' },
-  { slug: '/techs', title: 'Técnicos', icon: 'top' },
-  /* { slug: '/config', title: 'Config', icon: 'config' }, */
+  { slug: '/hardwares', title: 'Aparelhos' },
+  { slug: '/techs', title: 'Técnicos' },
 ];

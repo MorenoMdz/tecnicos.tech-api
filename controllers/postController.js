@@ -47,7 +47,6 @@ exports.getAllPosts = async (req, res) => {
 };
 
 exports.getPostById = async (req, res, next) => {
-  console.log(req.params.id);
   const post = await Post.findOne({
     _id: req.params.id,
   }).populate('author');
@@ -56,4 +55,18 @@ exports.getPostById = async (req, res, next) => {
     post,
     area: 'post',
   });
+};
+
+exports.updatePost = async (req, res) => {
+  const updates = {
+    title: req.body.title,
+    text: req.body.text,
+  };
+  const post = await Post.findOneAndUpdate(
+    { _id: req.body.id },
+    { $set: updates },
+    { new: true, runValidators: true, context: 'query' }
+  );
+  req.flash('success', 'Postagem atualizada.');
+  res.redirect(`back`);
 };

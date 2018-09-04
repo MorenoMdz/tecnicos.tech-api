@@ -5,17 +5,17 @@ const Problem = mongoose.model('Problem');
 const Repair = mongoose.model('Repair');
 const Tech = mongoose.model('Technician');
 
-exports.configPanel = async (req, res, next) => {
+exports.configPanel = async (req, res) => {
   res.render('config');
 };
 
-exports.countProblems = async (req, res, next) => {
+exports.countProblems = async res => {
   const problemsCount = await Problem.count();
   console.log(problemsCount);
   res.render('layout', { problemsCount });
 };
 
-exports.homeDisplay = async (req, res, next) => {
+exports.homeDisplay = async (req, next) => {
   const countProblems = Problem.count();
   const countHws = Hardware.count();
   const countRepairs = Repair.count();
@@ -37,7 +37,6 @@ exports.homeDisplay = async (req, res, next) => {
     .sort({ stars: -1 })
     .limit(5);
 
-  // await all home information to be loaded
   /* order here matters when reading from the object index in the view */
   const homeDisplay = await Promise.all([
     countHws,
