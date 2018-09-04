@@ -7,16 +7,16 @@ block content
   .container
     .row
       .mb-3.col-md-5
-        .wrapper
+        
           .card-body
             .card-header.card.text-white.bg-info.text-center
               h5.card-title Reparo para o defeito: #{repair.problem.title} 
             if repair.photos.length > 0
-              .card-img-top.hwCardImg.py-3.border
+              .card-img-top
                 +lightbox(repair.photos)
               figcaption.figure-caption.text-center Veja #{repair.photos.length} imagens do reparo.
             else 
-              img.card-img-top.hwCardImg.py-3.border(src=`/uploads/default.jpg` alt='Card image cap')
+              img.card-img-top(src=`/uploads/default.jpg` alt='Card image cap')
               figcaption.figure-caption.text-center Sem imagens cadastradas.
           .card-body.card.text-white.bg-secondary.text-center
             if user
@@ -28,7 +28,7 @@ block content
                     i.fa.fa-star
                     span #{` ${repair.stars.length} `}
                     if !starStrings.includes(repair._id.toString())
-                      p.small.text-white Qualifique se o reparo deu resultado!
+                      p.small.text-white.hideSmall Qualifique se o reparo deu resultado!
                 
       ul.list-group.list-group-flush.col-md-7
         h6: li.list-group-item Título do reparo: 
@@ -64,7 +64,7 @@ block content
                 |
                 a.text-info(href=`/tech/${comment.author._id}`) #{comment.author.name}
                 | 
-                time(datetime=comment.created)= h.moment(comment.created).locale('pt-br').fromNow()
+                time.hideSmall(datetime=comment.created)= h.moment(comment.created).locale('pt-br').fromNow()
       if user
         +commentForm(repair)
 

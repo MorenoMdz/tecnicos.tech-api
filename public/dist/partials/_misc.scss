@@ -1,9 +1,3 @@
-/* Tech List */
-.techList a {
-  text-transform: none !important;
-  text-decoration: none !important;
-  color: #222;
-}
 /* Feedback List */
 #feedback-tab {
   max-height: 500px;
@@ -14,4 +8,26 @@
   width: 100%;
   height: 15vw;
   object-fit: scale-down;
+}
+/* Pagination */
+.paginationMixin {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  .pagination-text {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-around;
+  }
+  .pagination-prev {
+    display: flex;
+    flex-grow: 1;
+  }
+  .pagination-next {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+  }
 }

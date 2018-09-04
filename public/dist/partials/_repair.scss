@@ -12,10 +12,19 @@
 #repairLi {
   text-decoration: none;
   color: #111;
-  font-size: 1.1em;
+  font-size: 1em;
+  @media (max-width: 768px) {
+    #hwBtn {
+      display: none;
+    }
+  }
 }
 #repairLi span {
   font-size: 1em;
+}
+.card-img-top {
+  position: relative;
+  right: 15px;
 }
 .comment {
   overflow: hidden;

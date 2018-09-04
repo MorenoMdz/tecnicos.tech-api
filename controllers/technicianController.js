@@ -4,11 +4,11 @@ const promisify = require('es6-promisify');
 const mail = require('../handlers/mail');
 
 /* Login Methods */
-exports.loginForm = res => {
+exports.loginForm = (req, res) => {
   res.render('login', { title: 'Entrar' });
 };
 
-exports.registerForm = res => {
+exports.registerForm = (req, res) => {
   res.render('register', { title: 'Registrar' });
 };
 

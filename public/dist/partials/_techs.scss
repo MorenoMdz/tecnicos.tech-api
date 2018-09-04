@@ -1,0 +1,46 @@
+/* Tech List */
+.hideSmall {
+  flex-grow: 2;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+}
+.techStars {
+  flex-grow: 1;
+  @media screen and (max-width: 767px) {
+    width: 50px !important;
+  }
+}
+.techName {
+  flex-grow: 2;
+  @media screen and (max-width: 767px) {
+    flex-grow: 3;
+    text-align: right;
+    margin-right: 20px;
+  }
+}
+
+.techLi {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.techList a {
+  text-transform: none !important;
+  text-decoration: none !important;
+  color: #222;
+}
+
+.avatar {
+  @media screen and (max-width: 767px) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.techInfo {
+  @media screen and (max-width: 767px) {
+    font-size: 0.9rem;
+  }
+}

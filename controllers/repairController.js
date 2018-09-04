@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Repair = mongoose.model('Repair');
 const User = mongoose.model('Technician');
 
-exports.addRepairForm = async res => {
+exports.addRepairForm = async (req, res) => {
   res.render('addRepairForm');
 };
 

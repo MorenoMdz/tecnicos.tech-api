@@ -5,7 +5,6 @@ mixin hwList(hws = [{}])
   // pre= h.dump(hardwares)
   if hardwares
     #hwListUl.hwList
-
       each hardware in hardwares
         +hwItem(hardware)
     +pagination(area, page, pages, count)
