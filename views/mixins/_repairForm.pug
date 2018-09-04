@@ -33,7 +33,7 @@ mixin repairForm(repair = {})
     
     label.mb-1(for="description") Descrição adicional do reparo:
     .small.mb-1 Informações que julgar interessante sobre o reparo
-    textarea.mb-3.form-control(name="description" placeholder="Descrição do reparo" )= repair.description
+    textarea.mb-3.form-control(name="description" placeholder="Descrição do reparo" required)= repair.description
     
     label.mb-1(for="photo") Adicione imagens do reparo
       p: small máximo 5 imagens com até 5mb cada

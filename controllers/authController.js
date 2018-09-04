@@ -7,9 +7,9 @@ const mail = require('../handlers/mail');
 
 exports.checkActiveStatus = async (req, res, next) => {
   const user = await Technician.findOne({
-    email: req.body.email,
+    email: req.body.email
   });
-  if (!user.active_status) {
+  if (user && !user.active_status) {
     req.flash(
       'warning',
       'Conta aguardando ativação. Favor contatar um administrador'
@@ -24,7 +24,7 @@ exports.login = passport.authenticate('local', {
   failureRedirect: '/login',
   failureFlash: 'Login falhou!',
   successRedirect: '/',
-  successFlash: 'Você está logado!',
+  successFlash: 'Você está logado!'
 });
 
 exports.logout = (req, res) => {
@@ -81,7 +81,7 @@ exports.forgot = async (req, res) => {
     subject: 'Reset de senha',
     to: req.body.email,
     resetURL,
-    filename: 'password-reset',
+    filename: 'password-reset'
   });
 
   req.flash('success', `Um email para reconfigurar seu acesso foi enviado.`);
@@ -93,7 +93,7 @@ exports.forgot = async (req, res) => {
 exports.reset = async (req, res) => {
   const user = await Technician.findOne({
     resetPasswordToken: req.params.token,
-    resetPasswordExpires: { $gt: Date.now() }, // if the token is not 'gt now', it is expired
+    resetPasswordExpires: { $gt: Date.now() } // if the token is not 'gt now', it is expired
   });
 
   if (!user) {
@@ -116,7 +116,7 @@ exports.confirmedPasswords = async (req, res, next) => {
 exports.update = async (req, res) => {
   const user = await Technician.findOne({
     resetPasswordToken: req.params.token,
-    resetPasswordExpires: { $gt: Date.now() },
+    resetPasswordExpires: { $gt: Date.now() }
   });
   if (!user) {
     req.flash('danger', 'Token expirado.');

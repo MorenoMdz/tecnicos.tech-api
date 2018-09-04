@@ -3,9 +3,10 @@ const multerS3 = require('multer-s3');
 const uuid = require('uuid');
 const AWS = require('aws-sdk');
 const sharp = require('sharp');
+
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS,
-  secretAccessKey: process.env.AWS_SECRET_KEY,
+  secretAccessKey: process.env.AWS_SECRET_KEY
 });
 
 const s3 = new AWS.S3();
@@ -18,7 +19,7 @@ const multerOptions = {
     acl: 'public-read',
     limits: {
       fileSize: maxSize,
-      files: 5,
+      files: 5
     },
     contentType: multerS3.AUTO_CONTENT_TYPE,
     key: function(req, file, cb) {
@@ -42,8 +43,8 @@ const multerOptions = {
               .resize(600, 600)
               .max()
           );
-        },
-      },
+        }
+      }
     ],
     fileFilter(req, file, next) {
       const isPhoto = file.mimetype.startsWith('image/');
@@ -52,8 +53,8 @@ const multerOptions = {
       } else {
         next({ message: 'Fotos: Tipo de arquivo não suportado!' }, false); // with error
       }
-    },
-  }),
+    }
+  })
 };
 
 exports.upload = multer(multerOptions).array('photos', 5);
