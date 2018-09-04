@@ -21,9 +21,9 @@ mixin miniBlog(paginatedPosts = {})
         each post, i in paginatedPosts.posts
           .m-0
             .postHeading.row.bg-dark.text-white.pt-1.pb-0.w-100(id=`heading${i}` data-toggle='collapse', data-target=`#collapse${i}`, aria-expanded='true', aria-controls=`collapse${i}` type="button")
-              .col-md-7
+              .col-md-10
                 p.text-left.pt-1.pb-0= post.title
-              .col-md-5
+              .col-md-2
                 span.blogSubTitle.text-right.small.align-items-end.mt-3
                   | por
                   |
