@@ -172,11 +172,12 @@ router.post(
   '/register',
   technicianController.validateRegister,
   technicianController.registerTechnician,
+  authController.checkActiveStatus,
   authController.login
 );
 router.get('/login', technicianController.loginForm);
 router.get('/logout', authController.logout);
-router.post('/login', authController.login);
+router.post('/login', authController.checkActiveStatus, authController.login);
 
 router.post('/account/forgot', catchErrors(authController.forgot));
 router.get('/account/reset/:token', catchErrors(authController.reset));

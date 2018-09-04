@@ -14,6 +14,7 @@ exports.registerForm = (req, res) => {
 
 /* Validation Middleware */
 exports.validateRegister = (req, res, next) => {
+  console.log(req.body);
   req.sanitizeBody('name');
   req.checkBody('name', 'Você precisa adicionar um nome!').notEmpty();
   req.checkBody('email', 'Email inválido!').isEmail();
@@ -24,8 +25,11 @@ exports.validateRegister = (req, res, next) => {
   });
   req.checkBody('password', 'O campo Senha não pode ser vazio!!').notEmpty();
   req
-    .checkBody('password', 'Password precisa ter no mínimo 8 caracteres')
-    .matches(/^[a-zA-Z0-9]{8}$/, 'i');
+    .checkBody(
+      'password',
+      'Senha precisa ter no mínimo 8 caracteres com letras e números!'
+    )
+    .matches(/^.*(?=.{8,})(?=.*\d)(?=.*[a-zA-Z]).*$/, 'i');
   req
     .checkBody(
       'password-confirm',

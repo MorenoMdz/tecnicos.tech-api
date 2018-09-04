@@ -5,6 +5,21 @@ const Technician = mongoose.model('Technician');
 const promisify = require('es6-promisify');
 const mail = require('../handlers/mail');
 
+exports.checkActiveStatus = async (req, res, next) => {
+  const user = await Technician.findOne({
+    email: req.body.email,
+  });
+  if (!user.active_status) {
+    req.flash(
+      'warning',
+      'Conta aguardando ativação. Favor contatar um administrador'
+    );
+    res.redirect('/login');
+    return;
+  }
+  next();
+};
+
 exports.login = passport.authenticate('local', {
   failureRedirect: '/login',
   failureFlash: 'Login falhou!',

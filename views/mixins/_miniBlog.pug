@@ -41,7 +41,7 @@ mixin miniBlog(paginatedPosts = {})
                 p !{post.text} #{i}
               a.text-dark(href=`/posts/${post._id}`) #[small ver mais...]
             
-
+    
     +pagination(paginatedPosts.area, paginatedPosts.page, paginatedPosts.pages, paginatedPosts.count)     
 
     hr    
