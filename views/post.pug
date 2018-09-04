@@ -1,6 +1,7 @@
 extends layout
 
 include mixins/_commentForm.pug
+include mixins/_postForm.pug
 
 block content
   .container.bg-light.py-1.mb-3
@@ -16,7 +17,7 @@ block content
             time(datetime=post.created)= h.moment(post.created).locale('pt-br').fromNow()
     .row
       .col-md-12.col-sm-6
-        .hrCurved.mb-1.px-2.pb-1.w-90.text-truncate
+        .hrCurved.mb-1.px-2.pb-1.w-90
           p.mb-2 !{post.text}
     
     if user && user.siteRank == 'admin'

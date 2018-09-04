@@ -1,4 +1,4 @@
-include _postForm.pug
+include _newPostForm.pug
 include _pagination.pug
 
 mixin miniBlog(paginatedPosts = {})
@@ -14,7 +14,7 @@ mixin miniBlog(paginatedPosts = {})
                     h6.p-2 Adicionar um novo Post
                     button.close(type='button', data-dismiss='modal') × 
                   .modal-body.p-1
-                    +postForm()
+                    +newPostForm()
       h6 Postagens do Administrador
       hr
       #accordion
@@ -31,15 +31,15 @@ mixin miniBlog(paginatedPosts = {})
                   | 
                   time(datetime=post.created)= h.moment(post.created).locale('pt-br').fromNow()
           if i === 0 
-            #homePost.hrCurved.mb-1.px-2.pb-1.w-90.text-truncate.bg-light
+            #homePost.hrCurved.mb-1.px-2.pb-1.w-90.bg-light
               .collapse.show(id=`collapse${i}` aria-labelledby=`heading${i}`, data-parent='#accordion' )
-                p !{post.text} #{i}
-              a.text-dark(href=`/posts/${post._id}`) #[small ver mais...]
+                p !{post.text}
+              
           else
-            #homePost.hrCurved.mb-1.px-2.py-1.w-90.text-truncate.bg-light
+            #homePost.hrCurved.mb-1.px-2.py-1.w-90.bg-light
               .collapse(id=`collapse${i}` aria-labelledby=`heading${i}`, data-parent='#accordion' )
-                p !{post.text} #{i}
-              a.text-dark(href=`/posts/${post._id}`) #[small ver mais...]
+                p !{post.text}
+          a.text-dark(href=`/posts/${post._id}`) #[small ver mais...]
             
     
     +pagination(paginatedPosts.area, paginatedPosts.page, paginatedPosts.pages, paginatedPosts.count)     
