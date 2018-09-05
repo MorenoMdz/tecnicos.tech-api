@@ -31,3 +31,12 @@
     justify-content: flex-end;
   }
 }
+/* Text Mods */
+.shortenText {
+  display: block;
+  min-width: 300px;
+  max-width: 600px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

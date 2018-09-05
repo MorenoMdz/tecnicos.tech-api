@@ -1,10 +1,10 @@
 mixin repairItem(repair)
   a#repairLi.font-weight-bold(href=`/repair/${repair.slug}`)
     .row.p-0
-      .col-md-4.col-sm-12
+      .col-md-3.col-sm-12
         span Título do reparo: #[span.small #{repair.title} ]
-      .col-md-4.col-sm-12
-        span Descrição: #[span.small #{repair.description}] 
+      .col-md-7.col-sm-12
+        span Descrição: #[span.small.shortenText #{repair.description}] 
       .col-md-2.col-sm-12.mt-1
         span#repairItemBadge.badge.badge-dark
           i.fa.fa-comment.p-1 
