@@ -37,6 +37,7 @@ block content
         label(for="store_name") Nome de sua Loja ou onde trabalha: 
         input.form-control.mb-2(type="store_name" name="store_name" value=user.address.store_name)
         label(for="site_name") Seu site: 
+        p: small Sem o "http://" ou "https://" etc
         input.form-control.mb-2(type="site_name" name="site_name" value=user.address.site_name)
       .card.p-2.mb-2
         h6 Configuração de exibição dos seus contatos
