@@ -23,7 +23,7 @@ exports.hardwares = hwList();
 
 exports.getAllHw = async (req, res) => {
   const page = req.params.page || 1;
-  const limit = 9;
+  const limit = 25;
   const skip = page * limit - limit;
 
   const hwPromise = Hardware.find()
@@ -46,7 +46,7 @@ exports.getAllHw = async (req, res) => {
     area: 'hardwares',
     page,
     pages,
-    count,
+    count
   });
 };
 
@@ -73,7 +73,7 @@ exports.getHwList = async (req, res, next) => {
     hardwares,
     page,
     pages,
-    count,
+    count
   };
   next();
 };
@@ -81,19 +81,19 @@ exports.getHwList = async (req, res, next) => {
 exports.getHwBySlug = async (req, res) => {
   const hardwares = await hwList();
   const hardware = await Hardware.findOne({
-    slug: req.params.slug,
+    slug: req.params.slug
   }).populate('author problems');
   if (!hardware) return next(); // it kicks in the 404 error handler
   res.render('hardware', {
     hardware: hardware,
     hardwares: hardwares,
-    title: hardware.name,
+    title: hardware.name
   });
 };
 
 exports.getHwById = async id => {
   const hardware = await Hardware.findOne({
-    _id: id,
+    _id: id
   });
 
   return hardware;
@@ -107,7 +107,7 @@ exports.updateHw = async (req, res) => {
     model: req.body.model,
     brand: req.body.brand,
     description: req.body.description,
-    photos: req.body.photos,
+    photos: req.body.photos
   };
 
   const hw = await Hardware.findOneAndUpdate(

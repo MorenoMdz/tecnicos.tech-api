@@ -1,6 +1,12 @@
+/* HW List */
+#hwListUl {
+  overflow-y: auto;
+  max-height: 600px;
+}
 /* HW Item */
 #hwItem {
   list-style-type: none;
+  padding: 0 0 !important;
   .row {
     @media (max-width: 768px) {
       width: 300px !important;
