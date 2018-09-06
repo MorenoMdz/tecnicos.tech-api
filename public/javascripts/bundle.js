@@ -3246,16 +3246,22 @@ function typeAhead(search) {
         searchResults.innerHTML = dompurify.sanitize(
           `<div class="search-result">No results for ${this.value} found!</div>`
         );
+        setTimeout(function() {
+          searchResults.style.display = 'none';
+        }, 13000);
       })
       .catch(err => {
         console.error(err);
       });
   });
-
+  window.on('keyup', e => {
+    if (e.keyCode === 27) {
+      searchResults.style.display = 'none';
+    }
+  });
   // Handle keyboard inputs
   searchInput.on('keyup', e => {
     // check for arrows, if do not have these keycodes pressed on keyup
-    console.log(e.keyCode);
     if (![38, 40, 13].includes(e.keyCode)) {
       return; // skip it
     }
