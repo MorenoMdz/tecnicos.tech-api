@@ -2,7 +2,6 @@ const axios = require('axios');
 const dompurify = require('dompurify');
 
 function searchProbResultsHTML(results) {
-  //console.log(results);
   return results.problems
     .map((result, i) => {
       return dompurify.sanitize(`
@@ -14,7 +13,6 @@ function searchProbResultsHTML(results) {
     .join('');
 }
 function searchHwResultsHTML(results) {
-  //console.log(results);
   return results.hardwares
     .map((result, i) => {
       return dompurify.sanitize(`
@@ -37,23 +35,24 @@ function typeAhead(search) {
       searchResults.style.display = 'none';
       return;
     }
+
     searchResults.style.display = 'block';
 
     axios
       .get(`/api/search?q=${this.value}`)
       .then(res => {
         if (res.data.problems.length && !res.data.hardwares.length) {
-          console.log('prob');
+          //console.log('prob');
           const html = dompurify.sanitize(searchProbResultsHTML(res.data));
           searchResults.innerHTML = html;
           return;
         } else if (res.data.hardwares.length && !res.data.problems.length) {
-          console.log('hw');
+          //console.log('hw');
           const html = dompurify.sanitize(searchHwResultsHTML(res.data));
           searchResults.innerHTML = html;
           return;
         } else if (res.data.problems.length && res.data.hardwares.length) {
-          console.log('double');
+          //console.log('double');
           const htmlProb = dompurify.sanitize(searchProbResultsHTML(res.data));
           const htmlHw = dompurify.sanitize(searchHwResultsHTML(res.data));
           searchResults.innerHTML = `
@@ -77,6 +76,7 @@ function typeAhead(search) {
   // Handle keyboard inputs
   searchInput.on('keyup', e => {
     // check for arrows, if do not have these keycodes pressed on keyup
+    console.log(e.keyCode);
     if (![38, 40, 13].includes(e.keyCode)) {
       return; // skip it
     }
