@@ -30,7 +30,11 @@ block content
             strong: p.card-text Link para o video: 
               a(href=`http://${problem.video}`)
                 span.text-secondary #{problem.video}
-            
+            strong: p.card-text 
+              a.text-dark(href=`/tech/${problem.author._id}`) Autor:
+                span.text-secondary.mx-1 #{problem.author.name}
+              if user.siteRank == 'admin'
+                span.text-secondary.mx-1 || Problem ID: #{problem._id}
             p
             strong.bg-dark.text-info.p-3 Em breve player do video
 

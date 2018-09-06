@@ -47,6 +47,11 @@ block content
           span.text-secondary  #{repair.parts}
         h6: li.list-group-item Descrição do reparo:  
           span.text-secondary  #{repair.description}
+        h6: li.list-group-item Author:
+          a.text-dark(href=`/tech/${repair.author._id}`) 
+            span.text-secondary.mx-1 #{repair.author.name}
+            if user.siteRank == 'admin'
+              span.text-secondary.mx-1 || Repair ID: #{repair._id}
         li.list-group-item 
     
     p.text-white.bg-dark.p-2 Comentarios:
