@@ -76,7 +76,7 @@ function typeAhead(search) {
       });
   });
   window.on('keyup', e => {
-    if (e.keyCode === 27) {
+    if (e.keyCode === 27 && searchResults.style.display === 'block') {
       searchResults.style.display = 'none';
     }
   });
