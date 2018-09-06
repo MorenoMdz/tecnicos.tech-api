@@ -16,11 +16,13 @@ block content
         .col-sm-8
           h5.card-header #{hardware.name} Modelo: #{hardware.model} 
           .card-body
-            strong: p.card-text Descrição: 
-              span.text-secondary #{hardware.description} 
+            if hardware.description
+              strong: p.card-text Descrição: 
+                span.text-secondary #{hardware.description} 
             strong: p.card-text Marca: 
               span.text-secondary #{hardware.brand}
               
+      
       .btn.btn-info.block.mx-3.mb-2(data-toggle='modal' data-target='#myModal') Adicionar um novo Defeito
 
       .addRepairForm

@@ -5,11 +5,12 @@ mixin problemForm(problem={})
     input(type="text" name='hardware' form="problemForm" value=hardware._id hidden required)
     input(type="text" name='destinationFolder' form="problemForm" value=hardware.name hidden required)
     input(type="text" name='area' form="problemForm" value='problem_' hidden required)
-
+    p.mx-3.text-center.text-white.bg-danger: small Favor verificar se o defeito não consta na lista antes de adiciona um novo!
     label(for="title") Título do Defeito
     input(type="text" name="title" placeholder=" Digite um título para o defeito" value=problem.title required)
 
     label(for="description") Descrição detalhada do problema
+    p.mx-3.bg-info.text-center.p-1.text-white: small Aqui você descreve somente o defeito, em seguida acesse o defeito cadastrado e lá devem ser adicionados os reparos!
     textarea(name="description" placeholder=" Descrição" required)= problem.description
 
     label(for="board_model") Modelo da placa: 
