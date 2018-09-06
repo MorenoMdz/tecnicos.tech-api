@@ -43,7 +43,7 @@ exports.getProblemList = async (req, res) => {
     area: 'problems',
     page,
     pages,
-    count,
+    count
   });
 };
 
@@ -54,7 +54,7 @@ exports.getProblemBySlug = async (req, res) => {
 
   // finds the Problem requested
   const problem = await Problem.findOne({
-    slug: req.params.slug,
+    slug: req.params.slug
   }).populate('author hardware repairs repairsV');
   if (!problem) return next(); // it kicks in the 404 error handler
 
@@ -66,24 +66,27 @@ exports.getProblemBySlug = async (req, res) => {
     problem: problem,
     hardwares: hardwares,
     repairs: repairs,
-    title: problem.title,
+    title: problem.title
   });
 };
 
-exports.searchProblem = async (req, res) => {
+exports.searchProblem = async (req, res, next) => {
   const problems = await Problem.find(
     {
       $text: {
-        $search: req.query.q,
-      },
+        $search: req.query.q
+      }
     },
     {
-      score: { $meta: 'textScore' },
+      score: { $meta: 'textScore' }
     }
   )
     .sort({
-      score: { $meta: 'textScore' },
+      score: { $meta: 'textScore' }
     })
     .limit(5);
-  res.json(problems);
+
+  //res.json(problems);
+  res.locals.problems = problems;
+  next();
 };

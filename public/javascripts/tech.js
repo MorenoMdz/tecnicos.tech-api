@@ -5,13 +5,13 @@ const { loadProgressBar } = require('axios-progress-bar');
 typeAhead($('.search'));
 loadProgressBar();
 
-console.log('bundleds');
+console.log('bundledzs');
 /* floating button */
-$('#main').click(function() {
+/* $('#main').click(function() {
   $('#mini-fab').toggleClass('hidden');
 });
 
 $(document).ready(function() {
   $('[data-toggle="tooltip"]').tooltip();
 });
-$.material.init();
+$.material.init(); */

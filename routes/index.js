@@ -205,7 +205,11 @@ router.get('/techs', catchErrors(technicianController.getTechList));
 router.get('/tech/:id', catchErrors(technicianController.getTech));
 
 /* API Endpoints */
-router.get('/api/search', catchErrors(problemController.searchProblem));
+router.get(
+  '/api/search',
+  catchErrors(problemController.searchProblem),
+  catchErrors(hwController.searchHw)
+);
 router.post(
   '/api/repairs/:id/star',
   authController.isLoggedIn,

@@ -1,12 +1,25 @@
 const axios = require('axios');
 const dompurify = require('dompurify');
 
-function searchResultsHTML(problems) {
-  return problems
-    .map(problem => {
+function searchProbResultsHTML(results) {
+  //console.log(results);
+  return results.problems
+    .map((result, i) => {
       return dompurify.sanitize(`
-      <a href="/problem/${problem.slug}" class="search-result">
-        <strong>${problem.title}</strong>
+      <a href="/problem/${result.slug}" class="search-result">
+        <strong>${result.title}</strong>
+      </a>
+    `);
+    })
+    .join('');
+}
+function searchHwResultsHTML(results) {
+  //console.log(results);
+  return results.hardwares
+    .map((result, i) => {
+      return dompurify.sanitize(`
+      <a href="/hardware/${result.slug}" class="search-result">
+        <strong>${result.name}</strong>, <small> ${result.model}</small>
       </a>
     `);
     })
@@ -29,9 +42,26 @@ function typeAhead(search) {
     axios
       .get(`/api/search?q=${this.value}`)
       .then(res => {
-        if (res.data.length) {
-          const html = dompurify.sanitize(searchResultsHTML(res.data));
+        if (res.data.problems.length && !res.data.hardwares.length) {
+          console.log('prob');
+          const html = dompurify.sanitize(searchProbResultsHTML(res.data));
           searchResults.innerHTML = html;
+          return;
+        } else if (res.data.hardwares.length && !res.data.problems.length) {
+          console.log('hw');
+          const html = dompurify.sanitize(searchHwResultsHTML(res.data));
+          searchResults.innerHTML = html;
+          return;
+        } else if (res.data.problems.length && res.data.hardwares.length) {
+          console.log('double');
+          const htmlProb = dompurify.sanitize(searchProbResultsHTML(res.data));
+          const htmlHw = dompurify.sanitize(searchHwResultsHTML(res.data));
+          searchResults.innerHTML = `
+            <strong class="border-bottom ml-1">Consoles encontrados:</strong>
+            ${htmlHw}
+            <strong class="border-bottom ml-1">Defeitos encontrados:</strong>
+           ${htmlProb}
+          `;
           return;
         }
         // tell nothing came back

@@ -118,3 +118,22 @@ exports.updateHw = async (req, res) => {
   req.flash('success', 'Hardware atualizado.');
   res.redirect('back');
 };
+
+exports.searchHw = async (req, res) => {
+  const hardwares = await Hardware.find(
+    {
+      $text: {
+        $search: req.query.q
+      }
+    },
+    {
+      score: { $meta: 'textScore' }
+    }
+  )
+    .sort({
+      score: { $meta: 'textScore' }
+    })
+    .limit(5);
+  problems = res.locals.problems;
+  res.json({ hardwares, problems });
+};
